@@ -159,7 +159,7 @@ body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-hei
 .modal-body { font-size: 13px; font-family: Helvetica Neue, sans-serif; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 20px; }
 .modal-brand-list { background: rgba(255,255,255,0.04); border-radius: 10px; padding: 10px 14px; margin-bottom: 18px; text-align: left; }
 .modal-brand-item { font-size: 13px; font-family: Helvetica Neue, sans-serif; color: #FF8C00; padding: 4px 0; }
-.modal-brand-item::before { content: 'â¢ '; }
+.modal-brand-item::before { content: 'Ã¢ÂÂ¢ '; }
 .modal-btns { display: flex; gap: 10px; }
 .modal-btn { flex: 1; padding: 14px; border-radius: 12px; font-size: 14px; font-family: Helvetica Neue, sans-serif; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; }
 .modal-btn-cancel { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); }
@@ -228,7 +228,7 @@ body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-hei
   outline-offset: 4px;
   border-radius: 50%;
 }
-.cover-logo-wrap img { display:block; }
+.cover-logo-wrap img { display:block; pointer-events:none; }
 
 .test-modal-overlay {
   display: none;
@@ -706,7 +706,7 @@ body {
     <div class="test-modal-status" id="test-email-status">Ready to send a test submission.</div>
     <div class="modal-btns">
       <button class="modal-btn modal-btn-cancel" onclick="closeTestEmailModal()">Cancel</button>
-      <button class="modal-btn modal-btn-confirm" id="test-email-send-btn" onclick="sendTestEmail()">Initiate</button>
+      <button class="modal-btn modal-btn-confirm" id="test-email-send-btn">Initiate</button>
     </div>
   </div>
 </div>
@@ -883,16 +883,16 @@ body {
   <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
   <div class="compact-nav">
     <button class="btn btn-back" onclick="go('s-phase')">&#8592; Edit</button>
-    <button class="btn btn-secondary" id="summary-secondary-btn" onclick="go('s-brands')">Next Brand</button>
-    <button class="btn btn-green" id="summary-main-btn" onclick="tryWrapUp()">Continue &#8594;</button>
+    <button class="btn btn-secondary summary-secondary-btn" onclick="go('s-brands')">Next Brand</button>
+    <button class="btn btn-green summary-main-btn" onclick="tryWrapUp()">Continue &#8594;</button>
   </div>
   <div class="content">
     <div id="summary-card-content"></div>
   </div>
   <div class="btn-row">
     <button class="btn btn-back" onclick="go('s-phase')">&#8592; Edit</button>
-    <button class="btn btn-secondary" id="summary-secondary-btn" onclick="go('s-brands')">+ Next Brand</button>
-    <button class="btn btn-green" id="summary-main-btn" onclick="tryWrapUp()">Next &#8594;</button>
+    <button class="btn btn-secondary summary-secondary-btn" onclick="go('s-brands')">+ Next Brand</button>
+    <button class="btn btn-green summary-main-btn" onclick="tryWrapUp()">Next &#8594;</button>
   </div>
 </div>
 
@@ -963,9 +963,9 @@ body {
       <div style="height:1px;background:rgba(255,255,255,0.08);margin:4px 0;"></div>
       <div class="q-label" style="margin-bottom:8px;">What happens next:</div>
       <div id="next-steps-list">
-        <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Review your recommended systems</div></div>
-        <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Set a follow-up call date</div></div>
-        <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Intro to Estate-Minder</div></div>
+        <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Dave will get back to you with tailored solutions for each brand</div></div>
+        <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Letâs set a follow up time to talk on Friday?</div></div>
+        <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Intro to Estate Minder</div></div>
         <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Lock in a potential start date for Phase 1</div></div>
       </div>
     </div>
@@ -973,7 +973,7 @@ body {
   <div class="btn-row">
     <button class="btn btn-back" onclick="go('s-expand')">&#8592; Back</button>
     <button class="btn btn-secondary" onclick="go('s-brands')">&#8635; More Brands</button>
-    <button class="btn btn-primary" id="submit-responses-btn" onclick="submitResponses(); return false;">Submit My Responses</button>
+    <button class="btn btn-primary" id="submit-responses-btn">Submit My Responses</button>
   </div>
 </div>
 
@@ -1488,20 +1488,30 @@ function updateSummaryActions() {
   var allBrands = ['sc','tgf','rr','al','em','atc'];
   var done = Object.keys(sessionData);
   var remaining = allBrands.length - done.length;
-  var secondaryBtn = document.getElementById('summary-secondary-btn');
-  var mainBtn = document.getElementById('summary-main-btn');
-  if (!secondaryBtn || !mainBtn) { return; }
+  var secondaryBtns = document.querySelectorAll('.summary-secondary-btn');
+  var mainBtns = document.querySelectorAll('.summary-main-btn');
+  if (!secondaryBtns.length || !mainBtns.length) { return; }
 
-  if (remaining > 0) {
-    secondaryBtn.style.display = 'none';
-    mainBtn.innerHTML = 'Choose Next Brand &#8594;';
-    mainBtn.onclick = function() { go('s-brands'); };
-  } else {
-    secondaryBtn.style.display = '';
-    secondaryBtn.innerHTML = 'Choose Next Brand';
-    secondaryBtn.onclick = function() { go('s-brands'); };
-    mainBtn.innerHTML = 'Continue &#8594;';
-    mainBtn.onclick = function() { tryWrapUp(); };
+  for (var i = 0; i < secondaryBtns.length; i++) {
+    var secondaryBtn = secondaryBtns[i];
+    if (remaining > 0) {
+      secondaryBtn.style.display = 'none';
+    } else {
+      secondaryBtn.style.display = '';
+      secondaryBtn.innerHTML = 'Choose Next Brand';
+      secondaryBtn.onclick = function() { go('s-brands'); };
+    }
+  }
+
+  for (var j = 0; j < mainBtns.length; j++) {
+    var mainBtn = mainBtns[j];
+    if (remaining > 0) {
+      mainBtn.innerHTML = 'Choose Next Brand &#8594;';
+      mainBtn.onclick = function() { go('s-brands'); };
+    } else {
+      mainBtn.innerHTML = 'Continue &#8594;';
+      mainBtn.onclick = function() { tryWrapUp(); };
+    }
   }
 }
 
@@ -1857,7 +1867,7 @@ document.getElementById('coverDate').innerText = months[d.getMonth()] + ' ' + d.
 
 document.addEventListener('DOMContentLoaded', function() {
   var trigger = document.getElementById('cover-test-trigger');
-  var image = document.getElementById('cover-test-trigger-image');
+  var testSendBtn = document.getElementById('test-email-send-btn');
 
   function handleOpen(event) {
     if (event) {
@@ -1868,8 +1878,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   if (trigger) {
-    trigger.addEventListener('click', handleOpen, { passive: false });
-    trigger.addEventListener('touchend', handleOpen, { passive: false });
+    trigger.style.touchAction = 'manipulation';
+    trigger.addEventListener('click', handleOpen);
     trigger.addEventListener('keydown', function(event) {
       if (event.key === 'Enter' || event.key === ' ') {
         handleOpen(event);
@@ -1877,9 +1887,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  if (image) {
-    image.addEventListener('click', handleOpen, { passive: false });
-    image.addEventListener('touchend', handleOpen, { passive: false });
+  if (testSendBtn) {
+    testSendBtn.addEventListener('click', function(event) {
+      event.preventDefault();
+      sendTestEmail();
+    });
   }
 });
 
@@ -1972,12 +1984,86 @@ async function sendTestEmail() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  var safeButtons = document.querySelectorAll(".compact-nav .btn, #summary-main-btn, #summary-secondary-btn");
+  var safeButtons = document.querySelectorAll(".compact-nav .btn, .summary-main-btn, .summary-secondary-btn, #submit-responses-btn, #cover-test-trigger, #test-email-send-btn");
   for (var i = 0; i < safeButtons.length; i++) {
     safeButtons[i].style.touchAction = 'manipulation';
   }
 });
 
+
+function buildFinalSubmissionPayload() {
+  var keys = Object.keys(sessionData);
+  var totalHrs = 0;
+  var productMap = {};
+  var sharedSystems = [];
+  var nextSteps = [];
+  var nextStepEls = document.querySelectorAll('#next-steps-list .next-step-item.sel-ns .ns-text');
+
+  for (var i = 0; i < nextStepEls.length; i++) {
+    nextSteps.push(nextStepEls[i].innerText.trim());
+  }
+
+  for (var j = 0; j < keys.length; j++) {
+    totalHrs += sessionData[keys[j]].hrs || 0;
+    var builds = sessionData[keys[j]].builds || [];
+    for (var k = 0; k < builds.length; k++) {
+      var buildText = builds[k].text || builds[k];
+      var entry = productCatalog[buildText];
+      var productName = entry ? entry.name : buildText;
+      productMap[productName] = true;
+    }
+  }
+
+  var sharedCards = document.querySelectorAll('#inv-shared-systems .shared-card .shared-title');
+  for (var m = 0; m < sharedCards.length; m++) {
+    sharedSystems.push(sharedCards[m].innerText.trim());
+  }
+
+  return {
+    submittedAt: new Date().toISOString(),
+    sessionData: sessionData,
+    sharedSystems: sharedSystems,
+    summaryStats: {
+      totalHours: totalHrs,
+      brandsCovered: keys.length,
+      solutionsIdentified: Object.keys(productMap).length
+    },
+    nextSteps: nextSteps,
+    isTestSubmission: false
+  };
+}
+
+async function submitResponses() {
+  var submitBtn = document.getElementById('submit-responses-btn');
+  if (!submitBtn || submitBtn.classList.contains('is-loading')) { return; }
+
+  submitBtn.classList.add('is-loading');
+  submitBtn.classList.add('is-pressed');
+  submitBtn.innerText = 'Submitting...';
+
+  try {
+    var response = await fetch(SUBMIT_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(buildFinalSubmissionPayload())
+    });
+
+    var data = {};
+    try { data = await response.json(); } catch (e) {}
+
+    if (!response.ok || !data.success) {
+      throw new Error((data && data.message) ? data.message : 'Failed to submit responses');
+    }
+
+    submitBtn.innerText = 'Submitted';
+    go('s-thankyou');
+  } catch (err) {
+    submitBtn.classList.remove('is-loading');
+    submitBtn.classList.remove('is-pressed');
+    submitBtn.innerText = 'Submit My Responses';
+    alert('There was a problem submitting your responses. Please try again.');
+  }
+}
 
 document.addEventListener('DOMContentLoaded', function() {
   var submitBtn = document.getElementById('submit-responses-btn');
@@ -1991,10 +2077,14 @@ document.addEventListener('DOMContentLoaded', function() {
     submitBtn.classList.remove('is-pressed');
   };
 
+  submitBtn.style.touchAction = 'manipulation';
+  submitBtn.addEventListener('click', function(event) {
+    event.preventDefault();
+    submitResponses();
+  });
   submitBtn.addEventListener('touchstart', pressOn, { passive: true });
   submitBtn.addEventListener('pointerdown', pressOn, { passive: true });
   submitBtn.addEventListener('mousedown', pressOn, { passive: true });
-
   submitBtn.addEventListener('touchcancel', pressOff, { passive: true });
   submitBtn.addEventListener('touchend', pressOff, { passive: true });
   submitBtn.addEventListener('pointerup', pressOff, { passive: true });
