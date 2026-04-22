@@ -87,6 +87,16 @@ body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-hei
 .sum-item-pain { background: rgba(255,140,0,0.08); border: 1px solid rgba(255,140,0,0.2); color: rgba(255,255,255,0.85); }
 .sum-item-tool { background: rgba(0,194,255,0.08); border: 1px solid rgba(0,194,255,0.2); color: rgba(255,255,255,0.85); }
 .sum-empty { font-size: 12px; color: rgba(255,255,255,0.25); font-family: Helvetica Neue, sans-serif; font-style: italic; padding: 8px 0; }
+.summary-flow { display:flex; flex-direction:column; gap:18px; flex:1; min-height:0; }
+.summary-section-block { display:flex; flex-direction:column; }
+.summary-section-block.fill-top { flex:1.15; }
+.summary-section-block.fill-mid { flex:0.9; }
+.summary-section-block.fill-sol { flex:0.9; }
+.summary-section-block.fill-build { flex:1.1; }
+.summary-card-shell { display:flex; flex-direction:column; height:100%; gap:18px; }
+.current-solution-chip { display:inline-flex; align-items:center; padding:8px 12px; border-radius:12px; font-size:12px; font-family:Helvetica Neue, sans-serif; background:rgba(0,224,150,0.10); border:1px solid rgba(0,224,150,0.25); color:#00E096; margin:0 6px 6px 0; }
+.summary-chip-wrap { display:flex; flex-wrap:wrap; gap:6px; }
+.summary-build-group { margin-bottom:10px; }
 .tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-family: Helvetica Neue, sans-serif; margin: 2px; }
 .tb { background: rgba(0,87,255,0.2); border: 1px solid rgba(0,87,255,0.4); color: #00C2FF; }
 .tg { background: rgba(0,224,150,0.15); border: 1px solid rgba(0,224,150,0.4); color: #00E096; }
@@ -128,7 +138,7 @@ body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-hei
 .modal-body { font-size: 13px; font-family: Helvetica Neue, sans-serif; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 20px; }
 .modal-brand-list { background: rgba(255,255,255,0.04); border-radius: 10px; padding: 10px 14px; margin-bottom: 18px; text-align: left; }
 .modal-brand-item { font-size: 13px; font-family: Helvetica Neue, sans-serif; color: #FF8C00; padding: 4px 0; }
-.modal-brand-item::before { content: ’- ’; }
+.modal-brand-item::before { content: 'â¢ '; }
 .modal-btns { display: flex; gap: 10px; }
 .modal-btn { flex: 1; padding: 14px; border-radius: 12px; font-size: 14px; font-family: Helvetica Neue, sans-serif; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; }
 .modal-btn-cancel { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); }
@@ -368,8 +378,8 @@ body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-hei
   </div>
   <div class="btn-row">
     <button class="btn btn-back" onclick="go('s-phase')">&#8592; Edit</button>
-    <button class="btn btn-secondary" onclick="go('s-brands')">+ Next Brand</button>
-    <button class="btn btn-green" onclick="tryWrapUp()">Next &#8594;</button>
+    <button class="btn btn-secondary" id="summary-secondary-btn" onclick="go('s-brands')">+ Next Brand</button>
+    <button class="btn btn-green" id="summary-main-btn" onclick="tryWrapUp()">Next &#8594;</button>
   </div>
 </div>
 
@@ -790,12 +800,49 @@ function getBuildWithPhase() {
   return res;
 }
 
+function getCurrentSolutions(builds) {
+  var seen = {};
+  var out = [];
+  for (var i = 0; i < builds.length; i++) {
+    var buildText = builds[i].text || builds[i];
+    var entry = productCatalog[buildText];
+    var solutionName = entry ? entry.name : buildText;
+    if (!seen[solutionName]) {
+      seen[solutionName] = true;
+      out.push(solutionName);
+    }
+  }
+  return out;
+}
+
+function updateSummaryActions() {
+  var allBrands = ['sc','tgf','rr','al','em','atc'];
+  var done = Object.keys(sessionData);
+  var remaining = allBrands.length - done.length;
+  var secondaryBtn = document.getElementById('summary-secondary-btn');
+  var mainBtn = document.getElementById('summary-main-btn');
+  if (!secondaryBtn || !mainBtn) { return; }
+
+  if (remaining > 0) {
+    secondaryBtn.style.display = 'none';
+    mainBtn.innerHTML = 'Next Brand &#8594;';
+    mainBtn.onclick = function() { go('s-brands'); };
+  } else {
+    secondaryBtn.style.display = '';
+    secondaryBtn.innerHTML = '+ Next Brand';
+    secondaryBtn.onclick = function() { go('s-brands'); };
+    mainBtn.innerHTML = 'Next &#8594;';
+    mainBtn.onclick = function() { tryWrapUp(); };
+  }
+}
+
 function saveBrandData() {
   var totalHrs = 0;
   for (var key in popupHours) { totalHrs += popupHours[key]; }
   var builds = getBuildWithPhase();
   var pains = getSel('pain-bubbles');
   var tools = getSel('tool-bubbles');
+  var currentSolutions = getCurrentSolutions(builds);
 
   var phaseCounts = {1:0, 2:0, 3:0};
   for (var i = 0; i < builds.length; i++) { phaseCounts[builds[i].phase]++; }
@@ -807,7 +854,17 @@ function saveBrandData() {
   var phaseLabel = domPhase === 1 ? 'Phase 1' : domPhase === 2 ? 'Phase 2' : 'Phase 3';
   var phaseCls = domPhase === 1 ? 'tg' : domPhase === 2 ? 'tb' : 'to';
 
-  sessionData[curKey] = { name: curBrand, hrs: totalHrs, phase: phaseLabel, phaseNum: domPhase, phaseCls: phaseCls, pains: pains, tools: tools, builds: builds };
+  sessionData[curKey] = {
+    name: curBrand,
+    hrs: totalHrs,
+    phase: phaseLabel,
+    phaseNum: domPhase,
+    phaseCls: phaseCls,
+    pains: pains,
+    tools: tools,
+    currentSolutions: currentSolutions,
+    builds: builds
+  };
 
   document.getElementById('summary-topbar-text').innerText = curBrand;
 
@@ -815,26 +872,53 @@ function saveBrandData() {
   var lastWord = nameParts.pop();
   var firstWords = nameParts.join(' ');
 
-  var h = '<div class="sum-wrap">';
+  var h = '<div class="summary-card-shell">';
   h += '<div class="sum-header">';
   h += '<div class="sum-brand-name">' + (firstWords ? firstWords + '<br><span>' + lastWord + '</span>' : '<span>' + lastWord + '</span>') + '</div>';
   h += '<div class="sum-hrs-badge"><div class="sum-hrs-num">' + totalHrs + '</div><div class="sum-hrs-label">hrs / week</div></div>';
   h += '</div>';
-  h += '<div style="display:flex;flex-direction:column;gap:16px;flex:1;">';
 
-  h += '<div><div class="sum-col-title t-pain">Pain Points / Needs</div><div class="sum-items">';
+  h += '<div class="summary-flow">';
+
+  h += '<div class="summary-section-block fill-top">';
+  h += '<div class="sum-col-title t-pain">Pain Points / Needs</div>';
+  h += '<div class="sum-items">';
   if (pains.length) {
-    for (var i = 0; i < pains.length; i++) { h += '<div class="sum-item sum-item-pain">' + pains[i] + '</div>'; }
-  } else { h += '<div class="sum-empty">None selected</div>'; }
+    for (var i = 0; i < pains.length; i++) {
+      h += '<div class="sum-item sum-item-pain">' + pains[i] + '</div>';
+    }
+  } else {
+    h += '<div class="sum-empty">None selected</div>';
+  }
   h += '</div></div>';
 
-  h += '<div><div class="sum-col-title t-tools">Current Tools</div><div class="sum-items">';
+  h += '<div class="summary-section-block fill-mid">';
+  h += '<div class="sum-col-title t-tools">Current Tools</div>';
+  h += '<div class="sum-items">';
   if (tools.length) {
-    for (var i = 0; i < tools.length; i++) { h += '<div class="sum-item sum-item-tool">' + tools[i] + '</div>'; }
-  } else { h += '<div class="sum-empty">None confirmed</div>'; }
+    for (var i = 0; i < tools.length; i++) {
+      h += '<div class="sum-item sum-item-tool">' + tools[i] + '</div>';
+    }
+  } else {
+    h += '<div class="sum-empty">None confirmed</div>';
+  }
   h += '</div></div>';
 
-  h += '<div><div class="sum-col-title t-build">Build Scope</div>';
+  h += '<div class="summary-section-block fill-sol">';
+  h += '<div class="sum-col-title t-tools">Current Solutions</div>';
+  if (currentSolutions.length) {
+    h += '<div class="summary-chip-wrap">';
+    for (var i = 0; i < currentSolutions.length; i++) {
+      h += '<span class="current-solution-chip">' + currentSolutions[i] + '</span>';
+    }
+    h += '</div>';
+  } else {
+    h += '<div class="sum-empty">No solutions selected yet</div>';
+  }
+  h += '</div>';
+
+  h += '<div class="summary-section-block fill-build">';
+  h += '<div class="sum-col-title t-build">Build Scope</div>';
   if (builds.length) {
     var p1b = [], p2b = [], p3b = [];
     for (var i = 0; i < builds.length; i++) {
@@ -843,25 +927,30 @@ function saveBrandData() {
       else { p3b.push(builds[i].text); }
     }
     if (p1b.length) {
-      h += '<div style="margin-bottom:8px;"><span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#00E096;font-family:Helvetica Neue,sans-serif;display:block;margin-bottom:5px;">Phase 1</span><div style="display:flex;flex-wrap:wrap;gap:6px;">';
+      h += '<div class="summary-build-group"><span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#00E096;font-family:Helvetica Neue,sans-serif;display:block;margin-bottom:5px;">Phase 1</span><div style="display:flex;flex-wrap:wrap;gap:6px;">';
       for (var i = 0; i < p1b.length; i++) { h += '<span class="tag tg" style="font-size:12px;padding:5px 10px;">' + p1b[i] + '</span>'; }
       h += '</div></div>';
     }
     if (p2b.length) {
-      h += '<div style="margin-bottom:8px;"><span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#00C2FF;font-family:Helvetica Neue,sans-serif;display:block;margin-bottom:5px;">Phase 2</span><div style="display:flex;flex-wrap:wrap;gap:6px;">';
+      h += '<div class="summary-build-group"><span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#00C2FF;font-family:Helvetica Neue,sans-serif;display:block;margin-bottom:5px;">Phase 2</span><div style="display:flex;flex-wrap:wrap;gap:6px;">';
       for (var i = 0; i < p2b.length; i++) { h += '<span class="tag tb" style="font-size:12px;padding:5px 10px;">' + p2b[i] + '</span>'; }
       h += '</div></div>';
     }
     if (p3b.length) {
-      h += '<div style="margin-bottom:8px;"><span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#FF8C00;font-family:Helvetica Neue,sans-serif;display:block;margin-bottom:5px;">Phase 3</span><div style="display:flex;flex-wrap:wrap;gap:6px;">';
+      h += '<div class="summary-build-group"><span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#FF8C00;font-family:Helvetica Neue,sans-serif;display:block;margin-bottom:5px;">Phase 3</span><div style="display:flex;flex-wrap:wrap;gap:6px;">';
       for (var i = 0; i < p3b.length; i++) { h += '<span class="tag to" style="font-size:12px;padding:5px 10px;">' + p3b[i] + '</span>'; }
       h += '</div></div>';
     }
-  } else { h += '<div class="sum-empty">None selected</div>'; }
+  } else {
+    h += '<div class="sum-empty">None selected</div>';
+  }
   h += '</div>';
-  h += '</div></div>';
+
+  h += '</div>';
+  h += '</div>';
 
   document.getElementById('summary-card-content').innerHTML = h;
+  updateSummaryActions();
 }
 
 function tryWrapUp() {
