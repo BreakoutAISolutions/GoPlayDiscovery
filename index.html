@@ -209,6 +209,12 @@ body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-hei
 .next-step-item.sel-ns .ns-check { background: #00C2FF; border-color: #00C2FF; color: #000; }
 .ns-text { font-size: 13px; font-family: Helvetica Neue, sans-serif; color: rgba(255,255,255,0.8); }
 .ns-link { color: #00C2FF; text-decoration: underline; text-underline-offset: 3px; font-weight: 700; }
+.thankyou-next-wrap { width:min(100%,760px); margin: 0 auto 22px; padding:18px 18px 14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:18px; text-align:left; box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 10px 30px rgba(0,0,0,0.18); }
+#thankyou-next-steps-list { display:flex; flex-direction:column; gap:8px; }
+#thankyou-next-steps-list .next-step-item { background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); }
+#thankyou-next-steps-list .next-step-item .ns-check { border-color: rgba(0,194,255,0.24); color:#00C2FF; }
+#thankyou-next-steps-list .thankyou-booking-item { background: rgba(0,194,255,0.06); border-color: rgba(0,194,255,0.28); }
+#thankyou-next-steps-list .thankyou-booking-item:hover { background: rgba(0,194,255,0.1); }
 
 /* CUSTOM INPUT ROW */
 .custom-input-row { display: inline-flex; align-items: center; gap: 6px; margin-top: 2px; }
@@ -962,13 +968,8 @@ body {
         <div class="ssb-sub">unique builds across all brands</div>
       </div>
       <div style="height:1px;background:rgba(255,255,255,0.08);margin:4px 0;"></div>
-      <div class="q-label" style="margin-bottom:8px;">What happens next:</div>
-      <div id="next-steps-list">
-        <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Dave will get back to you with tailored solutions for each brand</div></div>
-        <div class="next-step-item" onclick="window.location.href='https://calendly.com/dave-breakoutaisolutions/'" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='https://calendly.com/dave-breakoutaisolutions/';}"><div class="ns-check">&#10003;</div><div class="ns-text"><span class="ns-link">Book some time Friday</span></div></div>
-        <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Intro to Estate Minder</div></div>
-        <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Lock in a potential start date for Phase 1</div></div>
-      </div>
+      <div class="q-label" style="margin-bottom:8px;">Next step</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.58);font-family:Helvetica Neue,sans-serif;line-height:1.6;">Submit your responses first. Your thank you page will show the follow up actions and Friday booking link.</div>
     </div>
   </div>
   <div class="btn-row">
@@ -999,7 +1000,16 @@ body {
       <span class="thankyou-x">X</span>
       <span>Kelly</span>
     </div>
-    <div class="thankyou-copy" id="thankyou-copy">Thank you for taking the time to complete this planning session. Your responses help shape a cleaner, smarter system for each brand and make it easier to prioritize the right next steps.</div>
+    <div class="thankyou-copy" id="thankyou-copy">Thank you for taking the time to complete this planning session. Your responses are in, and the next moves are ready below.</div>
+    <div class="thankyou-next-wrap">
+      <div class="q-label" style="margin-bottom:10px;">What happens next</div>
+      <div id="thankyou-next-steps-list">
+        <div class="next-step-item"><div class="ns-check">&#10003;</div><div class="ns-text">Dave will get back to you with tailored solutions for each brand</div></div>
+        <div class="next-step-item thankyou-booking-item" onclick="window.location.href='https://calendly.com/dave-breakoutaisolutions/'" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='https://calendly.com/dave-breakoutaisolutions/';}"><div class="ns-check">&#10003;</div><div class="ns-text"><span class="ns-link">Book some time Friday</span></div></div>
+        <div class="next-step-item"><div class="ns-check">&#10003;</div><div class="ns-text">Intro to Estate Minder</div></div>
+        <div class="next-step-item"><div class="ns-check">&#10003;</div><div class="ns-text">Lock in a potential start date for Phase 1</div></div>
+      </div>
+    </div>
     <div class="thankyou-footer">Breakout AI Solutions</div>
   </div>
   <div class="btn-row">
@@ -1998,11 +2008,7 @@ function buildFinalSubmissionPayload() {
   var productMap = {};
   var sharedSystems = [];
   var nextSteps = [];
-  var nextStepEls = document.querySelectorAll('#next-steps-list .next-step-item.sel-ns .ns-text');
-
-  for (var i = 0; i < nextStepEls.length; i++) {
-    nextSteps.push(nextStepEls[i].innerText.trim());
-  }
+  nextSteps = ['Dave will get back to you with tailored solutions for each brand','Book some time Friday','Intro to Estate Minder','Lock in a potential start date for Phase 1'];
 
   for (var j = 0; j < keys.length; j++) {
     totalHrs += sessionData[keys[j]].hrs || 0;
