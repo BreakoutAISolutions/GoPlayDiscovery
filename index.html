@@ -12,15 +12,16 @@ body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-hei
 @media (min-width: 768px) {
 .content { padding: 36px 48px 20px !important; }
 .btn-row { padding: 16px 48px 28px !important; }
-.topbar { padding: 16px 48px !important; }
+.topbar { padding: 22px 48px !important; min-height: 104px; }
 .cover-wrap { padding: 48px 80px !important; }
 }
 
 .screen { display: none; min-height: 100vh; height: 100%; flex-direction: column; }
 .screen.active { display: flex; }
-.topbar { background: #0A0A0A; border-bottom: 1px solid rgba(0,194,255,0.15); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-.topbar-logo { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #00C2FF; font-family: Helvetica Neue, sans-serif; font-weight: 700; }
-.topbar-brand { font-size: 13px; color: rgba(255,255,255,0.55); font-family: Helvetica Neue, sans-serif; }
+.topbar { background: #0A0A0A; border-bottom: 1px solid rgba(0,194,255,0.15); padding: 20px 28px; min-height: 94px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+.topbar-logo { font-size: 16px; letter-spacing: 2px; text-transform: uppercase; color: #00C2FF; font-family: Helvetica Neue, sans-serif; font-weight: 700; line-height: 1.2; }
+.topbar-logo img { width: 64px !important; height: 64px !important; border-radius: 50%; margin-right: 14px !important; vertical-align: middle; filter: drop-shadow(0 0 14px rgba(0,194,255,0.28)); }
+.topbar-brand { font-size: 14px; color: rgba(255,255,255,0.65); font-family: Helvetica Neue, sans-serif; letter-spacing: 0.8px; }
 .progress-bar { height: 3px; background: rgba(255,255,255,0.08); flex-shrink: 0; }
 .progress-fill { height: 100%; background: linear-gradient(90deg, #0057FF, #00C2FF); transition: width 0.4s ease; box-shadow: 0 0 8px rgba(0,194,255,0.6); }
 .content { flex: 1; padding: 28px 28px 16px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
@@ -28,7 +29,7 @@ body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-hei
 .q-text { font-size: 20px; line-height: 1.4; margin-bottom: 16px; }
 .q-label { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #00C2FF; font-family: Helvetica Neue, sans-serif; margin-bottom: 10px; font-weight: 700; }
 .bubble-group { display: flex; flex-wrap: wrap; gap: 11px; margin-bottom: 24px; }
-.bubble { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.10); border-radius: 30px; padding: 13px 20px; font-size: 15px; font-family: Helvetica Neue, sans-serif; cursor: pointer; transition: all 0.2s ease; user-select: none; }
+.bubble { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.10); border-radius: 30px; padding: 13px 20px; font-size: 15px; font-family: Helvetica Neue, sans-serif; cursor: pointer; transition: all 0.2s ease; user-select: none; touch-action: manipulation; }
 .bubble:active { transform: scale(0.96); }
 .bubble.selected { background: rgba(0,87,255,0.22); border-color: #0057FF; color: #fff; }
 .bubble.sel-green { background: rgba(0,224,150,0.18); border-color: #00E096; color: #00E096; }
@@ -192,6 +193,20 @@ body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-hei
 .custom-input-row { display: inline-flex; align-items: center; gap: 6px; margin-top: 2px; }
 .custom-text-input { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.15); border-radius: 30px; padding: 10px 16px; font-size: 13px; color: #fff; outline: none; width: 150px; font-family: Helvetica Neue, sans-serif; }
 .custom-add-btn { padding: 10px 14px; font-size: 16px; background: rgba(0,194,255,0.1); border: 1.5px solid rgba(0,194,255,0.3); color: #00C2FF; border-radius: 30px; cursor: pointer; font-family: Helvetica Neue, sans-serif; }
+.btn, .brand-card, .phase-btn, .custom-add-btn, .next-step-item, .popup-close { touch-action: manipulation; }
+
+
+
+/* THANK YOU SCREEN */
+.thankyou-wrap { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:56px 28px; background: radial-gradient(circle at 50% 30%, rgba(0,194,255,0.16) 0%, rgba(0,87,255,0.08) 32%, transparent 65%); }
+.thankyou-logo { width:180px; height:180px; border-radius:50%; margin-bottom:28px; filter:drop-shadow(0 0 36px rgba(0,194,255,0.45)); }
+.thankyou-eyebrow { font-size:12px; letter-spacing:4px; text-transform:uppercase; color:#00C2FF; font-family:Helvetica Neue, sans-serif; margin-bottom:18px; }
+.thankyou-title { font-size:58px; line-height:1.05; margin-bottom:14px; text-shadow:0 0 32px rgba(0,194,255,0.18); }
+.thankyou-title span { color:#00C2FF; text-shadow:0 0 24px rgba(0,194,255,0.4); }
+.thankyou-collab { display:inline-flex; align-items:center; gap:14px; padding:12px 22px; border-radius:999px; background:rgba(255,255,255,0.05); border:1px solid rgba(0,194,255,0.22); color:#fff; font-family:Helvetica Neue, sans-serif; font-size:18px; font-weight:700; letter-spacing:0.5px; margin-bottom:22px; box-shadow:0 0 22px rgba(0,194,255,0.12); }
+.thankyou-x { color:#00C2FF; font-size:24px; text-shadow:0 0 16px rgba(0,194,255,0.45); }
+.thankyou-copy { max-width:700px; font-size:16px; line-height:1.7; color:rgba(255,255,255,0.72); font-family:Helvetica Neue, sans-serif; margin:0 auto 26px; }
+.thankyou-footer { font-size:12px; color:rgba(255,255,255,0.38); font-family:Helvetica Neue, sans-serif; letter-spacing:1.2px; text-transform:uppercase; }
 
 /* OVERALL POLISH PASS */
 body {
@@ -202,12 +217,12 @@ body {
 }
 
 .content {
-  padding: 34px 32px 22px;
+  padding: 36px 34px 24px;
 }
 
 @media (min-width: 768px) {
-  .content { padding: 40px 52px 26px !important; }
-  .btn-row { padding: 18px 52px 30px !important; }
+  .content { padding: 42px 54px 28px !important; }
+  .btn-row { padding: 18px 54px 30px !important; }
   .cover-wrap { padding: 56px 92px !important; }
 }
 
@@ -674,17 +689,48 @@ body {
       <div style="height:1px;background:rgba(255,255,255,0.08);margin:4px 0;"></div>
       <div class="q-label" style="margin-bottom:8px;">What happens next:</div>
       <div id="next-steps-list">
-        <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Revised proposal</div></div>
-        <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Set up follow-up call date</div></div>
+        <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Review your recommended systems</div></div>
+        <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Set a follow-up call date</div></div>
         <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Intro to Estate-Minder</div></div>
-        <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Get pricing for her first</div></div>
+        <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Lock in a potential start date for Phase 1</div></div>
       </div>
     </div>
   </div>
   <div class="btn-row">
     <button class="btn btn-back" onclick="go('s-expand')">&#8592; Back</button>
     <button class="btn btn-secondary" onclick="go('s-brands')">&#8635; More Brands</button>
-    <button class="btn btn-primary">&#10003; Done</button>
+    <button class="btn btn-primary" onclick="go('s-thankyou')">&#10003; Done</button>
+  </div>
+</div>
+
+
+<!-- SCREEN 7: THANK YOU -->
+
+<div class="screen" id="s-thankyou">
+  <div class="topbar">
+    <div class="topbar-logo" style="display:flex;align-items:center;">
+      <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" alt="B">
+      <span>Thank You</span>
+    </div>
+    <div class="topbar-brand">Session Complete</div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+  <div class="thankyou-wrap">
+    <img class="thankyou-logo" src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" alt="Breakout AI Solutions">
+    <div class="thankyou-eyebrow">Thank You Kelly</div>
+    <div class="thankyou-title">Thank You<span>.</span></div>
+    <div class="thankyou-collab">
+      <span>GoPlay</span>
+      <span class="thankyou-x">X</span>
+      <span>Kelly</span>
+    </div>
+    <div class="thankyou-copy">Thank you for taking the time to complete this planning session. Your responses help shape a cleaner, smarter system for each brand and make it easier to prioritize the right next steps.</div>
+    <div class="thankyou-footer">Breakout AI Solutions</div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-back" onclick="go('s-session')">&#8592; Back</button>
+    <button class="btn btn-secondary" onclick="go('s-brands')">&#8635; Review Brands</button>
+    <button class="btn btn-primary" onclick="go('s-cover')">Start Over</button>
   </div>
 </div>
 
@@ -731,6 +777,40 @@ var qualifyData = {
   'Circle not integrated with CRM or email': { questions: [{ q: 'What tools need to connect to Circle?', opts: ['Mailchimp','Constant Contact','Kajabi','Make automations','A CRM system','All of them'] },{ q: 'Is Make currently doing any Circle automation?', opts: ['Yes some','No not yet','Not sure','Tried but failed'] }] },
   'Client has no visibility into engagement': { questions: [{ q: 'Does Kelly provide any reporting to the client?', opts: ['No','Ad hoc updates','Monthly report','Client has own login'] },{ q: 'What would the client most want to see?', opts: ['Member count','Engagement rate','Revenue','Community activity','All of it'] }] }
 };
+
+
+var commonPainOptions = ['CRM needs attention','Lead follow-up needs attention','Contracts are manual','Proposals are manual','Billing integration is missing','Payments are not connected'];
+var commonToolOptions = ['QuickBooks','Stripe','Square','DocuSign','PandaDoc','HubSpot','Zoho CRM','Salesforce'];
+var commonBuildOptions = ['Smart CRM pipeline','Automated follow-up','Contracts workflow','Proposal generation','Billing integration','Payments integration','E-sign document flow'];
+
+qualifyData['CRM needs attention'] = { questions: [{ q: 'How are customer records managed right now?', opts: ['Spreadsheet','Email threads','Multiple places','No system'] },{ q: 'How urgent is a cleaner CRM?', opts: ['High','Medium','Low','Not sure'] }] };
+qualifyData['Lead follow-up needs attention'] = { questions: [{ q: 'What usually happens after a new lead comes in?', opts: ['Manual follow-up','Delayed follow-up','No clear process','Depends on the brand'] },{ q: 'How often are leads missed or delayed?', opts: ['Daily','Weekly','Monthly','Rarely'] }] };
+qualifyData['Contracts are manual'] = { questions: [{ q: 'How are contracts handled today?', opts: ['Email attachments','Word docs','PDFs','No standard process'] },{ q: 'Would e-sign or approval tracking help?', opts: ['Yes definitely','Probably','Maybe','Not needed'] }] };
+qualifyData['Proposals are manual'] = { questions: [{ q: 'How are proposals created now?', opts: ['From scratch','Copy and paste','Template based','Not consistent'] },{ q: 'How often are proposals sent?', opts: ['Weekly','Monthly','Occasionally','Varies by brand'] }] };
+qualifyData['Billing integration is missing'] = { questions: [{ q: 'How is billing managed right now?', opts: ['Manual invoicing','Accounting software','Different tools','Not set up'] },{ q: 'What would help most?', opts: ['Cleaner invoicing','Connected reporting','Automated reminders','Payments sync'] }] };
+qualifyData['Payments are not connected'] = { questions: [{ q: 'How are payments collected today?', opts: ['Bank transfer','Card links','Manual invoices','Different tools'] },{ q: 'What kind of payment flow would help?', opts: ['Online checkout','Deposit collection','Recurring payments','Simple payment links'] }] };
+
+function uniqueArray(arr) {
+  var seen = {};
+  var out = [];
+  for (var i = 0; i < arr.length; i++) {
+    if (!seen[arr[i]]) {
+      seen[arr[i]] = true;
+      out.push(arr[i]);
+    }
+  }
+  return out;
+}
+
+function mergeToolPairs(basePairs, extras) {
+  var out = basePairs.slice();
+  var seen = {};
+  for (var i = 0; i < out.length; i++) { seen[out[i][0]] = true; }
+  for (var j = 0; j < extras.length; j++) {
+    if (!seen[extras[j]]) { out.push([extras[j], '']); }
+  }
+  return out;
+}
 
 var brandData = {
   sc: { name: 'Sports Cannabis', otherType: 'cannabis_event', painQ: '"What are the top things holding Sports Cannabis back right now?"', pains: ['No CRM in place','Leads falling through cracks','Sponsorship outreach is manual','No follow-up system','Social media inconsistent','Too much manual data entry','Proposals take too long',"Can't track what's working",'Email follow-up falling behind','No lead generation system'], toolsQ: '"What software are you currently using for Sports Cannabis?"', tools: [['Make','sel'],['Mailchimp','sel'],['Constant Contact','sel'],['Wix',''],['Google Sheets',''],['Instagram / Meta',''],['Nothing yet','']], phaseQ: '"If we could start one thing for Sports Cannabis in the next 30 days, what makes the biggest impact?"', builds: ['Smart CRM pipeline','Sponsorship outreach sequences','Lead sourcing automation','Automated follow-up','Social content automation','Email campaigns','Proposal generation','Lead scoring','Analytics dashboard'] },
@@ -788,10 +868,14 @@ function startBrand() {
   document.getElementById('pain-question').innerText = d.painQ;
   document.getElementById('tools-question').innerText = d.toolsQ;
 
+  var painsForBrand = uniqueArray(d.pains.concat(commonPainOptions));
+  var toolsForBrand = mergeToolPairs(d.tools, commonToolOptions);
+  var buildsForBrand = uniqueArray(d.builds.concat(commonBuildOptions));
+
   var pb = document.getElementById('pain-bubbles');
   pb.innerHTML = '';
-  for (var i = 0; i < d.pains.length; i++) {
-    var pain = d.pains[i];
+  for (var i = 0; i < painsForBrand.length; i++) {
+    var pain = painsForBrand[i];
     var div = document.createElement('div');
     div.className = 'bubble';
     div.setAttribute('onclick', "tapPain(this,'" + esc(pain) + "')");
@@ -823,12 +907,12 @@ function startBrand() {
 
   var tb = document.getElementById('tool-bubbles');
   tb.innerHTML = '';
-  for (var i = 0; i < d.tools.length; i++) {
-    var cls = d.tools[i][1] === 'sel' ? 'bubble selected' : 'bubble';
+  for (var i = 0; i < toolsForBrand.length; i++) {
+    var cls = toolsForBrand[i][1] === 'sel' ? 'bubble selected' : 'bubble';
     var tdiv = document.createElement('div');
     tdiv.className = cls;
     tdiv.setAttribute('onclick', 'tog(this)');
-    tdiv.innerText = d.tools[i][0];
+    tdiv.innerText = toolsForBrand[i][0];
     tb.appendChild(tdiv);
   }
 
@@ -860,13 +944,29 @@ function startBrand() {
 
   var bb = document.getElementById('build-bubbles');
   bb.innerHTML = '';
-  for (var i = 0; i < d.builds.length; i++) {
+  for (var i = 0; i < buildsForBrand.length; i++) {
     var bdiv = document.createElement('div');
     bdiv.className = 'bubble';
     bdiv.setAttribute('onclick', 'togBuild(this)');
-    bdiv.innerText = d.builds[i];
+    bdiv.innerText = buildsForBrand[i];
     bb.appendChild(bdiv);
   }
+
+  var buildInputRow = document.createElement('div');
+  buildInputRow.className = 'custom-input-row';
+  var buildInput = document.createElement('input');
+  buildInput.type = 'text';
+  buildInput.id = 'custom-build-input';
+  buildInput.placeholder = 'Add a feature...';
+  buildInput.className = 'custom-text-input';
+  buildInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') { addCustomBuild(); } });
+  var buildAddBtn = document.createElement('div');
+  buildAddBtn.className = 'custom-add-btn';
+  buildAddBtn.innerText = '+';
+  buildAddBtn.addEventListener('click', addCustomBuild);
+  buildInputRow.appendChild(buildInput);
+  buildInputRow.appendChild(buildAddBtn);
+  bb.appendChild(buildInputRow);
 
   go('s-pain');
 }
@@ -893,7 +993,8 @@ function addCustomTool() {
   var val = input.value.trim();
   if (!val) { return; }
   var tb = document.getElementById('tool-bubbles');
-  var inputRow = tb.querySelector('.custom-input-row');
+  var inputRows = tb.querySelectorAll('.custom-input-row');
+  var inputRow = inputRows.length ? inputRows[inputRows.length - 1] : null;
   var newBubble = document.createElement('div');
   newBubble.className = 'bubble selected';
   newBubble.setAttribute('onclick', 'tog(this)');
@@ -902,6 +1003,30 @@ function addCustomTool() {
     tb.insertBefore(newBubble, inputRow);
   } else {
     tb.appendChild(newBubble);
+  }
+  input.value = '';
+}
+
+function addCustomBuild() {
+  var input = document.getElementById('custom-build-input');
+  if (!input) { return; }
+  var val = input.value.trim();
+  if (!val) { return; }
+  var bb = document.getElementById('build-bubbles');
+  var inputRows = bb.querySelectorAll('.custom-input-row');
+  var inputRow = inputRows.length ? inputRows[inputRows.length - 1] : null;
+  var newBubble = document.createElement('div');
+  newBubble.className = 'bubble';
+  newBubble.setAttribute('onclick', 'togBuild(this)');
+  newBubble.innerText = val;
+  if (curPhase === 1) { newBubble.classList.add('sel-green'); }
+  else if (curPhase === 2) { newBubble.classList.add('sel-blue'); }
+  else if (curPhase === 3) { newBubble.classList.add('sel-orange'); }
+  else { newBubble.classList.add('sel-green'); }
+  if (inputRow) {
+    bb.insertBefore(newBubble, inputRow);
+  } else {
+    bb.appendChild(newBubble);
   }
   input.value = '';
 }
@@ -917,27 +1042,60 @@ function tapPain(el, pain) {
   }
 }
 
+function makePopupBubble(label, onClick) {
+  var bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.innerText = label;
+  bubble.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    onClick(bubble);
+  });
+  return bubble;
+}
+
 function openPopup(pain) {
   document.getElementById('popup-title').innerText = pain;
   var qData = qualifyData[pain];
-  var html = '';
+  var body = document.getElementById('popup-body');
+  body.innerHTML = '';
+
   if (qData) {
     for (var i = 0; i < qData.questions.length; i++) {
       var q = qData.questions[i];
-      html += '<div class="popup-question">' + q.q + '</div><div class="bubble-group">';
+      var qLabel = document.createElement('div');
+      qLabel.className = 'popup-question';
+      qLabel.innerText = q.q;
+      body.appendChild(qLabel);
+
+      var qGroup = document.createElement('div');
+      qGroup.className = 'bubble-group';
       for (var j = 0; j < q.opts.length; j++) {
-        html += '<div class="bubble" onclick="tog(this)">' + q.opts[j] + '</div>';
+        (function(optLabel) {
+          var bubble = makePopupBubble(optLabel, function(el) { tog(el); });
+          qGroup.appendChild(bubble);
+        })(q.opts[j]);
       }
-      html += '</div>';
+      body.appendChild(qGroup);
     }
   }
-  html += '<div class="popup-question">Hours per week on this?</div><div class="bubble-group">';
+
+  var hrsLabel = document.createElement('div');
+  hrsLabel.className = 'popup-question';
+  hrsLabel.innerText = 'Hours per week on this?';
+  body.appendChild(hrsLabel);
+
+  var hrsGroup = document.createElement('div');
+  hrsGroup.className = 'bubble-group';
   var hOpts = ['1','2','3','4','5','6','8','10','12','15'];
   for (var k = 0; k < hOpts.length; k++) {
-    html += '<div class="bubble" onclick="selHrs(this,\'' + esc(pain) + '\',' + hOpts[k] + ')">' + hOpts[k] + ' hrs</div>';
+    (function(hrs) {
+      var bubble = makePopupBubble(hrs + ' hrs', function(el) { selHrs(el, pain, parseInt(hrs, 10)); });
+      hrsGroup.appendChild(bubble);
+    })(hOpts[k]);
   }
-  html += '</div>';
-  document.getElementById('popup-body').innerHTML = html;
+  body.appendChild(hrsGroup);
+
   document.getElementById('popup-overlay').classList.add('active');
 }
 
@@ -1301,6 +1459,12 @@ function buildInvestmentMap() {
 
 var productCatalog = {
   'Smart CRM pipeline': {name:'Smart CRM',phase:1},
+  'Automated follow-up': {name:'Automated Follow-Up',phase:1},
+  'Contracts workflow': {name:'Contracts Workflow',phase:2},
+  'Proposal generation': {name:'Proposal Generator',phase:2},
+  'Billing integration': {name:'Billing Integration',phase:2},
+  'Payments integration': {name:'Payments Integration',phase:2},
+  'E-sign document flow': {name:'E-sign Documents',phase:2},
   'Lead sourcing automation': {name:'Lead Generation System',phase:2},
   'Sponsorship outreach sequences': {name:'Sponsorship Outreach System',phase:1},
   'Automated follow-up': {name:'Automated Follow-Up',phase:1},
