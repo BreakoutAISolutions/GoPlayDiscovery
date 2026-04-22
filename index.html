@@ -222,21 +222,25 @@ body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-hei
 .btn.is-loading { opacity:0.75; pointer-events:none; }
 
 
-.cover-logo-wrap { position: relative; display: inline-block; margin-bottom: 28px; }
+.cover-logo-wrap { position: relative; display: inline-block; margin-bottom: 28px; cursor: pointer; }
+.cover-logo-wrap:focus {
+  outline: 1px solid rgba(0,194,255,0.4);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
 .cover-test-hotspot {
   position: absolute;
-  top: 16px;
-  right: 24px;
-  width: 36px;
-  height: 36px;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   background: transparent;
   border: none;
   cursor: pointer;
+  z-index: 5;
 }
 .cover-test-hotspot:focus {
-  outline: 1px solid rgba(0,194,255,0.4);
-  outline-offset: 2px;
+  outline: none;
 }
 .test-modal-overlay {
   display: none;
@@ -558,9 +562,9 @@ body {
 
 <div class="screen active" id="s-cover">
   <div class="cover-wrap">
-    <div class="cover-logo-wrap">
-    <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:240px;height:240px;border-radius:50%;filter:drop-shadow(0 0 32px rgba(0,194,255,0.5));" alt="Breakout AI Solutions">
-    <button class="cover-test-hotspot" onclick="openTestEmailModal()" aria-label="Open hidden test email"></button>
+    <div class="cover-logo-wrap" onclick="openTestEmailModal()" tabindex="0" role="button" aria-label="Open hidden test email">
+    <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:240px;height:240px;border-radius:50%;filter:drop-shadow(0 0 32px rgba(0,194,255,0.5));pointer-events:none;" alt="Breakout AI Solutions">
+    <button class="cover-test-hotspot" onclick="event.stopPropagation(); openTestEmailModal()" aria-label="Open hidden test email"></button>
   </div>
     <div class="cover-eyebrow">Self Guided Planning Session</div>
     <div class="cover-title">GoPlay /<br><span>CannaJo!nt</span></div>
