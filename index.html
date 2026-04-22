@@ -414,6 +414,12 @@ body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-hei
   }
 }
 
+
+#submit-responses-btn.is-pressed {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
 /* THANK YOU SCREEN */
 .thankyou-wrap { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:56px 28px; background: radial-gradient(circle at 50% 30%, rgba(0,194,255,0.16) 0%, rgba(0,87,255,0.08) 32%, transparent 65%); }
 .thankyou-logo { width:180px; height:180px; border-radius:50%; margin-bottom:28px; filter:drop-shadow(0 0 36px rgba(0,194,255,0.45)); }
@@ -967,7 +973,7 @@ body {
   <div class="btn-row">
     <button class="btn btn-back" onclick="go('s-expand')">&#8592; Back</button>
     <button class="btn btn-secondary" onclick="go('s-brands')">&#8635; More Brands</button>
-    <button class="btn btn-primary" id="submit-responses-btn">Submit My Responses</button>
+    <button class="btn btn-primary" id="submit-responses-btn" onclick="submitResponses(); return false;">Submit My Responses</button>
   </div>
 </div>
 
@@ -1878,22 +1884,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-document.addEventListener('DOMContentLoaded', function() {
-  var submitBtn = document.getElementById('submit-responses-btn');
-  if (!submitBtn) return;
-
-  var handleSubmitTap = function(event) {
-    if (event) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    submitResponses();
-  };
-
-  submitBtn.addEventListener('click', handleSubmitTap, { passive: false });
-  submitBtn.addEventListener('touchend', handleSubmitTap, { passive: false });
-  submitBtn.addEventListener('pointerup', handleSubmitTap, { passive: false });
-});
 
 function openTestEmailModal() {
   var modal = document.getElementById('test-email-modal');
@@ -1986,6 +1976,30 @@ document.addEventListener('DOMContentLoaded', function() {
   for (var i = 0; i < safeButtons.length; i++) {
     safeButtons[i].style.touchAction = 'manipulation';
   }
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  var submitBtn = document.getElementById('submit-responses-btn');
+  if (!submitBtn) return;
+
+  var pressOn = function() {
+    submitBtn.classList.add('is-pressed');
+  };
+
+  var pressOff = function() {
+    submitBtn.classList.remove('is-pressed');
+  };
+
+  submitBtn.addEventListener('touchstart', pressOn, { passive: true });
+  submitBtn.addEventListener('pointerdown', pressOn, { passive: true });
+  submitBtn.addEventListener('mousedown', pressOn, { passive: true });
+
+  submitBtn.addEventListener('touchcancel', pressOff, { passive: true });
+  submitBtn.addEventListener('touchend', pressOff, { passive: true });
+  submitBtn.addEventListener('pointerup', pressOff, { passive: true });
+  submitBtn.addEventListener('mouseup', pressOff, { passive: true });
+  submitBtn.addEventListener('mouseleave', pressOff, { passive: true });
 });
 
 </script>
