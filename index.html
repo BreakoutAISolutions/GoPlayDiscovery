@@ -221,6 +221,80 @@ body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-hei
 .submit-status-note { font-size:12px; color:rgba(255,255,255,0.55); font-family:Helvetica Neue, sans-serif; margin-top:8px; }
 .btn.is-loading { opacity:0.75; pointer-events:none; }
 
+
+.cover-logo-wrap { position: relative; display: inline-block; margin-bottom: 28px; }
+.cover-test-hotspot {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.cover-test-hotspot:focus {
+  outline: 1px solid rgba(0,194,255,0.4);
+  outline-offset: 2px;
+}
+.test-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.84);
+  z-index: 350;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.test-modal-overlay.active { display: flex; }
+.test-modal-box {
+  width: min(92vw, 460px);
+  background: #0A0A0A;
+  border: 1px solid rgba(0,194,255,0.28);
+  border-radius: 22px;
+  padding: 26px 22px 24px;
+  box-shadow: 0 0 34px rgba(0,194,255,0.16);
+}
+.test-modal-title {
+  font-size: 22px;
+  font-family: Helvetica Neue, sans-serif;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.test-modal-copy {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.68);
+  font-family: Helvetica Neue, sans-serif;
+  margin-bottom: 18px;
+}
+.test-email-chip-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.test-email-chip {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(0,194,255,0.07);
+  border: 1px solid rgba(0,194,255,0.2);
+  color: #00C2FF;
+  font-size: 13px;
+  font-family: Helvetica Neue, sans-serif;
+  word-break: break-word;
+}
+.test-modal-status {
+  min-height: 20px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.52);
+  font-family: Helvetica Neue, sans-serif;
+  margin-bottom: 14px;
+}
+
 /* THANK YOU SCREEN */
 .thankyou-wrap { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:56px 28px; background: radial-gradient(circle at 50% 30%, rgba(0,194,255,0.16) 0%, rgba(0,87,255,0.08) 32%, transparent 65%); }
 .thankyou-logo { width:180px; height:180px; border-radius:50%; margin-bottom:28px; filter:drop-shadow(0 0 36px rgba(0,194,255,0.45)); }
@@ -484,13 +558,32 @@ body {
 
 <div class="screen active" id="s-cover">
   <div class="cover-wrap">
-    <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:240px;height:240px;border-radius:50%;margin-bottom:28px;filter:drop-shadow(0 0 32px rgba(0,194,255,0.5));" alt="Breakout AI Solutions">
+    <div class="cover-logo-wrap">
+    <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:240px;height:240px;border-radius:50%;filter:drop-shadow(0 0 32px rgba(0,194,255,0.5));" alt="Breakout AI Solutions">
+    <button class="cover-test-hotspot" onclick="openTestEmailModal()" aria-label="Open hidden test email"></button>
+  </div>
     <div class="cover-eyebrow">Self Guided Planning Session</div>
     <div class="cover-title">GoPlay /<br><span>CannaJo!nt</span></div>
     <div class="cover-divider"></div>
     <div style="max-width:620px;font-size:14px;line-height:1.6;color:rgba(255,255,255,0.65);font-family:Helvetica Neue, sans-serif;margin:0 auto 22px;">This is a self guided planning experience. Select each brand, answer the questions that apply, and choose the solutions that would help most.</div>
     <button class="btn-big" onclick="go('s-brands')">LET'S GO!</button>
     <div class="cover-date" id="coverDate"></div>
+  </div>
+</div>
+
+<div class="test-modal-overlay" id="test-email-modal" onclick="closeTestEmailModalOnBg(event)">
+  <div class="test-modal-box">
+    <div class="test-modal-title">Test Email</div>
+    <div class="test-modal-copy">This sends a small test submission through the exact same live submit route as the final questionnaire so you can confirm delivery without completing all 6 brands.</div>
+    <div class="test-email-chip-wrap">
+      <div class="test-email-chip">To: dave@breakoutaisolutions.com</div>
+      <div class="test-email-chip">BCC: dave.bacon@ymail.com</div>
+    </div>
+    <div class="test-modal-status" id="test-email-status">Ready to send a test submission.</div>
+    <div class="modal-btns">
+      <button class="modal-btn modal-btn-cancel" onclick="closeTestEmailModal()">Cancel</button>
+      <button class="modal-btn modal-btn-confirm" id="test-email-send-btn" onclick="sendTestEmail()">Initiate</button>
+    </div>
   </div>
 </div>
 
