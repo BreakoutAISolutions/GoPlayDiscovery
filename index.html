@@ -430,13 +430,13 @@ body {
 
 <div class="modal-overlay" id="wrap-modal">
   <div class="modal-box">
-    <div class="modal-title">Not done yet</div>
-    <div class="modal-body">You still have brands left to cover:</div>
+    <div class="modal-title">You still have brands left</div>
+    <div class="modal-body">You still have brands left to complete:</div>
     <div class="modal-brand-list" id="modal-brand-list"></div>
-    <div class="modal-body">Wrap up anyway?</div>
+    <div class="modal-body">Continue anyway?</div>
     <div class="modal-btns">
-      <button class="modal-btn modal-btn-cancel" onclick="closeModal()">Go Back</button>
-      <button class="modal-btn modal-btn-confirm" onclick="confirmWrapUp()">Wrap Up</button>
+      <button class="modal-btn modal-btn-cancel" onclick="closeModal()">Back</button>
+      <button class="modal-btn modal-btn-confirm" onclick="confirmWrapUp()">Continue</button>
     </div>
   </div>
 </div>
@@ -446,9 +446,10 @@ body {
 <div class="screen active" id="s-cover">
   <div class="cover-wrap">
     <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:240px;height:240px;border-radius:50%;margin-bottom:28px;filter:drop-shadow(0 0 32px rgba(0,194,255,0.5));" alt="Breakout AI Solutions">
-    <div class="cover-eyebrow">Agency Discovery Session</div>
+    <div class="cover-eyebrow">Self Guided Planning Session</div>
     <div class="cover-title">GoPlay /<br><span>CannaJo!nt</span></div>
     <div class="cover-divider"></div>
+    <div style="max-width:620px;font-size:14px;line-height:1.6;color:rgba(255,255,255,0.65);font-family:Helvetica Neue, sans-serif;margin:0 auto 22px;">This is a self guided planning experience. Select each brand, answer the questions that apply, and choose the solutions that would help most.</div>
     <button class="btn-big" onclick="go('s-brands')">LET'S GO!</button>
     <div class="cover-date" id="coverDate"></div>
   </div>
@@ -466,6 +467,8 @@ body {
   <div class="progress-bar"><div class="progress-fill" style="width:10%"></div></div>
   <div class="content">
     <div class="screen-label" style="margin-bottom:10px">GoPlay / CannaJo!nt</div>
+    <div class="note-blue" style="margin-bottom:18px;max-width:860px;">Complete one brand at a time. Your progress will stay saved as you move through the experience.</div>
+    <div class="tools-known" style="font-size:12px;margin-bottom:14px;">Choose any brand to begin. Completed brands will stay highlighted.</div>
     <div class="brand-grid">
       <div class="brand-card" id="bc-sc" onclick="pickAndStart('Sports Cannabis','sc')">
         <div class="b-name" style="font-size:18px;padding:8px 0;">Sports Cannabis</div><div class="b-check">&#10003;</div>
@@ -500,27 +503,28 @@ body {
       <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:36px;height:36px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B">
       <span id="pain-topbar-text">Brand</span>
     </div>
-    <div class="topbar-brand">Discovery</div>
+    <div class="topbar-brand">Self Guided Intake</div>
   </div>
   <div class="progress-bar"><div class="progress-fill" style="width:35%"></div></div>
   <div class="content" style="display:flex;flex-direction:column;gap:0;">
     <div style="display:flex;gap:28px;flex:1;">
       <div style="flex:1;">
         <div class="q-label">Pain Points / Needs</div>
-        <div class="q-text" id="pain-question">"What are the top things NOT working right now?"</div>
+        <div class="tools-known" style="font-size:12px;margin-bottom:10px;">Check all that apply.</div>
+        <div class="q-text" id="pain-question">"Which challenges apply to this brand right now?"</div>
         <div class="bubble-group" id="pain-bubbles"></div>
       </div>
       <div style="flex:1;">
         <div class="q-label">Current Tools</div>
+        <div class="tools-known" style="font-size:12px;margin-bottom:10px;">Select the tools already in use. Add anything missing.</div>
         <div class="q-text" id="tools-question" style="font-size:17px">"What software are you using?"</div>
-        <div class="tools-known" style="font-size:12px;margin-bottom:10px;">Tap to confirm or remove:</div>
         <div class="bubble-group" id="tool-bubbles"></div>
       </div>
     </div>
     <div class="hours-box" style="margin-top:auto;">
       <div>
-        <div class="hours-label">Total hours/week on pain points</div>
-        <div class="hours-unit" style="font-size:12px;margin-top:3px;">from qualifying questions</div>
+        <div class="hours-label">Estimated hours per week</div>
+        <div class="hours-unit" style="font-size:12px;margin-top:3px;">based on your selections</div>
       </div>
       <div style="text-align:right">
         <div class="hours-count" id="hours-total">0</div>
@@ -542,12 +546,13 @@ body {
       <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:36px;height:36px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B">
       <span id="phase-topbar-text">Brand</span>
     </div>
-    <div class="topbar-brand">Priority</div>
+    <div class="topbar-brand">Choose Timing</div>
   </div>
   <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
   <div class="content" style="display:flex;gap:36px;">
     <div style="flex:0 0 210px;display:flex;flex-direction:column;gap:14px;padding-top:8px;">
       <div class="q-label">Build Priority</div>
+      <div class="tools-known" style="font-size:12px;margin-bottom:8px;">Choose when each solution should happen.</div>
       <div class="q-text" id="phase-question" style="font-size:16px;">"Where does this land?"</div>
       <div style="display:flex;flex-direction:column;gap:12px;flex:1;">
         <div class="phase-btn p1" id="ph1" onclick="selPhase(1)" style="flex:1;">
@@ -570,7 +575,8 @@ body {
     <div style="width:1px;background:rgba(255,255,255,0.10);flex-shrink:0;margin:8px 0;"></div>
     <div style="flex:1;overflow-y:auto;">
       <div class="q-label">What We'd Build</div>
-      <div style="font-size:14px;color:rgba(255,255,255,0.5);font-family:Helvetica Neue,sans-serif;margin-bottom:14px;">Select phase first, then tap to assign items</div>
+      <div class="tools-known" style="font-size:12px;margin-bottom:8px;">Select all that apply for this brand.</div>
+      <div style="font-size:14px;color:rgba(255,255,255,0.5);font-family:Helvetica Neue,sans-serif;margin-bottom:14px;">Choose a phase, then select the solutions that would help most.</div>
       <div class="bubble-group" id="build-bubbles"></div>
     </div>
   </div>
@@ -588,7 +594,7 @@ body {
       <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:36px;height:36px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B">
       <span id="summary-topbar-text">Summary</span>
     </div>
-    <div class="topbar-brand">Review</div>
+    <div class="topbar-brand">Your Responses</div>
   </div>
   <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
   <div class="content">
@@ -607,9 +613,9 @@ body {
   <div class="topbar">
     <div class="topbar-logo" style="display:flex;align-items:center;">
       <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:36px;height:36px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B">
-      <span>System Map</span>
+      <span>Recommended Systems</span>
     </div>
-    <div class="topbar-brand">What We're Building</div>
+    <div class="topbar-brand">Recommended Systems</div>
   </div>
   <div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div>
   <div class="content" style="display:flex;gap:20px;">
@@ -636,14 +642,14 @@ body {
   <div class="topbar">
     <div class="topbar-logo" style="display:flex;align-items:center;">
       <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:32px;height:32px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B">
-      <span>Full Summary</span>
+      <span>Final Summary</span>
     </div>
-    <div class="topbar-brand">What We're Building</div>
+    <div class="topbar-brand">Recommended Systems</div>
   </div>
   <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
   <div class="content" style="display:flex;gap:20px;">
     <div class="session-left">
-      <div class="q-label" style="margin-bottom:14px;">Your AI System -- By Solution</div>
+      <div class="q-label" style="margin-bottom:14px;">Recommended Systems by Solution</div>
       <div class="product-grid" id="product-grid">
         <div style="font-size:13px;color:rgba(255,255,255,0.3);font-family:Helvetica Neue,sans-serif;font-style:italic;">Complete discovery to see your full build summary.</div>
       </div>
@@ -666,7 +672,7 @@ body {
         <div class="ssb-sub">unique builds across all brands</div>
       </div>
       <div style="height:1px;background:rgba(255,255,255,0.08);margin:4px 0;"></div>
-      <div class="q-label" style="margin-bottom:8px;">Next steps:</div>
+      <div class="q-label" style="margin-bottom:8px;">What happens next:</div>
       <div id="next-steps-list">
         <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Revised proposal</div></div>
         <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Set up follow-up call date</div></div>
@@ -728,10 +734,10 @@ var qualifyData = {
 
 var brandData = {
   sc: { name: 'Sports Cannabis', otherType: 'cannabis_event', painQ: '"What are the top things holding Sports Cannabis back right now?"', pains: ['No CRM in place','Leads falling through cracks','Sponsorship outreach is manual','No follow-up system','Social media inconsistent','Too much manual data entry','Proposals take too long',"Can't track what's working",'Email follow-up falling behind','No lead generation system'], toolsQ: '"What software are you currently using for Sports Cannabis?"', tools: [['Make','sel'],['Mailchimp','sel'],['Constant Contact','sel'],['Wix',''],['Google Sheets',''],['Instagram / Meta',''],['Nothing yet','']], phaseQ: '"If we could start one thing for Sports Cannabis in the next 30 days, what makes the biggest impact?"', builds: ['Smart CRM pipeline','Sponsorship outreach sequences','Lead sourcing automation','Automated follow-up','Social content automation','Email campaigns','Proposal generation','Lead scoring','Analytics dashboard'] },
-  tgf: { name: 'Touch Grass Fest', otherType: 'cannabis_event', painQ: '"Touch Grass Fest -- with the venue still in flux, what is the biggest operational gap right now?"', pains: ['No CRM at all','No lead capture system','Venue situation creating uncertainty','No follow-up system','Social media inconsistent','No lead generation system','No sponsorship pipeline'], toolsQ: '"What are you using to manage Touch Grass Fest right now?"', tools: [['Wix','sel'],['Make',''],['Mailchimp',''],['Instagram / Meta',''],['Google Sheets',''],['Nothing yet','']], phaseQ: '"Should we get the foundation built now so you move fast once the venue locks in?"', builds: ['Lead capture from Wix','CRM pipeline for sponsors and attendees','Automated follow-up sequences','Event registration system','Social content automation','Email outreach campaigns','Venue and partner tracking'] },
-  rr: { name: 'R&R Symposium', otherType: 'cannabis_event', painQ: '"For R&R -- is this primarily a sponsorship challenge, an audience challenge, or both?"', pains: ['No sponsorship pipeline','Sponsorship outreach is manual','No follow-up system','Audience not being built yet','Social media inconsistent','No lead generation system',"Can't track what's working"], toolsQ: '"What tools are you using for R&R right now -- or mostly manual?"', tools: [['Make',''],['Mailchimp',''],['Wix',''],['Google Sheets',''],['Instagram / Meta',''],['Nothing yet','sel']], phaseQ: '"Should R&R run on the same system as Sports Cannabis or its own pipeline?"', builds: ['Sponsorship CRM pipeline','Outreach sequences','Lead gen automation','Audience building campaigns','Social content automation','Event management system','Co-sponsor tracking'] },
+  tgf: { name: 'Touch Grass Fest', otherType: 'cannabis_event', painQ: '"Touch Grass Fest -- with the venue still in flux, what is the biggest operational gap right now?"', pains: ['No CRM at all','No lead capture system','Venue situation creating uncertainty','No follow-up system','Social media inconsistent','No lead generation system','No sponsorship pipeline'], toolsQ: '"What are you using to manage Touch Grass Fest right now?"', tools: [['Wix','sel'],['Make',''],['Mailchimp',''],['Instagram / Meta',''],['Google Sheets',''],['Nothing yet','']], phaseQ: '"Should we get the foundation built now so you move fast once the venue locks in?"', builds: ['Smart CRM pipeline','Lead capture from Wix','CRM pipeline for sponsors and attendees','Automated follow-up','Automated follow-up sequences','Event registration system','Social content automation','Email outreach campaigns','Venue and partner tracking','Sponsorship CRM pipeline'] },
+  rr: { name: 'R&R Symposium', otherType: 'cannabis_event', painQ: '"For R&R -- is this primarily a sponsorship challenge, an audience challenge, or both?"', pains: ['No sponsorship pipeline','Sponsorship outreach is manual','No follow-up system','Audience not being built yet','Social media inconsistent','No lead generation system',"Can't track what's working"], toolsQ: '"What tools are you using for R&R right now -- or mostly manual?"', tools: [['Make',''],['Mailchimp',''],['Wix',''],['Google Sheets',''],['Instagram / Meta',''],['Nothing yet','sel']], phaseQ: '"Should R&R run on the same system as Sports Cannabis or its own pipeline?"', builds: ['Smart CRM pipeline','Sponsorship CRM pipeline','Outreach sequences','Automated follow-up','Lead gen automation','Audience building campaigns','Social content automation','Event management system','Co-sponsor tracking','Analytics dashboard'] },
   al: { name: 'Advanced Laser', otherType: 'non_cannabis', painQ: '"Advanced Laser is a different world from the events -- what does that client need most right now?"', pains: ['Lead generation','No follow-up system','Appointment booking automation','Social media inconsistent',"Can't track what's working",'Email follow-up falling behind','No CRM in place'], toolsQ: '"What tools is Advanced Laser currently using for marketing and client management?"', tools: [['Make',''],['Mailchimp',''],['Constant Contact',''],['Wix',''],['Google Ads',''],['Instagram / Meta',''],['Nothing yet','']], phaseQ: '"Is Advanced Laser a priority alongside the cannabis events or more of a Phase 2 build?"', builds: ['Lead generation system','Automated follow-up sequences','Appointment booking automation','Review management','Social content automation','Email campaigns','Client CRM'] },
-  em: { name: 'Estate-Minder', otherType: 'estate_minder', painQ: '"Estate-Minder -- where is your client at, and what is the biggest gap in the member experience?"', pains: ['Circle.so not fully configured','No customer-facing web app','No private community space yet','Member onboarding is manual','Client has no visibility into engagement','No automated drip content for members','No lead generation for new subscribers','No follow-up system','Social media inconsistent','Circle not integrated with CRM or email'], toolsQ: '"Walk me through what Estate-Minder is currently running on."', tools: [['Circle.so','sel'],['Kajabi',''],['Make',''],['Mailchimp',''],['Constant Contact',''],['Custom website','']], phaseQ: '"Should Estate-Minder be a Phase 1 priority alongside GoPlay or sequenced after?"', builds: ['Keep Circle.so -- integrate around it','Private community space for members','Automated onboarding sequences','Client dashboard for visibility','AI content and drip sequences','Lead gen for new members','Make automation connecting Circle to CRM','Reporting and engagement analytics'] },
+  em: { name: 'Estate-Minder', otherType: 'estate_minder', painQ: '"Estate-Minder -- where is your client at, and what is the biggest gap in the member experience?"', pains: ['Circle.so not fully configured','No customer-facing web app','No private community space yet','Member onboarding is manual','Client has no visibility into engagement','No automated drip content for members','No lead generation for new subscribers','No follow-up system','Social media inconsistent','Circle not integrated with CRM or email'], toolsQ: '"Walk me through what Estate-Minder is currently running on."', tools: [['Circle.so','sel'],['Kajabi',''],['Make',''],['Mailchimp',''],['Constant Contact',''],['Custom website','']], phaseQ: '"Should Estate-Minder be a Phase 1 priority alongside GoPlay or sequenced after?"', builds: ['Keep Circle.so -- integrate around it','Private community space for members','Automated onboarding sequences','Automated follow-up','Client dashboard for visibility','AI content and drip sequences','Lead gen for new members','Make automation connecting Circle to CRM','Reporting and engagement analytics'] },
   atc: { name: 'Around the Clock Bail Bonds', otherType: 'bail_bonds', painQ: '"Around the Clock -- what happens right now when someone calls after hours or the line is busy?"', pains: ['Missed calls after hours = missed revenue','No AI phone agent','No lead qualification system','No follow-up system','No social media presence','Social media inconsistent',"Can't track what's working"], toolsQ: '"What is currently in place for Around the Clock besides Microsoft Ads?"', tools: [['Microsoft Ads','sel'],['Phone only','sel'],['Google Sheets',''],['Instagram',''],['Nothing else','']], phaseQ: '"This has the fastest ROI -- every missed call is a missed bond. Should this be Phase 1?"', builds: ['AI phone agent 24/7','Lead qualification automation','CRM for bond leads','SMS follow-up sequences','Microsoft Ads optimization','Reddit presence and content','TikTok content automation','YouTube Shorts strategy','Local SEO build-out'] }
 };
 
@@ -739,7 +745,22 @@ function go(id) {
   var screens = document.querySelectorAll('.screen');
   for (var i = 0; i < screens.length; i++) { screens[i].classList.remove('active'); }
   document.getElementById(id).classList.add('active');
+  if (id === 's-brands') { refreshBrandCompletionState(); }
   window.scrollTo(0, 0);
+}
+
+function refreshBrandCompletionState() {
+  var cards = document.querySelectorAll('.brand-card');
+  for (var i = 0; i < cards.length; i++) { cards[i].classList.remove('sel'); }
+  var doneKeys = Object.keys(sessionData);
+  for (var j = 0; j < doneKeys.length; j++) {
+    var card = document.getElementById('bc-' + doneKeys[j]);
+    if (card) { card.classList.add('sel'); }
+  }
+  if (curKey) {
+    var activeCard = document.getElementById('bc-' + curKey);
+    if (activeCard) { activeCard.classList.add('sel'); }
+  }
 }
 
 function tog(el) {
@@ -752,8 +773,7 @@ function esc(str) {
 }
 
 function pickAndStart(name, key) {
-  var cards = document.querySelectorAll('.brand-card');
-  for (var i = 0; i < cards.length; i++) { cards[i].classList.remove('sel'); }
+  refreshBrandCompletionState();
   document.getElementById('bc-' + key).classList.add('sel');
   curBrand = name;
   curKey = key;
@@ -1040,13 +1060,13 @@ function updateSummaryActions() {
 
   if (remaining > 0) {
     secondaryBtn.style.display = 'none';
-    mainBtn.innerHTML = 'Next Brand &#8594;';
+    mainBtn.innerHTML = 'Choose Next Brand &#8594;';
     mainBtn.onclick = function() { go('s-brands'); };
   } else {
     secondaryBtn.style.display = '';
-    secondaryBtn.innerHTML = '+ Next Brand';
+    secondaryBtn.innerHTML = 'Choose Next Brand';
     secondaryBtn.onclick = function() { go('s-brands'); };
-    mainBtn.innerHTML = 'Next &#8594;';
+    mainBtn.innerHTML = 'Continue &#8594;';
     mainBtn.onclick = function() { tryWrapUp(); };
   }
 }
@@ -1165,6 +1185,7 @@ function saveBrandData() {
   h += '</div>';
 
   document.getElementById('summary-card-content').innerHTML = h;
+  refreshBrandCompletionState();
   updateSummaryActions();
 }
 
