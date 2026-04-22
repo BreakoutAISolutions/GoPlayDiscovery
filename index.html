@@ -228,20 +228,8 @@ body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-hei
   outline-offset: 4px;
   border-radius: 50%;
 }
-.cover-test-hotspot {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 5;
-}
-.cover-test-hotspot:focus {
-  outline: none;
-}
+.cover-logo-wrap img { display:block; }
+
 .test-modal-overlay {
   display: none;
   position: fixed;
@@ -562,9 +550,8 @@ body {
 
 <div class="screen active" id="s-cover">
   <div class="cover-wrap">
-    <div class="cover-logo-wrap" onclick="openTestEmailModal()" tabindex="0" role="button" aria-label="Open hidden test email">
-    <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:240px;height:240px;border-radius:50%;filter:drop-shadow(0 0 32px rgba(0,194,255,0.5));pointer-events:none;" alt="Breakout AI Solutions">
-    <button class="cover-test-hotspot" onclick="event.stopPropagation(); openTestEmailModal()" aria-label="Open hidden test email"></button>
+    <div class="cover-logo-wrap" id="cover-test-trigger" tabindex="0" role="button" aria-label="Open hidden test email">
+    <img id="cover-test-trigger-image" src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:240px;height:240px;border-radius:50%;filter:drop-shadow(0 0 32px rgba(0,194,255,0.5));" alt="Breakout AI Solutions">
   </div>
     <div class="cover-eyebrow">Self Guided Planning Session</div>
     <div class="cover-title">GoPlay /<br><span>CannaJo!nt</span></div>
@@ -1722,6 +1709,120 @@ function togNS(el) {
 var d = new Date();
 var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 document.getElementById('coverDate').innerText = months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+
+document.addEventListener('DOMContentLoaded', function() {
+  var trigger = document.getElementById('cover-test-trigger');
+  var image = document.getElementById('cover-test-trigger-image');
+
+  function handleOpen(event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    openTestEmailModal();
+  }
+
+  if (trigger) {
+    trigger.addEventListener('click', handleOpen, { passive: false });
+    trigger.addEventListener('touchend', handleOpen, { passive: false });
+    trigger.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        handleOpen(event);
+      }
+    });
+  }
+
+  if (image) {
+    image.addEventListener('click', handleOpen, { passive: false });
+    image.addEventListener('touchend', handleOpen, { passive: false });
+  }
+});
+
+function openTestEmailModal() {
+  var modal = document.getElementById('test-email-modal');
+  var status = document.getElementById('test-email-status');
+  var btn = document.getElementById('test-email-send-btn');
+  if (status) { status.innerText = 'Ready to send a test submission.'; }
+  if (btn) {
+    btn.disabled = false;
+    btn.classList.remove('is-loading');
+    btn.innerText = 'Initiate';
+  }
+  if (modal) { modal.classList.add('active'); }
+}
+
+function closeTestEmailModal() {
+  var modal = document.getElementById('test-email-modal');
+  if (modal) { modal.classList.remove('active'); }
+}
+
+function closeTestEmailModalOnBg(event) {
+  if (event.target === document.getElementById('test-email-modal')) {
+    closeTestEmailModal();
+  }
+}
+
+function buildTestSubmissionPayload() {
+  return {
+    submittedAt: new Date().toISOString(),
+    sessionData: {
+      test: {
+        name: 'TEST SUBMISSION',
+        hrs: 0,
+        phase: 'Phase 1',
+        phaseNum: 1,
+        pains: ['Test environment verification'],
+        tools: ['Hidden homepage test trigger'],
+        builds: [{ text: 'Email delivery test', phase: 1 }]
+      }
+    },
+    sharedSystems: [],
+    summaryStats: {
+      totalHours: 0,
+      brandsCovered: 1,
+      solutionsIdentified: 1
+    },
+    nextSteps: ['Confirm intake email delivery is working'],
+    isTestSubmission: true
+  };
+}
+
+async function sendTestEmail() {
+  var btn = document.getElementById('test-email-send-btn');
+  var status = document.getElementById('test-email-status');
+  if (!btn) return;
+
+  btn.classList.add('is-loading');
+  btn.disabled = true;
+  btn.innerText = 'Sending...';
+  if (status) { status.innerText = 'Sending test submission...'; }
+
+  try {
+    var response = await fetch(SUBMIT_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(buildTestSubmissionPayload())
+    });
+
+    var data = {};
+    try { data = await response.json(); } catch (e) {}
+
+    if (!response.ok || !data.success) {
+      throw new Error((data && data.message) ? data.message : 'Failed to send test email');
+    }
+
+    btn.classList.remove('is-loading');
+    btn.innerText = 'Sent';
+    if (status) { status.innerText = 'Test email sent successfully.'; }
+  } catch (err) {
+    btn.classList.remove('is-loading');
+    btn.disabled = false;
+    btn.innerText = 'Initiate';
+    if (status) { status.innerText = 'There was a problem sending the test email. Please try again.'; }
+  }
+}
+
+
 </script>
 
 </body>
