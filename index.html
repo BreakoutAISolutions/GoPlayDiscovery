@@ -241,30 +241,27 @@ body { background: #000000; color: #FFFFFF; font-family: 'Georgia', serif; min-h
 .modal-btn-cancel { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); }
 .modal-btn-confirm { background: linear-gradient(135deg, #0057FF, #1A6FFF); color: white; }
 
-/* SESSION SUMMARY - PRODUCT-FIRST LAYOUT */
-.product-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
-.product-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 16px 18px; transition: all 0.2s; }
-.product-card:hover { border-color: rgba(0,194,255,0.2); background: rgba(0,194,255,0.03); }
-.product-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-.product-card-name { font-size: 16px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; color: #fff; }
-.product-card-phase { font-size: 10px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; padding: 4px 10px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; }
-.product-brands { display: flex; flex-wrap: wrap; gap: 7px; }
-.product-brand-pill { font-size: 12px; font-family: ‘Helvetica Neue’, sans-serif; padding: 5px 12px; border-radius: 20px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.8); }
-.product-brand-pill.pill-goplay { background: rgba(0,87,255,0.12); border-color: rgba(0,87,255,0.3); color: #00C2FF; }
-.product-brand-pill.pill-estate { background: rgba(160,80,255,0.12); border-color: rgba(160,80,255,0.3); color: #C080FF; }
-.product-brand-pill.pill-atc { background: rgba(255,64,96,0.12); border-color: rgba(255,64,96,0.3); color: #FF6080; }
-.session-cols { display: flex; gap: 20px; }
-.session-left { flex: 1.6; overflow-y: auto; }
-.session-right { flex: 1; display: flex; flex-direction: column; gap: 12px; }
-.session-stat-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px 16px; }
-.ssb-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 5px; }
-.ssb-value { font-size: 28px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; }
-.ssb-sub { font-size: 11px; color: rgba(255,255,255,0.4); font-family: ‘Helvetica Neue’, sans-serif; margin-top: 3px; }
-.next-step-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; cursor: pointer; border: 1px solid transparent; transition: all 0.2s; }
-.next-step-item.sel-ns { background: rgba(0,194,255,0.06); border-color: rgba(0,194,255,0.3); }
-.ns-check { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; transition: all 0.2s; }
-.next-step-item.sel-ns .ns-check { background: #00C2FF; border-color: #00C2FF; color: #000; }
-.ns-text { font-size: 13px; font-family: ‘Helvetica Neue’, sans-serif; color: rgba(255,255,255,0.8); }
+/* SESSION SUMMARY */
+.product-grid { display:flex;flex-direction:column;gap:12px;margin-bottom:20px; }
+.product-card { background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:16px 18px; }
+.product-card-header { display:flex;align-items:center;justify-content:space-between;margin-bottom:10px; }
+.product-card-name { font-size:16px;font-family:‘Helvetica Neue’,sans-serif;font-weight:700;color:#fff; }
+.product-brands { display:flex;flex-wrap:wrap;gap:7px; }
+.product-brand-pill { font-size:12px;font-family:‘Helvetica Neue’,sans-serif;padding:5px 12px;border-radius:20px; }
+.pill-goplay { background:rgba(0,87,255,0.12);border:1px solid rgba(0,87,255,0.3);color:#00C2FF; }
+.pill-estate { background:rgba(160,80,255,0.12);border:1px solid rgba(160,80,255,0.3);color:#C080FF; }
+.pill-atc { background:rgba(255,64,96,0.12);border:1px solid rgba(255,64,96,0.3);color:#FF6080; }
+.session-left { flex:1.6;overflow-y:auto; }
+.session-right { flex:1;display:flex;flex-direction:column;gap:12px; }
+.session-stat-box { background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px 16px; }
+.ssb-label { font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);font-family:‘Helvetica Neue’,sans-serif;margin-bottom:5px; }
+.ssb-value { font-size:28px;font-family:‘Helvetica Neue’,sans-serif;font-weight:700; }
+.ssb-sub { font-size:11px;color:rgba(255,255,255,0.4);font-family:‘Helvetica Neue’,sans-serif;margin-top:3px; }
+.next-step-item { display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;border:1px solid transparent;transition:all 0.2s; }
+.next-step-item.sel-ns { background:rgba(0,194,255,0.06);border-color:rgba(0,194,255,0.3); }
+.ns-check { width:18px;height:18px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all 0.2s; }
+.next-step-item.sel-ns .ns-check { background:#00C2FF;border-color:#00C2FF;color:#000; }
+.ns-text { font-size:13px;font-family:‘Helvetica Neue’,sans-serif;color:rgba(255,255,255,0.8); }
 </style>
 
 </head>
@@ -527,790 +524,1108 @@ body { background: #000000; color: #FFFFFF; font-family: 'Georgia', serif; min-h
   <div class="content" style="display:flex;gap:20px;">
 
 ```
-<!-- LEFT: Product-first build summary -->
 <div class="session-left">
   <div class="q-label" style="margin-bottom:14px;">Your AI System -- By Solution</div>
   <div class="product-grid" id="product-grid">
-    <div style="font-size:13px;color:rgba(255,255,255,0.3);font-family:'Helvetica Neue',sans-serif;font-style:italic;">Complete discovery to see your full build summary.</div>
+    <div style="font-size:13px;color:rgba(255,255,255,0.3);font-family:Helvetica Neue,sans-serif;font-style:italic;">Complete discovery to see your full build summary.</div>
   </div>
 </div>
 
-<!-- DIVIDER -->
 <div style="width:1px;background:rgba(255,255,255,0.08);flex-shrink:0;margin:4px 0;"></div>
 
-<!-- RIGHT: Stats + Next Steps -->
 <div class="session-right">
-
   <div class="session-stat-box">
     <div class="ssb-label">Total Hours/Week</div>
     <div class="ssb-value" style="color:#00C2FF;" id="sess-hrs">0</div>
     <div class="ssb-sub">identified across all brands</div>
   </div>
-
   <div class="session-stat-box">
     <div class="ssb-label">Brands Covered</div>
     <div class="ssb-value" style="color:#00E096;" id="sess-brands">0</div>
     <div class="ssb-sub">of 6 total</div>
   </div>
-
   <div class="session-stat-box">
     <div class="ssb-label">Solutions Identified</div>
     <div class="ssb-value" style="color:#C080FF;" id="sess-solutions">0</div>
     <div class="ssb-sub">unique builds across all brands</div>
   </div>
-
   <div style="height:1px;background:rgba(255,255,255,0.08);margin:4px 0;"></div>
-
   <div class="q-label" style="margin-bottom:8px;">Your closing line</div>
   <div class="note-blue" style="font-size:12px;">"Kelly -- I now have everything I need. I'm going to build you a clean phased proposal with exact numbers. Give me a few days."</div>
-
   <div class="q-label" style="margin-bottom:8px;">Next steps:</div>
   <div id="next-steps-list">
-    <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">✓</div><div class="ns-text">Send revised proposal</div></div>
-    <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">✓</div><div class="ns-text">Schedule follow-up call</div></div>
-    <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">✓</div><div class="ns-text">Verbal yes on Phase 1</div></div>
-    <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">✓</div><div class="ns-text">Intro call with Estate-Minder client</div></div>
-    <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">✓</div><div class="ns-text">Connect directly on Around the Clock</div></div>
+    <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Send revised proposal</div></div>
+    <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Schedule follow-up call</div></div>
+    <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Verbal yes on Phase 1</div></div>
+    <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Intro call with Estate-Minder client</div></div>
+    <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">&#10003;</div><div class="ns-text">Connect directly on Around the Clock</div></div>
   </div>
-
 </div>
 ```
 
   </div>
   <div class="btn-row">
-    <button class="btn btn-back" onclick="go('s-expand')">← Back</button>
+    <button class="btn btn-back" onclick="go('s-expand')">&#8592; Back</button>
     <button class="btn btn-secondary" onclick="go('s-brands')">&#8635; More Brands</button>
     <button class="btn btn-primary">&#10003; Done</button>
   </div>
-</div>// ============================================================
-// SESSION SUMMARY -- PRODUCT-FIRST VIEW
+</div>
+
+<script>
+var curBrand = '';
+var curKey = '';
+var curPhase = 0;
+var sessionData = {};
+var popupHours = {};
+
+// ============================================================
+// EXTENDED "OTHER" PAIN POINTS PER BRAND TYPE
+// ============================================================
+var otherPains = {
+  'cannabis_event': ['No ticketing system','Sponsor follow-up dropping off','Event check-in not automated','No post-event survey or feedback','Vendor management is manual','No email list being built','Brand partnerships not tracked','No content repurposing after events','No referral or affiliate program','Media and press outreach manual','No SMS alerts for attendees','Budget tracking is manual','Partnership deck needs updating','No retargeting for past attendees','Event debrief data not captured'],
+  'non_cannabis': ['No referral program in place','Client retention not being tracked','No upsell or cross-sell sequences','Reputation management missing','Google reviews not being requested','No loyalty or VIP program','Appointment reminders manual','Before and after tracking missing','No patient reactivation campaigns','Staff scheduling not automated','Intake forms still on paper','No online booking integration','Post-treatment follow-up manual','Insurance or billing gaps','New patient welcome sequence missing'],
+  'estate_minder': ['No automated renewal reminders','Member churn not being tracked','Content library not organized','No onboarding video or tutorial','Affiliate or referral program missing','No upsell to premium tier','Community moderation is manual','No drip campaign after signup','Event or webinar follow-up missing','Search and SEO not optimized','No member feedback loop','Partner or expert directory missing','Podcast or audio content missing','No win-back campaign for lapsed members','Analytics not connected to Circle'],
+  'bail_bonds': ['No CRM for bond leads','No client intake form','No referral tracking from attorneys','No SMS confirmation for clients','No payment plan follow-up','Bond renewal reminders not automated','No Google Business optimization','No review generation system','Attorney referral outreach missing','No client satisfaction follow-up','Jail and court date tracking manual','Co-signer follow-up dropping off','No emergency after-hours page','Competitor monitoring not in place','No retargeting ads in place']
+};
+
+// ============================================================
+// QUALIFYING QUESTIONS
+// ============================================================
+var qualifyData = {
+  'No CRM in place': {
+    questions: [
+      { q: 'How are contacts tracked right now?', opts: ['Spreadsheets','Phone contacts','Email threads','Not at all'] },
+      { q: 'How many active contacts or leads?', opts: ['Under 50','50-200','200-500','500+'] }
+    ]
+  },
+  'Leads falling through cracks': {
+    questions: [
+      { q: 'How often does a lead go cold from no follow-up?', opts: ['Daily','Few times a week','Few times a month','Rarely'] },
+      { q: 'What happens after first contact?', opts: ['Manual follow-up','Nothing yet','Occasional email','Depends'] }
+    ]
+  },
+  'Sponsorship outreach is manual': {
+    questions: [
+      { q: 'How many sponsors actively being reached out to?', opts: ['Under 10','10-50','50-100','100+'] },
+      { q: 'How is outreach happening right now?', opts: ['Email one by one','DMs on social','Phone calls','No system yet'] }
+    ]
+  },
+  'No follow-up system': {
+    questions: [
+      { q: 'What percent of leads get a second touch?', opts: ['Almost none','About 25%','About 50%','Most of them'] },
+      { q: 'What stops consistent follow-up?', opts: ['Time','Forget to','No system','Too many leads'] }
+    ]
+  },
+  'Social media inconsistent': {
+    questions: [
+      { q: 'How often posting right now?', opts: ['Never or rarely','Few times a month','1-2x per week','Daily'] },
+      { q: 'How often would you WANT to post?', opts: ['Daily','3-5x per week','1-2x per week','Not sure yet'] },
+      { q: 'Who creates content?', opts: ['Me personally','A team member','No one yet','Inconsistent'] }
+    ]
+  },
+  'Too much manual data entry': {
+    questions: [
+      { q: 'What is being entered most often?', opts: ['Contact info','Lead status','Event details','Sales data','All of it'] },
+      { q: 'Hours per week on data entry?', opts: ['1-2 hrs','3-5 hrs','5-10 hrs','10+ hrs'] }
+    ]
+  },
+  'Proposals take too long': {
+    questions: [
+      { q: 'How long to put together a proposal?', opts: ['Hours','Half a day','Full day','Multiple days'] },
+      { q: 'How many proposals per month?', opts: ['1-2','3-5','5-10','10+'] }
+    ]
+  },
+  "Can't track what's working": {
+    questions: [
+      { q: 'Any reporting or analytics in place?', opts: ['Nothing','Basic social insights','Spreadsheet','Disconnected tools'] },
+      { q: 'What would you most want to track?', opts: ['Sponsorship pipeline','Social performance','Email open rates','Revenue by brand','All of it'] }
+    ]
+  },
+  'Email follow-up falling behind': {
+    questions: [
+      { q: 'How are follow-up emails sent right now?', opts: ['Manually one by one','Mailchimp blasts','Constant Contact','Not sending them'] },
+      { q: 'How many people should be getting emails?', opts: ['Under 100','100-500','500-1000','1000+'] }
+    ]
+  },
+  'No lead generation system': {
+    questions: [
+      { q: 'Where are leads coming from now?', opts: ['Word of mouth','Social media','Events','Nowhere consistent'] },
+      { q: 'Ideal lead source?', opts: ['Paid ads','Outbound outreach','Content marketing','Referrals','Not sure'] }
+    ]
+  },
+  'No CRM at all': {
+    questions: [
+      { q: 'How are contacts managed?', opts: ['Not at all','Email threads','Spreadsheet','Phone contacts'] },
+      { q: 'How many contacts total?', opts: ['Under 50','50-200','200-500','500+'] }
+    ]
+  },
+  'No lead capture system': {
+    questions: [
+      { q: 'Any form or signup capturing interest?', opts: ['No','Wix form (disconnected)','Instagram DMs','Email only'] },
+      { q: 'How many people expressed interest so far?', opts: ['Under 25','25-100','100-500','500+'] }
+    ]
+  },
+  'Venue situation creating uncertainty': {
+    questions: [
+      { q: 'Backup venue in place?', opts: ['Yes -- Curaleaf golf course','Working on it','Not yet','Need help finding one'] },
+      { q: 'Current event timeline?', opts: ['Next 30 days','Next 60 days','Next 90 days','Not locked in'] }
+    ]
+  },
+  'No sponsorship pipeline': {
+    questions: [
+      { q: 'How many potential sponsors identified?', opts: ['None yet','Under 10','10-30','30+'] },
+      { q: 'Sponsorship deck or package ready?', opts: ['Yes','Draft only','No','Need help building one'] }
+    ]
+  },
+  'Audience not being built yet': {
+    questions: [
+      { q: 'Any email list or audience for this event?', opts: ['No','Small list under 100','100-500','500+'] },
+      { q: 'Where is target audience most active?', opts: ['Instagram','LinkedIn','TikTok','Facebook','Email'] }
+    ]
+  },
+  'Lead generation': {
+    questions: [
+      { q: 'Where do most clients come from?', opts: ['Referrals','Walk-ins','Online search','Social media','Nowhere consistent'] },
+      { q: 'How many new leads per month is the goal?', opts: ['5-10','10-25','25-50','50+'] }
+    ]
+  },
+  'Appointment booking automation': {
+    questions: [
+      { q: 'How are appointments booked now?', opts: ['Phone only','Email back and forth','Online booking tool','No system'] },
+      { q: 'How many appointments per week?', opts: ['Under 5','5-15','15-30','30+'] }
+    ]
+  },
+  'Missed calls after hours = missed revenue': {
+    questions: [
+      { q: 'What happens to after-hours calls now?', opts: ['Goes to voicemail','Rings unanswered','Forwarded to cell','Nothing'] },
+      { q: 'Calls per week total?', opts: ['Under 10','10-30','30-60','60+'] },
+      { q: 'Typical bond value?', opts: ['Under $500','$500-$2000','$2000-$5000','$5000+'] }
+    ]
+  },
+  'No AI phone agent': {
+    questions: [
+      { q: 'Owner handling all calls personally?', opts: ['Yes all calls','Has one helper','Has staff','It varies'] },
+      { q: 'Calls going unanswered per week?', opts: ['A few','5-10','10-20','20+'] }
+    ]
+  },
+  'No social media presence': {
+    questions: [
+      { q: 'Any social presence at all?', opts: ['Nothing','Instagram only','Facebook page','Website only'] },
+      { q: 'Which platforms make sense for local bail bonds?', opts: ['Reddit','TikTok','YouTube Shorts','Facebook','All of them'] }
+    ]
+  },
+  'No private community space for members': {
+    questions: [
+      { q: 'What kind of community is envisioned?', opts: ['Forum/discussion','Group chat','Live calls','Resource sharing','Mix of all'] },
+      { q: 'Paying members only?', opts: ['Yes paying only','Free tier too','Not decided yet'] }
+    ]
+  },
+  'Member onboarding is manual': {
+    questions: [
+      { q: 'What happens after someone subscribes?', opts: ['Manual welcome email','Nothing automated','Kelly does it herself','Unclear'] },
+      { q: 'New members per month on average?', opts: ['Under 10','10-30','30-100','100+'] }
+    ]
+  },
+  'Circle.so not fully configured': {
+    questions: [
+      { q: 'What is Circle currently being used for?', opts: ['Courses only','Community only','Subscriptions only','Mix of all three','Not sure'] },
+      { q: 'What is Circle NOT doing that you wish it did?', opts: ['Automated onboarding','Member drip emails','Integration with other tools','Private sub-groups','Analytics and reporting','Gated content by tier'] }
+    ]
+  },
+  'No customer-facing web app': {
+    questions: [
+      { q: 'What would the web app need to do for members?', opts: ['Access courses and resources','Track estate progress','Connect with community','Get AI-guided next steps','All of the above'] },
+      { q: 'Does your client have a budget allocated for this?', opts: ['Yes -- dedicated budget','Part of existing budget','Not yet but open to it','Needs to be justified'] },
+      { q: 'What platform is the current website on?', opts: ['Wix','WordPress','Squarespace','Custom built','No website yet'] }
+    ]
+  },
+  'No automated drip content for members': {
+    questions: [
+      { q: 'Is there any content sequence after signup?', opts: ['Nothing automated','One welcome email','A few manual emails','Circle posts only'] },
+      { q: 'What format works best for this audience?', opts: ['Short emails','Video guides','Checklists','Community posts','Mix of formats'] }
+    ]
+  },
+  'Circle not integrated with CRM or email': {
+    questions: [
+      { q: 'What tools need to connect to Circle?', opts: ['Mailchimp','Constant Contact','Kajabi','Make automations','A CRM system','All of them'] },
+      { q: 'Is Make currently doing any Circle automation?', opts: ['Yes some','No not yet','Not sure','Tried but failed'] }
+    ]
+  },
+  'Client has no visibility into engagement': {
+    questions: [
+      { q: 'Does Kelly provide any reporting to the client?', opts: ['No','Ad hoc updates','Monthly report','Client has own login'] },
+      { q: 'What would the client most want to see?', opts: ['Member count','Engagement rate','Revenue','Community activity','All of it'] }
+    ]
+  }
+};
+
+// ============================================================
+// BRAND DATA
+// ============================================================
+var brandData = {
+  'sc': {
+    name: 'Sports Cannabis', otherType: 'cannabis_event',
+    painQ: '"What are the top things holding Sports Cannabis back right now?"',
+    pains: ['No CRM in place','Leads falling through cracks','Sponsorship outreach is manual','No follow-up system','Social media inconsistent','Too much manual data entry','Proposals take too long',"Can't track what's working",'Email follow-up falling behind','No lead generation system'],
+    toolsQ: '"What software are you currently using for Sports Cannabis?"',
+    tools: [['Make','sel'],['Mailchimp','sel'],['Constant Contact','sel'],['Wix',''],['Google Sheets',''],['Instagram / Meta',''],['Nothing yet','']],
+    phaseQ: '"If we could start one thing for Sports Cannabis in the next 30 days, what makes the biggest impact?"',
+    builds: ['Smart CRM pipeline','Sponsorship outreach sequences','Lead sourcing automation','Automated follow-up','Social content automation','Email campaigns','Proposal generation','Lead scoring','Analytics dashboard']
+  },
+  'tgf': {
+    name: 'Touch Grass Fest', otherType: 'cannabis_event',
+    painQ: '"Touch Grass Fest -- with the venue still in flux, what is the biggest operational gap right now?"',
+    pains: ['No CRM at all','No lead capture system','Venue situation creating uncertainty','No follow-up system','Social media inconsistent','No lead generation system','No sponsorship pipeline'],
+    toolsQ: '"What are you using to manage Touch Grass Fest right now?"',
+    tools: [['Wix','sel'],['Make',''],['Mailchimp',''],['Instagram / Meta',''],['Google Sheets',''],['Nothing yet','']],
+    phaseQ: '"Should we get the foundation built now so you move fast once the venue locks in?"',
+    builds: ['Lead capture from Wix','CRM pipeline for sponsors and attendees','Automated follow-up sequences','Event registration system','Social content automation','Email outreach campaigns','Venue and partner tracking']
+  },
+  'rr': {
+    name: 'R&R Symposium', otherType: 'cannabis_event',
+    painQ: '"For R&R -- is this primarily a sponsorship challenge, an audience challenge, or both?"',
+    pains: ['No sponsorship pipeline','Sponsorship outreach is manual','No follow-up system','Audience not being built yet','Social media inconsistent','No lead generation system',"Can't track what's working"],
+    toolsQ: '"What tools are you using for R&R right now -- or mostly manual?"',
+    tools: [['Make',''],['Mailchimp',''],['Wix',''],['Google Sheets',''],['Instagram / Meta',''],['Nothing yet','sel']],
+    phaseQ: '"Should R&R run on the same system as Sports Cannabis or its own pipeline?"',
+    builds: ['Sponsorship CRM pipeline','Outreach sequences','Lead gen automation','Audience building campaigns','Social content automation','Event management system','Co-sponsor tracking']
+  },
+  'al': {
+    name: 'Advanced Laser', otherType: 'non_cannabis',
+    painQ: '"Advanced Laser is a different world from the events -- what does that client need most right now?"',
+    pains: ['Lead generation','No follow-up system','Appointment booking automation','Social media inconsistent',"Can't track what's working",'Email follow-up falling behind','No CRM in place'],
+    toolsQ: '"What tools is Advanced Laser currently using for marketing and client management?"',
+    tools: [['Make',''],['Mailchimp',''],['Constant Contact',''],['Wix',''],['Google Ads',''],['Instagram / Meta',''],['Nothing yet','']],
+    phaseQ: '"Is Advanced Laser a priority alongside the cannabis events or more of a Phase 2 build?"',
+    builds: ['Lead generation system','Automated follow-up sequences','Appointment booking automation','Review management','Social content automation','Email campaigns','Client CRM']
+  },
+  'em': {
+    name: 'Estate-Minder', otherType: 'estate_minder',
+    painQ: '"Estate-Minder -- where is your client at, and what is the biggest gap in the member experience?"',
+    pains: ['Circle.so not fully configured','No customer-facing web app','No private community space yet','Member onboarding is manual','Client has no visibility into engagement','No automated drip content for members','No lead generation for new subscribers','No follow-up system','Social media inconsistent','Circle not integrated with CRM or email'],
+    toolsQ: '"Walk me through what Estate-Minder is currently running on."',
+    tools: [['Circle.so','sel'],['Kajabi',''],['Make',''],['Mailchimp',''],['Constant Contact',''],['Custom website','']],
+    phaseQ: '"Should Estate-Minder be a Phase 1 priority alongside GoPlay or sequenced after?"',
+    builds: ['Keep Circle.so -- integrate around it','Private community space for members','Automated onboarding sequences','Client dashboard for visibility','AI content and drip sequences','Lead gen for new members','Make automation connecting Circle to CRM','Reporting and engagement analytics']
+  },
+  'atc': {
+    name: 'Around the Clock Bail Bonds', otherType: 'bail_bonds',
+    painQ: '"Around the Clock -- what happens right now when someone calls after hours or the line is busy?"',
+    pains: ['Missed calls after hours = missed revenue','No AI phone agent','No lead qualification system','No follow-up system','No social media presence','Social media inconsistent',"Can't track what's working"],
+    toolsQ: '"What is currently in place for Around the Clock besides Microsoft Ads?"',
+    tools: [['Microsoft Ads','sel'],['Phone only','sel'],['Google Sheets',''],['Instagram',''],['Nothing else','']],
+    phaseQ: '"This has the fastest ROI -- every missed call is a missed bond. Should this be Phase 1?"',
+    builds: ['AI phone agent 24/7','Lead qualification automation','CRM for bond leads','SMS follow-up sequences','Microsoft Ads optimization','Reddit presence and content','TikTok content automation','YouTube Shorts strategy','Local SEO build-out']
+  }
+};
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function go(id) {
+  var screens = document.querySelectorAll('.screen');
+  for (var i = 0; i < screens.length; i++) { screens[i].classList.remove('active'); }
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function tog(el) {
+  if (el.classList.contains('selected')) { el.classList.remove('selected'); }
+  else { el.classList.add('selected'); }
+}
+
+// ============================================================
+// BRAND SELECT + AUTO START
+// ============================================================
+function pickAndStart(name, key) {
+  var cards = document.querySelectorAll('.brand-card');
+  for (var i = 0; i < cards.length; i++) { cards[i].classList.remove('sel'); }
+  document.getElementById('bc-' + key).classList.add('sel');
+  curBrand = name;
+  curKey = key;
+  popupHours = {};
+  startBrand();
+}
+
+function startBrand() {
+  var d = brandData[curKey];
+  document.getElementById('pain-topbar-text').innerText = curBrand;
+  document.getElementById('phase-topbar-text').innerText = curBrand;
+  document.getElementById('pain-question').innerText = d.painQ;
+  document.getElementById('tools-question').innerText = d.toolsQ;
+
+  // Build pain bubbles + Other button
+  var pb = document.getElementById('pain-bubbles');
+  pb.innerHTML = '';
+  for (var i = 0; i < d.pains.length; i++) {
+    var pain = d.pains[i];
+    pb.innerHTML += '<div class="bubble" onclick="tapPain(this,\'' + esc(pain) + '\')">' + pain + '</div>';
+  }
+  pb.innerHTML += '<div class="bubble other-btn" onclick="openOther()">+ Other</div>';
+  // Custom pain input -- using createElement to avoid quoting issues
+  var inputWrap = document.createElement('div');
+  inputWrap.style.cssText = 'display:inline-flex;align-items:center;gap:6px;margin-top:2px;';
+
+  var customInput = document.createElement('input');
+  customInput.type = 'text';
+  customInput.id = 'custom-pain-input';
+  customInput.placeholder = 'Type and tap +';
+  customInput.style.cssText = 'background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.15);border-radius:30px;padding:10px 16px;font-size:13px;color:#fff;outline:none;width:150px;';
+  customInput.addEventListener('keydown', function(e) { if(e.key === 'Enter') addCustomPain(); });
+
+  var addBtn = document.createElement('div');
+  addBtn.className = 'bubble';
+  addBtn.style.cssText = 'padding:10px 14px;font-size:16px;background:rgba(0,194,255,0.1);border-color:rgba(0,194,255,0.3);color:#00C2FF;cursor:pointer;';
+  addBtn.innerText = '+';
+  addBtn.addEventListener('click', addCustomPain);
+
+  inputWrap.appendChild(customInput);
+  inputWrap.appendChild(addBtn);
+  pb.appendChild(inputWrap);
+  // Build tool bubbles
+  var tb = document.getElementById('tool-bubbles');
+  tb.innerHTML = '';
+  for (var i = 0; i < d.tools.length; i++) {
+    var cls = d.tools[i][1] === 'sel' ? 'bubble selected' : 'bubble';
+    tb.innerHTML += '<div class="' + cls + '" onclick="tog(this)">' + d.tools[i][0] + '</div>';
+  }
+
+  document.getElementById('hours-total').innerText = '0';
+
+  document.getElementById('phase-question').innerText = d.phaseQ;
+  curPhase = 0;
+  document.getElementById('ph1').classList.remove('sel');
+  document.getElementById('ph2').classList.remove('sel');
+  document.getElementById('ph3').classList.remove('sel');
+  document.getElementById('ph1').style.opacity = '1';
+  document.getElementById('ph2').style.opacity = '1';
+  document.getElementById('ph3').style.opacity = '1';
+
+  var bb = document.getElementById('build-bubbles');
+  bb.innerHTML = '';
+  for (var i = 0; i < d.builds.length; i++) {
+    bb.innerHTML += '<div class="bubble" onclick="togBuild(this)">' + d.builds[i] + '</div>';
+  }
+
+  go('s-pain');
+}
+
+
+function addCustomPain() {
+  var input = document.getElementById('custom-pain-input'); if (!input) return;
+  if (!input) return;
+  var val = input.value.trim();
+  if (!val) return;
+  var pb = document.getElementById('pain-bubbles');
+  var otherBtn = pb.querySelector('.other-btn');
+  var newBubble = document.createElement('div');
+  newBubble.className = 'bubble selected';
+  newBubble.setAttribute('onclick', 'tapPain(this,'' + esc(val) + '')');
+  newBubble.innerText = val;
+  pb.insertBefore(newBubble, otherBtn);
+  input.value = '';
+  // Auto open a generic hours qualifier
+  openPopup(val);
+}
+
+function esc(str) {
+  return str.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;');
+}
+
+// ============================================================
+// PAIN TAP -- OPEN QUALIFYING POPUP
+// ============================================================
+function tapPain(el, pain) {
+  var wasSelected = el.classList.contains('selected');
+  el.classList.toggle('selected');
+  if (!wasSelected) {
+    openPopup(pain);
+  } else {
+    delete popupHours[pain];
+    updateHoursTotal();
+  }
+}
+
+function openPopup(pain) {
+  document.getElementById('popup-title').innerText = pain;
+  var qData = qualifyData[pain];
+  var html = '';
+
+  if (qData) {
+    for (var i = 0; i < qData.questions.length; i++) {
+      var q = qData.questions[i];
+      html += '<div class="popup-question">' + q.q + '</div>';
+      html += '<div class="bubble-group">';
+      for (var j = 0; j < q.opts.length; j++) {
+        html += '<div class="bubble" onclick="tog(this)">' + q.opts[j] + '</div>';
+      }
+      html += '</div>';
+    }
+  }
+
+  html += '<div class="popup-question">Hours per week on this?</div>';
+  html += '<div class="bubble-group">';
+  var hOpts = ['1','2','3','4','5','6','8','10','12','15'];
+  for (var k = 0; k < hOpts.length; k++) {
+    html += '<div class="bubble" onclick="selHrs(this,\'' + esc(pain) + '\',' + hOpts[k] + ')">' + hOpts[k] + ' hrs</div>';
+  }
+  html += '</div>';
+
+  document.getElementById('popup-body').innerHTML = html;
+  document.getElementById('popup-overlay').classList.add('active');
+}
+
+// ============================================================
+// OTHER PAIN POINTS POPUP
+// ============================================================
+function openOther() {
+  var d = brandData[curKey];
+  var extras = otherPains[d.otherType] || [];
+  document.getElementById('popup-title').innerText = 'More Pain Points';
+
+  var html = '<div class="bubble-group">';
+  for (var i = 0; i < extras.length; i++) {
+    var pain = extras[i];
+    html += '<div class="bubble" onclick="addOtherPain(this,\'' + esc(pain) + '\')">' + pain + '</div>';
+  }
+  html += '</div>';
+
+  document.getElementById('popup-body').innerHTML = html;
+  document.getElementById('popup-overlay').classList.add('active');
+}
+
+function addOtherPain(el, pain) {
+  el.classList.toggle('selected');
+  if (el.classList.contains('selected')) {
+    // Add to main pain bubble list
+    var pb = document.getElementById('pain-bubbles');
+    var otherBtn = pb.querySelector('.other-btn');
+    var newBubble = document.createElement('div');
+    newBubble.className = 'bubble selected';
+    newBubble.setAttribute('onclick', 'tapPain(this,\'' + esc(pain) + '\')');
+    newBubble.innerText = pain;
+    pb.insertBefore(newBubble, otherBtn);
+    // Auto-open qualifier for it
+    closePopup();
+    setTimeout(function() { openPopup(pain); }, 200);
+  }
+}
+
+function selHrs(el, pain, hrs) {
+  var parent = el.parentNode;
+  var siblings = parent.querySelectorAll('.bubble');
+  for (var i = 0; i < siblings.length; i++) { siblings[i].classList.remove('selected'); }
+  el.classList.add('selected');
+  popupHours[pain] = hrs;
+  updateHoursTotal();
+}
+
+function updateHoursTotal() {
+  var total = 0;
+  for (var key in popupHours) { total += popupHours[key]; }
+  document.getElementById('hours-total').innerText = total;
+}
+
+function closePopup() {
+  document.getElementById('popup-overlay').classList.remove('active');
+}
+
+function closePopupOnBg(e) {
+  if (e.target === document.getElementById('popup-overlay')) { closePopup(); }
+}
+
+// ============================================================
+// PHASE SELECTOR -- PERSISTENT COLORS
+// ============================================================
+function selPhase(n) {
+  curPhase = n;
+  // ADD the sel class to the tapped phase -- keep previously tapped phases illuminated
+  document.getElementById('ph' + n).classList.add('sel');
+  // Update active indicator -- show which phase is currently active for new selections
+  document.getElementById('ph1').style.opacity = n === 1 ? '1' : '0.7';
+  document.getElementById('ph2').style.opacity = n === 2 ? '1' : '0.7';
+  document.getElementById('ph3').style.opacity = n === 3 ? '1' : '0.7';
+}
+
+function togBuild(el) {
+  // If already colored, remove all color classes (deselect)
+  if (el.classList.contains('sel-green') || el.classList.contains('sel-blue') || el.classList.contains('sel-orange')) {
+    el.classList.remove('sel-green','sel-blue','sel-orange');
+    return;
+  }
+  // Apply current phase color
+  if (curPhase === 1) { el.classList.add('sel-green'); }
+  else if (curPhase === 2) { el.classList.add('sel-blue'); }
+  else if (curPhase === 3) { el.classList.add('sel-orange'); }
+  else { el.classList.add('sel-green'); } // default
+}
+
+// ============================================================
+// GET SELECTED
+// ============================================================
+function getSel(groupId) {
+  var group = document.getElementById(groupId);
+  if (!group) return [];
+  var all = group.querySelectorAll('.bubble.selected, .bubble.sel-green, .bubble.sel-blue, .bubble.sel-orange');
+  var res = [];
+  for (var i = 0; i < all.length; i++) {
+    var txt = all[i].innerText;
+    if (txt !== '+ Other') res.push(txt);
+  }
+  return res;
+}
+
+function getBuildWithPhase() {
+  var group = document.getElementById('build-bubbles');
+  if (!group) return [];
+  var all = group.querySelectorAll('.bubble');
+  var res = [];
+  for (var i = 0; i < all.length; i++) {
+    var el = all[i];
+    var ph = 0;
+    if (el.classList.contains('sel-green')) ph = 1;
+    else if (el.classList.contains('sel-blue')) ph = 2;
+    else if (el.classList.contains('sel-orange')) ph = 3;
+    if (ph > 0) res.push({ text: el.innerText, phase: ph });
+  }
+  return res;
+}
+
+// ============================================================
+// SAVE BRAND DATA + BUILD SUMMARY
+// ============================================================
+function saveBrandData() {
+  var totalHrs = 0;
+  for (var key in popupHours) { totalHrs += popupHours[key]; }
+
+  var builds = getBuildWithPhase();
+  var pains = getSel('pain-bubbles');
+  var tools = getSel('tool-bubbles');
+
+  // Determine dominant phase
+  var phaseCounts = {1:0, 2:0, 3:0};
+  for (var i = 0; i < builds.length; i++) { phaseCounts[builds[i].phase]++; }
+  var domPhase = curPhase || 1;
+  if (phaseCounts[1] >= phaseCounts[2] && phaseCounts[1] >= phaseCounts[3]) domPhase = 1;
+  else if (phaseCounts[2] >= phaseCounts[3]) domPhase = 2;
+  else domPhase = 3;
+
+  var phaseLabel = domPhase === 1 ? 'Phase 1' : domPhase === 2 ? 'Phase 2' : 'Phase 3';
+  var phaseCls = domPhase === 1 ? 'tg' : domPhase === 2 ? 'tb' : 'to';
+
+  sessionData[curKey] = {
+    name: curBrand, hrs: totalHrs,
+    phase: phaseLabel, phaseNum: domPhase, phaseCls: phaseCls,
+    pains: pains, tools: tools, builds: builds
+  };
+
+  document.getElementById('summary-topbar-text').innerText = curBrand;
+
+  // BUILD DYNAMIC SUMMARY
+  var nameParts = curBrand.split(' ');
+  var lastWord = nameParts.pop();
+  var firstWords = nameParts.join(' ');
+
+  var h = '<div class="sum-wrap">';
+
+  // HEADER -- brand name + hours
+  h += '<div class="sum-header">';
+  h += '<div class="sum-brand-name">' + (firstWords ? firstWords + '<br><span>' + lastWord + '</span>' : '<span>' + lastWord + '</span>') + '</div>';
+  h += '<div class="sum-hrs-badge"><div class="sum-hrs-num">' + totalHrs + '</div><div class="sum-hrs-label">hrs / week</div></div>';
+  h += '</div>';
+
+  // VERTICAL LAYOUT: Pain Points -> Solutions -> Build Scope (horizontal)
+  h += '<div style="display:flex;flex-direction:column;gap:16px;flex:1;">';
+
+  // SECTION 1 -- Pain Points (vertical list)
+  h += '<div>';
+  h += '<div class="sum-col-title t-pain" style="margin-bottom:10px;">Pain Points / Needs</div>';
+  h += '<div class="sum-items">';
+  if (pains.length) {
+    for (var i = 0; i < pains.length; i++) {
+      h += '<div class="sum-item sum-item-pain">' + pains[i] + '</div>';
+    }
+  } else {
+    h += '<div class="sum-empty">None selected</div>';
+  }
+  h += '</div></div>';
+
+  // SECTION 2 -- Solutions (vertical list)
+  h += '<div>';
+  h += '<div class="sum-col-title t-tools" style="margin-bottom:10px;">Solutions</div>';
+  h += '<div class="sum-items">';
+  if (tools.length) {
+    for (var i = 0; i < tools.length; i++) {
+      h += '<div class="sum-item sum-item-tool">' + tools[i] + '</div>';
+    }
+  } else {
+    h += '<div class="sum-empty">None confirmed</div>';
+  }
+  h += '</div></div>';
+
+  // SECTION 3 -- Build Scope (horizontal pills by phase)
+  h += '<div>';
+  h += '<div class="sum-col-title t-build" style="margin-bottom:10px;">Build Scope</div>';
+  if (builds.length) {
+    var p1b = [], p2b = [], p3b = [];
+    for (var i = 0; i < builds.length; i++) {
+      if (builds[i].phase === 1) p1b.push(builds[i].text);
+      else if (builds[i].phase === 2) p2b.push(builds[i].text);
+      else p3b.push(builds[i].text);
+    }
+    if (p1b.length) {
+      h += '<div style="margin-bottom:8px;"><span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#00E096;font-family:Helvetica Neue,sans-serif;display:block;margin-bottom:5px;">Phase 1</span>';
+      h += '<div style="display:flex;flex-wrap:wrap;gap:6px;">';
+      for (var i = 0; i < p1b.length; i++) { h += '<span class="tag tg" style="font-size:12px;padding:5px 10px;">' + p1b[i] + '</span>'; }
+      h += '</div></div>';
+    }
+    if (p2b.length) {
+      h += '<div style="margin-bottom:8px;"><span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#00C2FF;font-family:Helvetica Neue,sans-serif;display:block;margin-bottom:5px;">Phase 2</span>';
+      h += '<div style="display:flex;flex-wrap:wrap;gap:6px;">';
+      for (var i = 0; i < p2b.length; i++) { h += '<span class="tag tb" style="font-size:12px;padding:5px 10px;">' + p2b[i] + '</span>'; }
+      h += '</div></div>';
+    }
+    if (p3b.length) {
+      h += '<div style="margin-bottom:8px;"><span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#FF8C00;font-family:Helvetica Neue,sans-serif;display:block;margin-bottom:5px;">Phase 3</span>';
+      h += '<div style="display:flex;flex-wrap:wrap;gap:6px;">';
+      for (var i = 0; i < p3b.length; i++) { h += '<span class="tag to" style="font-size:12px;padding:5px 10px;">' + p3b[i] + '</span>'; }
+      h += '</div></div>';
+    }
+  } else {
+    h += '<div class="sum-empty">None selected</div>';
+  }
+  h += '</div>';
+
+  h += '</div>'; // end vertical layout
+  h += '</div>'; // end sum-wrap
+
+  document.getElementById('summary-card-content').innerHTML = h;
+  // session summary built on demand when navigating to s-session
+}
+
+
+// ============================================================
+// THREE GROUP INVESTMENT ENGINE
 // ============================================================
 
-// Master product catalog – maps build scope items to canonical solution names
-var productCatalog = {
-‘Smart CRM pipeline’:           { name: ‘Smart CRM’, phase: 1, group: ‘goplay’ },
-‘Smart CRM Build’:              { name: ‘Smart CRM’, phase: 1, group: ‘goplay’ },
-‘Lead Pipeline & Follow-Up’:    { name: ‘Lead Pipeline & Follow-Up’, phase: 1, group: ‘goplay’ },
-‘Sponsorship outreach sequences’: { name: ‘Sponsorship Outreach System’, phase: 1, group: ‘goplay’ },
-‘Sponsorship Outreach Automation’: { name: ‘Sponsorship Outreach System’, phase: 1, group: ‘goplay’ },
-‘Automated follow-up’:          { name: ‘Automated Follow-Up’, phase: 1, group: ‘all’ },
-‘Automated Follow-Up Sequences’: { name: ‘Automated Follow-Up’, phase: 1, group: ‘all’ },
-‘Social content automation’:    { name: ‘Social Content Machine’, phase: 2, group: ‘all’ },
-‘Social Content Automation’:    { name: ‘Social Content Machine’, phase: 2, group: ‘all’ },
-‘Email campaigns’:              { name: ‘Email Campaign System’, phase: 2, group: ‘all’ },
-‘Email Automation Build’:       { name: ‘Email Campaign System’, phase: 2, group: ‘all’ },
-‘Lead sourcing automation’:     { name: ‘Lead Generation System’, phase: 2, group: ‘goplay’ },
-‘Lead Generation System’:       { name: ‘Lead Generation System’, phase: 2, group: ‘goplay’ },
-‘Lead gen automation’:          { name: ‘Lead Generation System’, phase: 2, group: ‘goplay’ },
-‘Proposal generation’:          { name: ‘Proposal Generator’, phase: 2, group: ‘goplay’ },
-‘Proposal Generation System’:   { name: ‘Proposal Generator’, phase: 2, group: ‘goplay’ },
-‘Analytics dashboard’:          { name: ‘Analytics Dashboard’, phase: 3, group: ‘all’ },
-‘Lead scoring’:                 { name: ‘Lead Scoring’, phase: 3, group: ‘goplay’ },
-‘Event registration system’:    { name: ‘Event Registration System’, phase: 2, group: ‘goplay’ },
-‘Lead capture from Wix’:        { name: ‘Lead Capture (Wix)’, phase: 1, group: ‘goplay’ },
-‘Keep Circle.so – integrate around it’: { name: ‘Circle.so Integration’, phase: 1, group: ‘estate’ },
-‘Private community space for members’: { name: ‘Private Community Build’, phase: 1, group: ‘estate’ },
-‘Automated onboarding sequences’: { name: ‘Member Onboarding Automation’, phase: 1, group: ‘estate’ },
-‘Client dashboard for visibility’: { name: ‘Client Reporting Dashboard’, phase: 2, group: ‘estate’ },
-‘AI content and drip sequences’: { name: ‘AI Content & Drip System’, phase: 2, group: ‘estate’ },
-‘Reporting and engagement analytics’: { name: ‘Analytics Dashboard’, phase: 3, group: ‘estate’ },
-‘AI phone agent 24/7’:          { name: ‘AI Phone Agent (24/7)’, phase: 1, group: ‘atc’ },
-‘Lead qualification automation’: { name: ‘Lead Qualification System’, phase: 1, group: ‘atc’ },
-‘CRM for bond leads’:           { name: ‘Smart CRM’, phase: 1, group: ‘atc’ },
-‘SMS follow-up sequences’:      { name: ‘Automated Follow-Up’, phase: 1, group: ‘atc’ },
-‘Microsoft Ads optimization’:   { name: ‘Paid Ads Optimization’, phase: 2, group: ‘atc’ },
-‘Reddit presence and content’:  { name: ‘Social Content Machine’, phase: 2, group: ‘atc’ },
-‘TikTok content automation’:    { name: ‘Social Content Machine’, phase: 2, group: ‘atc’ },
-‘YouTube Shorts strategy’:      { name: ‘Social Content Machine’, phase: 2, group: ‘atc’ },
-‘Local SEO build-out’:          { name: ‘Local SEO Build’, phase: 3, group: ‘atc’ },
-‘Appointment booking automation’: { name: ‘Booking Automation’, phase: 1, group: ‘goplay’ },
-‘Review management’:            { name: ‘Review & Reputation Management’, phase: 2, group: ‘goplay’ },
-‘Booking Automation’:           { name: ‘Booking Automation’, phase: 1, group: ‘goplay’ }
+// GoPlay brands
+var goplayBrands = ['sc','tgf','rr','al'];
+
+// Pain point to service mapping with phase and group
+var painToService = {
+  'No CRM in place':                { title:'Smart CRM Build', phase:1, build:'$2,500', monthly:'$300/mo', min:2500, max:2500 },
+  'No CRM at all':                  { title:'Smart CRM Build', phase:1, build:'$2,500', monthly:'$300/mo', min:2500, max:2500 },
+  'Leads falling through cracks':   { title:'Lead Pipeline & Follow-Up', phase:1, build:'$1,500', monthly:'$200/mo', min:1500, max:1500 },
+  'Sponsorship outreach is manual': { title:'Sponsorship Outreach Automation', phase:1, build:'$1,500', monthly:'$200/mo', min:1500, max:1500 },
+  'No follow-up system':            { title:'Automated Follow-Up Sequences', phase:1, build:'$1,000', monthly:'$150/mo', min:1000, max:1000 },
+  'Social media inconsistent':      { title:'Social Content Automation', phase:2, build:'$1,500', monthly:'$300/mo', min:1500, max:1500 },
+  'Too much manual data entry':     { title:'Process Automation (Make.com)', phase:2, build:'$1,000', monthly:'$150/mo', min:1000, max:1000 },
+  'Proposals take too long':        { title:'Proposal Generation System', phase:2, build:'$1,000', monthly:'$100/mo', min:1000, max:1000 },
+  "Can't track what's working":     { title:'Analytics Dashboard', phase:3, build:'$1,500', monthly:'$150/mo', min:1500, max:1500 },
+  'Email follow-up falling behind': { title:'Email Automation Build', phase:1, build:'$1,000', monthly:'$150/mo', min:1000, max:1000 },
+  'No lead generation system':      { title:'Lead Generation System', phase:2, build:'$2,500', monthly:'$300/mo', min:2500, max:2500 },
+  'No lead capture system':         { title:'Lead Capture + Nurture', phase:1, build:'$1,000', monthly:'$150/mo', min:1000, max:1000 },
+  'No sponsorship pipeline':        { title:'Sponsorship Pipeline', phase:1, build:'$1,500', monthly:'$200/mo', min:1500, max:1500 },
+  'Audience not being built yet':   { title:'Audience Building Campaign', phase:2, build:'$1,500', monthly:'$200/mo', min:1500, max:1500 },
+  'Lead generation':                { title:'Lead Generation System', phase:2, build:'$2,500', monthly:'$300/mo', min:2500, max:2500 },
+  'Appointment booking automation': { title:'Booking Automation', phase:1, build:'$1,000', monthly:'$100/mo', min:1000, max:1000 },
+  'No private community space for members': { title:'Private Community Build (Circle.so)', phase:1, build:'$3,500', monthly:'$500/mo', min:3500, max:3500 },
+  'Member onboarding is manual':    { title:'Onboarding Automation', phase:1, build:'$1,500', monthly:'$200/mo', min:1500, max:1500 },
+  'Client has no visibility into engagement': { title:'Client Reporting Dashboard', phase:2, build:'$1,500', monthly:'$200/mo', min:1500, max:1500 },
+  'No customer-facing web app':     { title:'Customer Web App Build', phase:3, build:'$8,000', monthly:'$500/mo', min:8000, max:8000 },
+  'Circle.so not fully configured': { title:'Circle.so Full Configuration', phase:1, build:'$1,500', monthly:'$200/mo', min:1500, max:1500 },
+  'No automated drip content for members': { title:'Member Drip Content System', phase:2, build:'$1,500', monthly:'$200/mo', min:1500, max:1500 },
+  'Circle not integrated with CRM or email': { title:'Circle + CRM Integration', phase:2, build:'$1,000', monthly:'$150/mo', min:1000, max:1000 },
+  'Missed calls after hours = missed revenue': { title:'AI Phone Agent (24/7)', phase:1, build:'$4,000', monthly:'$800/mo', min:4000, max:4000 },
+  'No AI phone agent':              { title:'AI Phone Agent (24/7)', phase:1, build:'$4,000', monthly:'$800/mo', min:4000, max:4000 },
+  'No social media presence':       { title:'Social Media Build-Out', phase:2, build:'$1,500', monthly:'$300/mo', min:1500, max:1500 },
+  'No lead qualification system':   { title:'Lead Qualification Automation', phase:1, build:'$1,500', monthly:'$200/mo', min:1500, max:1500 }
 };
 
-var brandGroupMap = {
-sc: ‘goplay’, tgf: ‘goplay’, rr: ‘goplay’, al: ‘goplay’,
-em: ‘estate’, atc: ‘atc’
-};
+// Group totals tracker
+var groupTotals = { goplay: 0, estate: 0, atc: 0 };
 
-var brandDisplayNames = {
-sc: ‘Sports Cannabis’, tgf: ‘Touch Grass Fest’, rr: ‘R&R Symposium’,
-al: ‘Advanced Laser’, em: ‘Estate-Minder’, atc: ‘Around the Clock’
-};
+function getGroupForKey(key) {
+  if (key === 'em') return 'estate';
+  if (key === 'atc') return 'atc';
+  return 'goplay';
+}
+
+function buildExpansionRecs() {
+  selectedMin = 0; selectedMax = 0;
+  groupTotals = { goplay: 0, estate: 0, atc: 0 };
+
+  var keys = Object.keys(sessionData);
+  var container = document.getElementById('inv-groups-container');
+  if (!keys.length) {
+    container.innerHTML = '<div style="font-size:13px;color:rgba(255,255,255,0.3);font-family:'Helvetica Neue',sans-serif;font-style:italic;">Complete discovery first.</div>';
+    return;
+  }
+
+  // Collect GoPlay brands data
+  var goplayData = [];
+  var estateData = null;
+  var atcData = null;
+
+  for (var i = 0; i < keys.length; i++) {
+    var k = keys[i];
+    if (k === 'em') estateData = sessionData[k];
+    else if (k === 'atc') atcData = sessionData[k];
+    else goplayData.push(sessionData[k]);
+  }
+
+  var html = '';
+
+  // ---- GROUP 1: GoPlay ----
+  if (goplayData.length) {
+    // Collect all unique services from all GoPlay brands
+    var gpSeen = {};
+    var gpPhases = { 1: [], 2: [], 3: [] };
+    var gpBrandNames = [];
+
+    for (var i = 0; i < goplayData.length; i++) {
+      gpBrandNames.push(goplayData[i].name);
+      for (var j = 0; j < goplayData[i].pains.length; j++) {
+        var pain = goplayData[i].pains[j];
+        if (painToService[pain] && !gpSeen[painToService[pain].title]) {
+          gpSeen[painToService[pain].title] = true;
+          var svc = painToService[pain];
+          gpPhases[svc.phase].push(svc);
+        }
+      }
+    }
+
+    // Add GoPlay retainer
+    if (!gpSeen['GoPlay Agency Retainer']) {
+      gpSeen['GoPlay Agency Retainer'] = true;
+      gpPhases[1].push({ title: 'GoPlay Agency Retainer', build: 'DISCOUNTED', monthly: '$3,500/mo', min: 0, max: 0, retainer: true });
+    }
+    // Add commission line
+    if (!gpSeen['Performance Commission']) {
+      gpSeen['Performance Commission'] = true;
+      gpPhases[1].push({ title: '10% Commission on Revenue Generated', build: 'Performance', monthly: '10%', min: 0, max: 0, commission: true });
+    }
+
+    html += '<div class="inv-group">';
+    html += '<div class="inv-group-header">';
+    html += '<div>';
+    html += '<div class="inv-group-name">GoPlay / CannaJo!nt</div>';
+    html += '<div class="inv-group-brands">' + gpBrandNames.join(' &middot; ') + '</div>';
+    html += '</div>';
+    html += '<div class="inv-group-badge badge-discount">Founder Rate</div>';
+    html += '</div>';
+
+    html += buildPhaseSection(gpPhases, 'goplay');
+    html += '</div>';
+  }
+
+  // ---- GROUP 2: Estate-Minder ----
+  if (estateData) {
+    var emSeen = {};
+    var emPhases = { 1: [], 2: [], 3: [] };
+    for (var j = 0; j < estateData.pains.length; j++) {
+      var pain = estateData.pains[j];
+      if (painToService[pain] && !emSeen[painToService[pain].title]) {
+        emSeen[painToService[pain].title] = true;
+        var svc = painToService[pain];
+        emPhases[svc.phase].push(svc);
+      }
+    }
+    // Add Estate-Minder retainer
+    emPhases[1].push({ title: 'Estate-Minder AI Layer Retainer', build: '$18K-$27K build', monthly: '$5,000/mo', min: 18000, max: 27000, retainer: true });
+
+    html += '<div class="inv-group">';
+    html += '<div class="inv-group-header">';
+    html += '<div>';
+    html += '<div class="inv-group-name">Estate-Minder</div>';
+    html += '<div class="inv-group-brands">Kelly\'s Client &middot; Circle.so Platform</div>';
+    html += '</div>';
+    html += '<div class="inv-group-badge badge-premium">Premium Build</div>';
+    html += '</div>';
+
+    html += buildPhaseSection(emPhases, 'estate');
+    html += '</div>';
+  }
+
+  // ---- GROUP 3: Around the Clock ----
+  if (atcData) {
+    var atcSeen = {};
+    var atcPhases = { 1: [], 2: [], 3: [] };
+    for (var j = 0; j < atcData.pains.length; j++) {
+      var pain = atcData.pains[j];
+      if (painToService[pain] && !atcSeen[painToService[pain].title]) {
+        atcSeen[painToService[pain].title] = true;
+        var svc = painToService[pain];
+        atcPhases[svc.phase].push(svc);
+      }
+    }
+    // Add ATC retainer
+    atcPhases[1].push({ title: 'Around the Clock AI Retainer', build: 'Premium build', monthly: '$800-$1,200/mo', min: 3000, max: 5000, retainer: true });
+
+    html += '<div class="inv-group">';
+    html += '<div class="inv-group-header">';
+    html += '<div>';
+    html += '<div class="inv-group-name">Around the Clock Bail Bonds</div>';
+    html += '<div class="inv-group-brands">Greensboro-Winston Salem NC &middot; Retirement Plan</div>';
+    html += '</div>';
+    html += '<div class="inv-group-badge badge-premium">Premium Build</div>';
+    html += '</div>';
+
+    html += buildPhaseSection(atcPhases, 'atc');
+    html += '</div>';
+  }
+
+  container.innerHTML = html;
+  updateGroupTotals();
+}
+
+function buildPhaseSection(phases, group) {
+  var h = '';
+  var phaseColors = { 1: 'ps-green', 2: 'ps-blue', 3: 'ps-orange' };
+  var phaseLabels = { 1: 'Phase 1 -- Start Now', 2: 'Phase 2 -- Soon', 3: 'Phase 3 -- Later' };
+  var priceColors = { 1: 'rp-green', 2: 'rp-blue', 3: 'rp-orange' };
+
+  for (var p = 1; p <= 3; p++) {
+    if (!phases[p] || !phases[p].length) continue;
+    h += '<div class="phase-section">';
+    h += '<div class="phase-section-title ' + phaseColors[p] + '">' + phaseLabels[p] + '</div>';
+    for (var i = 0; i < phases[p].length; i++) {
+      var svc = phases[p][i];
+      var buildAmt = svc.min || 0;
+      var isRetainer = svc.retainer || false;
+      var isCommission = svc.commission || false;
+      var displayPrice = isRetainer ? svc.monthly : isCommission ? svc.monthly : svc.build;
+      var priceClass = isRetainer ? 'rp-purple' : isCommission ? 'rp-orange' : priceColors[p];
+
+      h += '<div class="inv-line" data-group="' + group + '" data-min="' + buildAmt + '" onclick="togInvLine(this)">';
+      h += '<div class="inv-line-check">✓</div>';
+      h += '<div class="inv-line-text">' + svc.title;
+      if (!isCommission && !isRetainer) {
+        h += '<small>+ ' + svc.monthly + ' retainer</small>';
+      }
+      h += '</div>';
+      h += '<div class="inv-line-price ' + priceClass + '">' + displayPrice + '</div>';
+      h += '</div>';
+    }
+    h += '</div>';
+  }
+  return h;
+}
+
+function togInvLine(el) {
+  var group = el.getAttribute('data-group');
+  var amt = parseInt(el.getAttribute('data-min')) || 0;
+
+  if (el.classList.contains('sel-line')) {
+    el.classList.remove('sel-line');
+    groupTotals[group] -= amt;
+  } else {
+    el.classList.add('sel-line');
+    groupTotals[group] += amt;
+  }
+  updateGroupTotals();
+}
+
+function updateGroupTotals() {
+  var fmt = function(n) {
+    if (n === 0) return '$0';
+    if (n >= 1000) return '$' + (n/1000).toFixed(0) + 'K';
+    return '$' + n;
+  };
+
+  var gpEl = document.getElementById('gt-goplay');
+  var emEl = document.getElementById('gt-estate');
+  var atcEl = document.getElementById('gt-atc');
+  var grandEl = document.getElementById('grand-total');
+
+  if (gpEl) gpEl.innerText = fmt(groupTotals.goplay);
+  if (emEl) emEl.innerText = fmt(groupTotals.estate);
+  if (atcEl) atcEl.innerText = fmt(groupTotals.atc);
+
+  var grand = groupTotals.goplay + groupTotals.estate + groupTotals.atc;
+  if (grandEl) grandEl.innerText = fmt(grand);
+}
+
+// ============================================================
+// WRAP UP GUARD -- check all brands touched
+// ============================================================
+function tryWrapUp() {
+  var allBrands = ['sc','tgf','rr','al','em','atc'];
+  var done = Object.keys(sessionData);
+  var missing = [];
+  var brandNames = {sc:'Sports Cannabis',tgf:'Touch Grass Fest',rr:'R&R Symposium',al:'Advanced Laser',em:'Estate-Minder',atc:'Around the Clock'};
+  for (var i = 0; i < allBrands.length; i++) {
+    if (done.indexOf(allBrands[i]) === -1) {
+      missing.push(brandNames[allBrands[i]]);
+    }
+  }
+  if (missing.length > 0) {
+    var listHtml = '';
+    for (var i = 0; i < missing.length; i++) {
+      listHtml += '<div class="modal-brand-item">' + missing[i] + '</div>';
+    }
+    document.getElementById('modal-brand-list').innerHTML = listHtml;
+    document.getElementById('wrap-modal').classList.add('active');
+  } else {
+    buildExpansionRecs(); go('s-expand');
+  }
+}
+
+function closeModal() {
+  document.getElementById('wrap-modal').classList.remove('active');
+}
+
+function confirmWrapUp() {
+  closeModal();
+  buildExpansionRecs();
+  go('s-expand');
+}
+
 
 function togNS(el) {
-if (el.classList.contains(‘sel-ns’)) { el.classList.remove(‘sel-ns’); }
-else { el.classList.add(‘sel-ns’); }
+  if (el.classList.contains('sel-ns')) { el.classList.remove('sel-ns'); }
+  else { el.classList.add('sel-ns'); }
 }
+
+var productCatalog = {
+  'Smart CRM pipeline': {name:'Smart CRM',phase:1},
+  'Lead sourcing automation': {name:'Lead Generation System',phase:2},
+  'Sponsorship outreach sequences': {name:'Sponsorship Outreach System',phase:1},
+  'Automated follow-up': {name:'Automated Follow-Up',phase:1},
+  'Social content automation': {name:'Social Content Machine',phase:2},
+  'Email campaigns': {name:'Email Campaign System',phase:2},
+  'Proposal generation': {name:'Proposal Generator',phase:2},
+  'Analytics dashboard': {name:'Analytics Dashboard',phase:3},
+  'Lead scoring': {name:'Lead Scoring',phase:3},
+  'Event registration system': {name:'Event Registration System',phase:2},
+  'Lead capture from Wix': {name:'Lead Capture',phase:1},
+  'Keep Circle.so -- integrate around it': {name:'Circle.so Integration',phase:1},
+  'Private community space for members': {name:'Private Community Build',phase:1},
+  'Automated onboarding sequences': {name:'Member Onboarding Automation',phase:1},
+  'Client dashboard for visibility': {name:'Client Reporting Dashboard',phase:2},
+  'AI content and drip sequences': {name:'AI Content & Drip System',phase:2},
+  'Reporting and engagement analytics': {name:'Analytics Dashboard',phase:3},
+  'AI phone agent 24/7': {name:'AI Phone Agent (24/7)',phase:1},
+  'Lead qualification automation': {name:'Lead Qualification System',phase:1},
+  'CRM for bond leads': {name:'Smart CRM',phase:1},
+  'SMS follow-up sequences': {name:'Automated Follow-Up',phase:1},
+  'Microsoft Ads optimization': {name:'Paid Ads Optimization',phase:2},
+  'Reddit presence and content': {name:'Social Content Machine',phase:2},
+  'TikTok content automation': {name:'Social Content Machine',phase:2},
+  'YouTube Shorts strategy': {name:'Social Content Machine',phase:2},
+  'Local SEO build-out': {name:'Local SEO Build',phase:3},
+  'Appointment booking automation': {name:'Booking Automation',phase:1},
+  'Review management': {name:'Review & Reputation Management',phase:2}
+};
+
+var brandGroupMap = {sc:'goplay',tgf:'goplay',rr:'goplay',al:'goplay',em:'estate',atc:'atc'};
+var brandDisplayNames = {sc:'Sports Cannabis',tgf:'Touch Grass Fest',rr:'R&R Symposium',al:'Advanced Laser',em:'Estate-Minder',atc:'Around the Clock'};
 
 function buildSessionSummary() {
-var keys = Object.keys(sessionData);
-if (!keys.length) return;
+  var keys = Object.keys(sessionData);
+  var productMap = {};
 
-// Aggregate products across all brands
-var productMap = {}; // productName -> { phase, group, brands: [] }
+  for (var i = 0; i < keys.length; i++) {
+    var key = keys[i];
+    var d = sessionData[key];
+    var brandName = brandDisplayNames[key] || d.name;
+    var brandGroup = brandGroupMap[key] || 'goplay';
 
-for (var i = 0; i < keys.length; i++) {
-var key = keys[i];
-var d = sessionData[key];
-var brandName = brandDisplayNames[key] || d.name;
-var brandGroup = brandGroupMap[key] || ‘goplay’;
+    for (var j = 0; j < d.builds.length; j++) {
+      var buildText = d.builds[j].text || d.builds[j];
+      var entry = productCatalog[buildText];
+      var productName = entry ? entry.name : buildText;
+      var productPhase = entry ? entry.phase : (d.builds[j].phase || 1);
 
-```
-for (var j = 0; j < d.builds.length; j++) {
-  var buildText = d.builds[j].text || d.builds[j];
-  var catalogEntry = productCatalog[buildText];
-  var productName = catalogEntry ? catalogEntry.name : buildText;
-  var productPhase = catalogEntry ? catalogEntry.phase : (d.builds[j].phase || 1);
-
-  if (!productMap[productName]) {
-    productMap[productName] = { phase: productPhase, brands: [], group: brandGroup };
+      if (!productMap[productName]) { productMap[productName] = {phase:productPhase, brands:[]}; }
+      var alreadyIn = false;
+      for (var k = 0; k < productMap[productName].brands.length; k++) {
+        if (productMap[productName].brands[k].name === brandName) { alreadyIn = true; break; }
+      }
+      if (!alreadyIn) { productMap[productName].brands.push({name:brandName, group:brandGroup}); }
+    }
   }
-  // Only add brand if not already there
-  var alreadyIn = false;
-  for (var k = 0; k < productMap[productName].brands.length; k++) {
-    if (productMap[productName].brands[k].name === brandName) { alreadyIn = true; break; }
+
+  var products = Object.keys(productMap);
+  products.sort(function(a,b) { return productMap[a].phase - productMap[b].phase; });
+
+  var h = '';
+  var curPhaseDisplay = 0;
+  for (var i = 0; i < products.length; i++) {
+    var pName = products[i];
+    var p = productMap[pName];
+    if (p.phase !== curPhaseDisplay) {
+      curPhaseDisplay = p.phase;
+      var pc = p.phase === 1 ? '#00E096' : p.phase === 2 ? '#00C2FF' : '#FF8C00';
+      var pl = p.phase === 1 ? 'Phase 1 -- Start Now' : p.phase === 2 ? 'Phase 2 -- Soon' : 'Phase 3 -- Later';
+      h += '<div style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;font-family:Helvetica Neue,sans-serif;font-weight:700;color:' + pc + ';margin-bottom:10px;margin-top:' + (i===0?'0':'16px') + ';">' + pl + '</div>';
+    }
+    var phaseTag = p.phase === 1 ? '<span class="tag tg">Phase 1</span>' : p.phase === 2 ? '<span class="tag tb">Phase 2</span>' : '<span class="tag to">Phase 3</span>';
+    h += '<div class="product-card">';
+    h += '<div class="product-card-header"><div class="product-card-name">' + pName + '</div>' + phaseTag + '</div>';
+    h += '<div class="product-brands">';
+    for (var j = 0; j < p.brands.length; j++) {
+      h += '<span class="product-brand-pill pill-' + p.brands[j].group + '">' + p.brands[j].name + '</span>';
+    }
+    h += '</div></div>';
   }
-  if (!alreadyIn) {
-    productMap[productName].brands.push({ name: brandName, group: brandGroup });
+
+  var pgEl = document.getElementById('product-grid');
+  if (pgEl) pgEl.innerHTML = h || '<div style="font-size:13px;color:rgba(255,255,255,0.3);font-style:italic;">No build scope selected yet.</div>';
+
+  var totalHrs = 0;
+  for (var i = 0; i < keys.length; i++) { totalHrs += sessionData[keys[i]].hrs; }
+  var hEl = document.getElementById('sess-hrs');
+  var bEl = document.getElementById('sess-brands');
+  var sEl = document.getElementById('sess-solutions');
+  if (hEl) hEl.innerText = totalHrs;
+  if (bEl) bEl.innerText = keys.length;
+  if (sEl) sEl.innerText = products.length;
+}
+
+// ============================================================
+// SESSION SUMMARY -- SORTED BY PHASE
+// ============================================================
+
+function togExp(el) {
+  if (el.classList.contains('sel-exp')) {
+    el.classList.remove('sel-exp');
+  } else {
+    el.classList.add('sel-exp');
   }
 }
-```
 
+function selCQ(el, group) {
+  // For closing questions -- only one selection per group
+  var parent = el.parentNode;
+  var siblings = parent.querySelectorAll('.closing-q');
+  for (var i = 0; i < siblings.length; i++) {
+    siblings[i].classList.remove('sel-cq');
+  }
+  el.classList.add('sel-cq');
 }
 
-// Sort products by phase
-var products = Object.keys(productMap);
-products.sort(function(a, b) { return productMap[a].phase - productMap[b].phase; });
+// ============================================================
+// INIT
+// ============================================================
+var d = new Date();
+var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+document.getElementById('coverDate').innerText = months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+</script>
 
-// Build HTML
-var html = ‘’;
-var currentPhase = 0;
+<!-- CUSTOM MODAL -->
 
-for (var i = 0; i < products.length; i++) {
-var pName = products[i];
-var p = productMap[pName];
-
-```
-if (p.phase !== currentPhase) {
-  currentPhase = p.phase;
-  var phaseColor = p.phase === 1 ? '#00E096' : p.phase === 2 ? '#00C2FF' : '#FF8C00';
-  var phaseLabel = p.phase === 1 ? 'Phase 1 -- Start Now' : p.phase === 2 ? 'Phase 2 -- Soon' : 'Phase 3 -- Later';
-  html += '<div style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;font-family:Helvetica Neue,sans-serif;font-weight:700;color:' + phaseColor + ';margin-bottom:10px;margin-top:' + (i === 0 ? '0' : '16px') + ';">' + phaseLabel + '</div>';
-}
-
-var phaseClass = p.phase === 1 ? 'tg' : p.phase === 2 ? 'tb' : 'to';
-var phaseTag = p.phase === 1 ? 'Phase 1' : p.phase === 2 ? 'Phase 2' : 'Phase 3';
-
-html += '<div class="product-card">';
-html += '<div class="product-card-header">';
-html += '<div class="product-card-name">' + pName + '</div>';
-html += '<span class="tag ' + phaseClass + ' product-card-phase">' + phaseTag + '</span>';
-html += '</div>';
-html += '<div class="product-brands">';
-
-for (var j = 0; j < p.brands.length; j++) {
-  var pillClass = p.brands[j].group === 'estate' ? 'pill-estate' : p.brands[j].group === 'atc' ? 'pill-atc' : 'pill-goplay';
-  html += '<span class="product-brand-pill ' + pillClass + '">' + p.brands[j].name + '</span>';
-}
-
-html += '</div></div>';
-```
-
-}
-
-document.getElementById(‘product-grid’).innerHTML = html || ‘<div style="font-size:13px;color:rgba(255,255,255,0.3);font-family:Helvetica Neue,sans-serif;font-style:italic;">No build scope selected yet.</div>’;
-
-// Update stats
-var totalHrs = 0;
-for (var i = 0; i < keys.length; i++) { totalHrs += sessionData[keys[i]].hrs; }
-document.getElementById(‘sess-hrs’).innerText = totalHrs;
-document.getElementById(‘sess-brands’).innerText = keys.length;
-document.getElementById(‘sess-solutions’).innerText = products.length;
-}
-
-<!DOCTYPE html>
-
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>GoPlay Discovery | Breakout AI</title>
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-body { background: #000000; color: #FFFFFF; font-family: 'Georgia', serif; min-height: 100vh; overflow-x: hidden; }
-
-/* iPad landscape optimization */
-@media (min-width: 768px) {
-.content { padding: 36px 48px 20px !important; }
-.btn-row { padding: 16px 48px 28px !important; }
-.topbar { padding: 16px 48px !important; }
-.cover-wrap { padding: 48px 80px !important; }
-}
-.screen { display: none; min-height: 100vh; height: 100%; flex-direction: column; }
-.screen.active { display: flex; }
-.topbar { background: #0A0A0A; border-bottom: 1px solid rgba(255,255,255,0.10); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-.topbar-logo { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #00C2FF; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; }
-.topbar-brand { font-size: 13px; color: rgba(255,255,255,0.55); font-family: ‘Helvetica Neue’, sans-serif; }
-.progress-bar { height: 3px; background: rgba(255,255,255,0.08); flex-shrink: 0; }
-.progress-fill { height: 100%; background: linear-gradient(90deg, #0057FF, #00C2FF); transition: width 0.4s ease; }
-.content { flex: 1; padding: 28px 28px 16px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-.screen-label { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #00C2FF; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 10px; }
-.q-text { font-size: 20px; line-height: 1.4; margin-bottom: 16px; }
-.q-label { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #00C2FF; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 10px; font-weight: 700; }
-.bubble-group { display: flex; flex-wrap: wrap; gap: 11px; margin-bottom: 24px; }
-.bubble { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.10); border-radius: 30px; padding: 13px 20px; font-size: 15px; font-family: ‘Helvetica Neue’, sans-serif; cursor: pointer; transition: all 0.2s ease; user-select: none; }
-.bubble:active { transform: scale(0.96); }
-.bubble.selected { background: rgba(0,87,255,0.22); border-color: #0057FF; color: #fff; }
-.bubble.sel-green { background: rgba(0,224,150,0.18); border-color: #00E096; color: #00E096; }
-.bubble.sel-blue { background: rgba(0,87,255,0.22); border-color: #0057FF; color: #00C2FF; }
-.bubble.sel-orange { background: rgba(255,140,0,0.18); border-color: #FF8C00; color: #FF8C00; }
-.bubble.other-btn { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); font-style: italic; }
-.note-blue { background: rgba(0,194,255,0.06); border-left: 3px solid #00C2FF; border-radius: 0 10px 10px 0; padding: 11px 14px; margin-bottom: 16px; font-size: 12px; color: rgba(255,255,255,0.7); font-family: ‘Helvetica Neue’, sans-serif; font-style: italic; line-height: 1.5; }
-.tools-known { font-size: 11px; color: #00C2FF; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 8px; }
-.hours-box { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 22px 28px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; }
-.hours-label { font-size: 16px; color: rgba(255,255,255,0.7); font-family: ‘Helvetica Neue’, sans-serif; }
-.hours-count { font-size: 44px; color: #00C2FF; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; }
-.hours-unit { font-size: 11px; color: rgba(255,255,255,0.4); font-family: ‘Helvetica Neue’, sans-serif; }
-.phase-row { display: flex; gap: 14px; margin-bottom: 28px; }
-.phase-btn { flex: 1; background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.10); border-radius: 16px; padding: 22px 8px; text-align: center; cursor: pointer; transition: all 0.2s; }
-.phase-btn:active { transform: scale(0.97); }
-.phase-btn .phase-num { font-size: 12px; color: rgba(255,255,255,0.55); font-family: ‘Helvetica Neue’, sans-serif; letter-spacing: 1px; text-transform: uppercase; }
-.phase-btn .phase-label { font-size: 18px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; margin-top: 6px; }
-.phase-btn.p1.sel { background: rgba(0,224,150,0.12); border-color: #00E096; }
-.phase-btn.p1.sel .phase-label { color: #00E096; }
-.phase-btn.p2.sel { background: rgba(0,87,255,0.15); border-color: #0057FF; }
-.phase-btn.p2.sel .phase-label { color: #00C2FF; }
-.phase-btn.p3.sel { background: rgba(255,140,0,0.12); border-color: #FF8C00; }
-.phase-btn.p3.sel .phase-label { color: #FF8C00; }
-.divider { height: 1px; background: rgba(255,255,255,0.10); margin: 8px 0 24px; }
-.brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
-.brand-card { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.10); border-radius: 18px; padding: 22px 16px; cursor: pointer; transition: all 0.2s ease; text-align: center; position: relative; overflow: hidden; }
-.brand-card:active { transform: scale(0.97); }
-.brand-card.sel { background: rgba(0,87,255,0.18); border-color: #0057FF; }
-.brand-card .b-icon { font-size: 32px; margin-bottom: 10px; }
-.brand-card .b-name { font-size: 15px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; }
-.brand-card .b-type { font-size: 12px; color: rgba(255,255,255,0.55); font-family: ‘Helvetica Neue’, sans-serif; margin-top: 5px; }
-.brand-card .b-check { position: absolute; top: 8px; right: 8px; width: 18px; height: 18px; background: #0057FF; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 10px; }
-.brand-card.sel .b-check { display: flex; }
-.summary-section { margin-bottom: 16px; }
-.summary-section-title { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.10); }
-.summary-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); border-radius: 14px; padding: 14px; margin-bottom: 10px; }
-.sc-title { font-size: 17px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; margin-bottom: 10px; color: #00C2FF; }
-.sc-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
-.sc-key { font-size: 12px; color: rgba(255,255,255,0.55); font-family: ‘Helvetica Neue’, sans-serif; flex-shrink: 0; width: 90px; }
-.sc-val { font-size: 12px; font-family: ‘Helvetica Neue’, sans-serif; text-align: right; flex: 1; }
-.tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-family: ‘Helvetica Neue’, sans-serif; margin: 2px; }
-.tb { background: rgba(0,87,255,0.2); border: 1px solid rgba(0,87,255,0.4); color: #00C2FF; }
-.tg { background: rgba(0,224,150,0.15); border: 1px solid rgba(0,224,150,0.4); color: #00E096; }
-.to { background: rgba(255,140,0,0.15); border: 1px solid rgba(255,140,0,0.4); color: #FF8C00; }
-.btn-row { display: flex; gap: 12px; padding: 12px 24px 20px; flex-shrink: 0; }
-.btn { flex: 1; padding: 20px; border-radius: 16px; font-size: 16px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; outline: none; }
-.btn:active { transform: scale(0.97); }
-.btn-primary { background: linear-gradient(135deg, #0057FF, #1A6FFF); color: white; }
-.btn-secondary { background: rgba(255,255,255,0.10); border: 1.5px solid rgba(255,255,255,0.10); color: rgba(255,255,255,0.55); }
-.btn-back { background: transparent; border: 1.5px solid rgba(255,255,255,0.10); color: rgba(255,255,255,0.55); flex: 0 0 90px; font-size: 14px; }
-.btn-green { background: linear-gradient(135deg, #00A86B, #00E096); color: #050D1A; }
-.cover-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; text-align: center; background: radial-gradient(ellipse at 50% 40%, rgba(0,194,255,0.08) 0%, rgba(0,87,255,0.05) 40%, transparent 70%); }
-.cover-eyebrow { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #00C2FF; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 20px; }
-.cover-title { font-size: 52px; line-height: 1.1; margin-bottom: 12px; }
-.cover-title span { color: #00C2FF; }
-.cover-divider { width: 40px; height: 2px; background: #0057FF; margin: 18px auto; }
-.cover-date { font-size: 11px; color: rgba(255,255,255,0.4); font-family: ‘Helvetica Neue’, sans-serif; margin-top: 18px; }
-.btn-big { width: 100%; padding: 20px; border-radius: 16px; font-size: 17px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; background: linear-gradient(135deg, #0057FF, #0080FF); color: white; border: none; cursor: pointer; letter-spacing: 1px; text-transform: uppercase; transition: all 0.2s; }
-.btn-big:active { transform: scale(0.98); opacity: 0.9; }
-.popup-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 100; align-items: flex-end; justify-content: center; }
-.popup-overlay.active { display: flex; }
-.popup-sheet { background: #0A0A0A; border-radius: 20px 20px 0 0; padding: 24px 20px 28px; width: 100%; max-height: 82vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-.popup-handle { width: 40px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; margin: 0 auto 18px; }
-.popup-title { font-size: 17px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; margin-bottom: 18px; color: #fff; }
-.popup-question { font-size: 13px; color: #00C2FF; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 10px; margin-top: 16px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; font-size: 10px; }
-.popup-close { width: 100%; padding: 16px; border-radius: 12px; background: #0057FF; color: white; border: none; font-size: 15px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; cursor: pointer; margin-top: 20px; }
-.session-total { background: linear-gradient(135deg, rgba(0,87,255,0.2), rgba(0,194,255,0.1)); border: 2px solid rgba(0,194,255,0.4); border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 20px; }
-.st-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #00C2FF; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 6px; }
-.st-amount { font-size: 44px; color: #00C2FF; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; }
-.st-sub { font-size: 11px; color: rgba(255,255,255,0.55); font-family: ‘Helvetica Neue’, sans-serif; margin-top: 4px; }
-
-/* POLISH */
-.brand-card { transition: all 0.2s ease; }
-.brand-card:hover { border-color: rgba(0,194,255,0.3); background: rgba(0,194,255,0.05); }
-.brand-card.sel { background: rgba(0,87,255,0.22); border-color: #00C2FF; box-shadow: 0 0 16px rgba(0,194,255,0.2); }
-.btn-big { box-shadow: 0 4px 24px rgba(0,87,255,0.4); letter-spacing: 3px; }
-.btn-primary { box-shadow: 0 2px 12px rgba(0,87,255,0.3); }
-.btn-green { box-shadow: 0 2px 12px rgba(0,224,150,0.3); }
-.progress-fill { box-shadow: 0 0 8px rgba(0,194,255,0.6); }
-.phase-btn.p1.sel { box-shadow: 0 0 12px rgba(0,224,150,0.2); }
-.phase-btn.p2.sel { box-shadow: 0 0 12px rgba(0,87,255,0.2); }
-.phase-btn.p3.sel { box-shadow: 0 0 12px rgba(255,140,0,0.2); }
-.hours-count { text-shadow: 0 0 20px rgba(0,194,255,0.5); }
-.roi-amount { text-shadow: 0 0 20px rgba(0,194,255,0.5); }
-.cover-title { text-shadow: 0 0 40px rgba(0,194,255,0.15); }
-.cover-title span { text-shadow: 0 0 30px rgba(0,194,255,0.4); }
-.topbar { border-bottom: 1px solid rgba(0,194,255,0.15); }
-.summary-card { border: 1px solid rgba(255,255,255,0.08); }
-.popup-sheet { border-top: 2px solid rgba(0,194,255,0.3); }
-
-/* EXPANSION MENU */
-.exp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 24px; }
-.exp-card { background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 20px 16px; cursor: pointer; transition: all 0.25s ease; position: relative; overflow: hidden; }
-.exp-card:active { transform: scale(0.97); }
-.exp-card.sel-exp { border-color: #00C2FF; background: rgba(0,194,255,0.10); box-shadow: 0 0 18px rgba(0,194,255,0.2); }
-.exp-card .exp-title { font-size: 15px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; margin-bottom: 6px; color: #fff; }
-.exp-card .exp-price { font-size: 13px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px; }
-.exp-card .exp-desc { font-size: 12px; font-family: ‘Helvetica Neue’, sans-serif; color: rgba(255,255,255,0.6); line-height: 1.5; }
-.exp-card .exp-check { position: absolute; top: 10px; right: 12px; font-size: 16px; display: none; }
-.exp-card.sel-exp .exp-check { display: block; }
-.price-green { background: rgba(0,224,150,0.15); color: #00E096; }
-.price-blue { background: rgba(0,87,255,0.2); color: #00C2FF; }
-.price-orange { background: rgba(255,140,0,0.15); color: #FF8C00; }
-.price-purple { background: rgba(160,80,255,0.2); color: #C080FF; }
-.price-red { background: rgba(255,64,96,0.15); color: #FF6080; }
-.closing-q { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); border-radius: 14px; padding: 18px 20px; margin-bottom: 14px; cursor: pointer; transition: all 0.2s; }
-.closing-q.sel-cq { background: rgba(0,194,255,0.08); border-color: #00C2FF; }
-.closing-q .cq-text { font-size: 15px; font-family: ‘Helvetica Neue’, sans-serif; color: rgba(255,255,255,0.85); }
-.closing-q.sel-cq .cq-text { color: #00C2FF; font-weight: 700; }
-
-/* DYNAMIC SUMMARY */
-.sum-wrap { display: flex; flex-direction: column; height: 100%; gap: 16px; }
-.sum-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.10); flex-shrink: 0; }
-.sum-brand-name { font-size: 32px; font-weight: normal; line-height: 1.1; }
-.sum-brand-name span { color: #00C2FF; }
-.sum-hrs-badge { text-align: right; }
-.sum-hrs-num { font-size: 44px; color: #00C2FF; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; line-height: 1; text-shadow: 0 0 20px rgba(0,194,255,0.5); }
-.sum-hrs-label { font-size: 11px; color: rgba(255,255,255,0.5); font-family: ‘Helvetica Neue’, sans-serif; letter-spacing: 1px; text-transform: uppercase; }
-.sum-cols { display: flex; gap: 20px; flex: 1; }
-.sum-col { flex: 1; display: flex; flex-direction: column; gap: 10px; }
-.sum-col-title { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); }
-.sum-col-title.t-pain { color: #FF8C00; border-color: rgba(255,140,0,0.3); }
-.sum-col-title.t-tools { color: #00C2FF; border-color: rgba(0,194,255,0.3); }
-.sum-col-title.t-build { color: #00E096; border-color: rgba(0,224,150,0.3); }
-.sum-items { display: flex; flex-direction: column; gap: 7px; }
-.sum-item { font-size: 13px; font-family: ‘Helvetica Neue’, sans-serif; padding: 8px 12px; border-radius: 10px; line-height: 1.3; }
-.sum-item-pain { background: rgba(255,140,0,0.08); border: 1px solid rgba(255,140,0,0.2); color: rgba(255,255,255,0.85); }
-.sum-item-tool { background: rgba(0,194,255,0.08); border: 1px solid rgba(0,194,255,0.2); color: rgba(255,255,255,0.85); }
-.sum-item-build-1 { background: rgba(0,224,150,0.10); border: 1px solid rgba(0,224,150,0.25); color: #00E096; }
-.sum-item-build-2 { background: rgba(0,87,255,0.10); border: 1px solid rgba(0,87,255,0.25); color: #00C2FF; }
-.sum-item-build-3 { background: rgba(255,140,0,0.10); border: 1px solid rgba(255,140,0,0.25); color: #FF8C00; }
-.sum-phase-label { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; font-family: ‘Helvetica Neue’, sans-serif; opacity: 0.7; display: block; margin-bottom: 2px; }
-.sum-empty { font-size: 12px; color: rgba(255,255,255,0.25); font-family: ‘Helvetica Neue’, sans-serif; font-style: italic; padding: 8px 0; }
-
-/* PERSONALIZED EXPANSION */
-.expand-wrap { display: flex; gap: 24px; height: 100%; }
-.expand-left { flex: 1.4; display: flex; flex-direction: column; gap: 0; overflow-y: auto; }
-.expand-right { flex: 1; display: flex; flex-direction: column; gap: 10px; }
-.brand-rec { margin-bottom: 16px; }
-.brand-rec-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); }
-.brand-rec-name { font-size: 13px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; color: #00C2FF; letter-spacing: 0.5px; }
-.brand-rec-hrs { font-size: 11px; font-family: ‘Helvetica Neue’, sans-serif; color: rgba(255,255,255,0.4); }
-.rec-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border-radius: 12px; margin-bottom: 8px; cursor: pointer; border: 1.5px solid transparent; transition: all 0.2s; }
-.rec-item:active { transform: scale(0.98); }
-.rec-item.sel-rec { border-color: rgba(0,194,255,0.4); background: rgba(0,194,255,0.06); }
-.rec-check { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.2); flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; transition: all 0.2s; }
-.rec-item.sel-rec .rec-check { background: #00C2FF; border-color: #00C2FF; color: #000; }
-.rec-body { flex: 1; }
-.rec-title { font-size: 13px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; color: #fff; margin-bottom: 3px; }
-.rec-why { font-size: 11px; font-family: ‘Helvetica Neue’, sans-serif; color: rgba(255,255,255,0.5); line-height: 1.4; }
-.rec-price { font-size: 11px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; padding: 3px 8px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; }
-.rp-green { background: rgba(0,224,150,0.15); color: #00E096; }
-.rp-blue { background: rgba(0,87,255,0.2); color: #00C2FF; }
-.rp-orange { background: rgba(255,140,0,0.15); color: #FF8C00; }
-.rp-red { background: rgba(255,64,96,0.15); color: #FF6080; }
-.rp-purple { background: rgba(160,80,255,0.2); color: #C080FF; }
-.close-section { margin-bottom: 14px; }
-.close-section-title { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #00C2FF; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 8px; }
-.total-investment { background: linear-gradient(135deg, rgba(0,87,255,0.15), rgba(0,194,255,0.08)); border: 1.5px solid rgba(0,194,255,0.3); border-radius: 14px; padding: 16px; margin-bottom: 14px; text-align: center; }
-.ti-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #00C2FF; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 4px; }
-.ti-amount { font-size: 32px; color: #00C2FF; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; text-shadow: 0 0 20px rgba(0,194,255,0.4); }
-.no-brands-msg { font-size: 13px; color: rgba(255,255,255,0.4); font-family: ‘Helvetica Neue’, sans-serif; font-style: italic; padding: 20px 0; }
-
-/* THREE GROUP INVESTMENT */
-.inv-wrap { display: flex; gap: 20px; height: 100%; }
-.inv-groups { flex: 1.6; overflow-y: auto; display: flex; flex-direction: column; gap: 18px; }
-.inv-group { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 16px; }
-.inv-group-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.08); }
-.inv-group-name { font-size: 16px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; color: #fff; }
-.inv-group-badge { font-size: 10px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; padding: 4px 10px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; }
-.badge-discount { background: rgba(0,224,150,0.15); color: #00E096; border: 1px solid rgba(0,224,150,0.3); }
-.badge-premium { background: rgba(255,64,96,0.12); color: #FF6080; border: 1px solid rgba(255,64,96,0.3); }
-.inv-group-brands { font-size: 11px; color: rgba(255,255,255,0.4); font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 12px; }
-.phase-section { margin-bottom: 12px; }
-.phase-section-title { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; margin-bottom: 8px; padding: 4px 10px; border-radius: 6px; display: inline-block; }
-.ps-green { color: #00E096; background: rgba(0,224,150,0.08); }
-.ps-blue { color: #00C2FF; background: rgba(0,194,255,0.08); }
-.ps-orange { color: #FF8C00; background: rgba(255,140,0,0.08); }
-.inv-line { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 10px; margin-bottom: 6px; cursor: pointer; border: 1px solid transparent; transition: all 0.2s; }
-.inv-line:active { transform: scale(0.98); }
-.inv-line.sel-line { border-color: rgba(0,194,255,0.3); background: rgba(0,194,255,0.05); }
-.inv-line-check { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; transition: all 0.2s; }
-.inv-line.sel-line .inv-line-check { background: #00C2FF; border-color: #00C2FF; color: #000; }
-.inv-line-text { flex: 1; font-size: 12px; font-family: ‘Helvetica Neue’, sans-serif; color: rgba(255,255,255,0.8); line-height: 1.3; }
-.inv-line-text small { display: block; font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 2px; }
-.inv-line-price { font-size: 11px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; padding: 3px 8px; border-radius: 8px; white-space: nowrap; flex-shrink: 0; }
-.inv-right { flex: 1; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
-.group-total-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 14px; margin-bottom: 4px; }
-.gt-name { font-size: 11px; color: rgba(255,255,255,0.5); font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 4px; }
-.gt-amount { font-size: 18px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; }
-.gt-goplay { color: #00E096; }
-.gt-estate { color: #00C2FF; }
-.gt-atc { color: #FF6080; }
-.grand-total-box { background: linear-gradient(135deg, rgba(0,87,255,0.2), rgba(0,194,255,0.1)); border: 2px solid rgba(0,194,255,0.4); border-radius: 14px; padding: 16px; text-align: center; margin-bottom: 14px; }
-.grand-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #00C2FF; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 4px; }
-.grand-amount { font-size: 28px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; color: #00C2FF; text-shadow: 0 0 20px rgba(0,194,255,0.4); }
-.grand-sub { font-size: 10px; color: rgba(255,255,255,0.4); font-family: ‘Helvetica Neue’, sans-serif; margin-top: 3px; }
-
-/* CUSTOM MODAL */
-.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 200; align-items: center; justify-content: center; }
-.modal-overlay.active { display: flex; }
-.modal-box { background: #0A0A0A; border: 1px solid rgba(0,194,255,0.3); border-radius: 20px; padding: 28px 24px; width: 340px; text-align: center; box-shadow: 0 0 40px rgba(0,194,255,0.15); }
-.modal-title { font-size: 18px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; color: #fff; margin-bottom: 8px; }
-.modal-body { font-size: 13px; font-family: ‘Helvetica Neue’, sans-serif; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 20px; }
-.modal-brand-list { background: rgba(255,255,255,0.04); border-radius: 10px; padding: 10px 14px; margin-bottom: 18px; text-align: left; }
-.modal-brand-item { font-size: 13px; font-family: ‘Helvetica Neue’, sans-serif; color: #FF8C00; padding: 4px 0; }
-.modal-brand-item:before { content: ’· ’; }
-.modal-btns { display: flex; gap: 10px; }
-.modal-btn { flex: 1; padding: 14px; border-radius: 12px; font-size: 14px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; }
-.modal-btn-cancel { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); }
-.modal-btn-confirm { background: linear-gradient(135deg, #0057FF, #1A6FFF); color: white; }
-
-/* SESSION SUMMARY - PRODUCT-FIRST LAYOUT */
-.product-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
-.product-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 16px 18px; transition: all 0.2s; }
-.product-card:hover { border-color: rgba(0,194,255,0.2); background: rgba(0,194,255,0.03); }
-.product-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-.product-card-name { font-size: 16px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; color: #fff; }
-.product-card-phase { font-size: 10px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; padding: 4px 10px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; }
-.product-brands { display: flex; flex-wrap: wrap; gap: 7px; }
-.product-brand-pill { font-size: 12px; font-family: ‘Helvetica Neue’, sans-serif; padding: 5px 12px; border-radius: 20px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.8); }
-.product-brand-pill.pill-goplay { background: rgba(0,87,255,0.12); border-color: rgba(0,87,255,0.3); color: #00C2FF; }
-.product-brand-pill.pill-estate { background: rgba(160,80,255,0.12); border-color: rgba(160,80,255,0.3); color: #C080FF; }
-.product-brand-pill.pill-atc { background: rgba(255,64,96,0.12); border-color: rgba(255,64,96,0.3); color: #FF6080; }
-.session-cols { display: flex; gap: 20px; }
-.session-left { flex: 1.6; overflow-y: auto; }
-.session-right { flex: 1; display: flex; flex-direction: column; gap: 12px; }
-.session-stat-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px 16px; }
-.ssb-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 5px; }
-.ssb-value { font-size: 28px; font-family: ‘Helvetica Neue’, sans-serif; font-weight: 700; }
-.ssb-sub { font-size: 11px; color: rgba(255,255,255,0.4); font-family: ‘Helvetica Neue’, sans-serif; margin-top: 3px; }
-.next-step-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; cursor: pointer; border: 1px solid transparent; transition: all 0.2s; }
-.next-step-item.sel-ns { background: rgba(0,194,255,0.06); border-color: rgba(0,194,255,0.3); }
-.ns-check { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; transition: all 0.2s; }
-.next-step-item.sel-ns .ns-check { background: #00C2FF; border-color: #00C2FF; color: #000; }
-.ns-text { font-size: 13px; font-family: ‘Helvetica Neue’, sans-serif; color: rgba(255,255,255,0.8); }
-</style>
-
-</head>
-<body>
-
-<!-- POPUP -->
-
-<div class="popup-overlay" id="popup-overlay" onclick="closePopupOnBg(event)">
-  <div class="popup-sheet" id="popup-sheet">
-    <div class="popup-handle"></div>
-    <div class="popup-title" id="popup-title">Pain Point</div>
-    <div id="popup-body"></div>
-    <button class="popup-close" onclick="closePopup()">Done ✓</button>
-  </div>
-</div>
-
-<!-- SCREEN 1: COVER -->
-
-<div class="screen active" id="s-cover">
-  <div class="cover-wrap">
-    <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:240px;height:240px;border-radius:50%;margin-bottom:28px;filter:drop-shadow(0 0 32px rgba(0,194,255,0.5));" alt="Breakout AI Solutions">
-    <div class="cover-eyebrow">Agency Discovery Session</div>
-    <div class="cover-title">GoPlay /<br><span>CannaJo!nt</span></div>
-    <div class="cover-divider"></div>
-    <button class="btn-big" onclick="go('s-brands')">LET'S GO!</button>
-    <div class="cover-date" id="coverDate"></div>
-  </div>
-</div>
-
-<!-- SCREEN 2: BRAND SELECTOR -->
-
-<div class="screen" id="s-brands">
-  <div class="topbar" style="justify-content:center;">
-    <div class="topbar-logo" style="display:flex;align-items:center;"><img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:32px;height:32px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B"><span>Select a Brand</span></div>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" style="width:10%"></div></div>
-  <div class="content">
-    <div class="screen-label" style="margin-bottom:10px">GoPlay / CannaJo!nt</div>
-    <div class="brand-grid">
-      <div class="brand-card" id="bc-sc" onclick="pickAndStart('Sports Cannabis','sc')">
-        <div class="b-name" style="font-size:18px;padding:8px 0;">Sports Cannabis</div><div class="b-check">✓</div>
-      </div>
-      <div class="brand-card" id="bc-tgf" onclick="pickAndStart('Touch Grass Fest','tgf')">
-        <div class="b-name" style="font-size:18px;padding:8px 0;">Touch Grass Fest</div><div class="b-check">✓</div>
-      </div>
-      <div class="brand-card" id="bc-rr" onclick="pickAndStart('R&amp;R Symposium','rr')">
-        <div class="b-name" style="font-size:18px;padding:8px 0;">R&amp;R Symposium</div><div class="b-check">✓</div>
-      </div>
-      <div class="brand-card" id="bc-al" onclick="pickAndStart('Advanced Laser','al')">
-        <div class="b-name" style="font-size:18px;padding:8px 0;">Advanced Laser</div><div class="b-check">✓</div>
-      </div>
-    </div>
-    <div class="screen-label" style="margin-bottom:10px;margin-top:4px;">Separate</div>
-    <div class="brand-grid">
-      <div class="brand-card" id="bc-em" onclick="pickAndStart('Estate-Minder','em')">
-        <div class="b-name" style="font-size:18px;padding:8px 0;">Estate-Minder</div><div class="b-check">✓</div>
-      </div>
-      <div class="brand-card" id="bc-atc" onclick="pickAndStart('Around the Clock Bail Bonds','atc')">
-        <div class="b-name" style="font-size:18px;padding:8px 0;">Around the Clock</div><div class="b-check">✓</div>
-      </div>
+<div class="modal-overlay" id="wrap-modal">
+  <div class="modal-box">
+    <div class="modal-title">Not done yet</div>
+    <div class="modal-body">You still have brands left to cover:</div>
+    <div class="modal-brand-list" id="modal-brand-list"></div>
+    <div class="modal-body">Wrap up anyway?</div>
+    <div class="modal-btns">
+      <button class="modal-btn modal-btn-cancel" onclick="closeModal()">Go Back</button>
+      <button class="modal-btn modal-btn-confirm" onclick="confirmWrapUp()">Wrap Up</button>
     </div>
   </div>
 </div>
-
-<!-- SCREEN 3: PAIN POINTS + TOOLS + HOURS -->
-
-<div class="screen" id="s-pain">
-  <div class="topbar">
-    <div class="topbar-logo" id="pain-topbar" style="display:flex;align-items:center;"><img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:36px;height:36px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B"><span id="pain-topbar-text">Brand</span></div>
-    <div class="topbar-brand">Discovery</div>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" style="width:35%"></div></div>
-  <div class="content" style="display:flex;flex-direction:column;gap:0;">
-
-```
-<div style="display:flex;gap:28px;flex:1;">
-  <!-- LEFT COLUMN: Pain Points -->
-  <div style="flex:1;">
-    <div class="q-label">Pain Points / Needs</div>
-    <div class="q-text" id="pain-question">"What are the top things NOT working right now?"</div>
-    <div class="bubble-group" id="pain-bubbles"></div>
-  </div>
-
-  <!-- RIGHT COLUMN: Current Tools -->
-  <div style="flex:1;">
-    <div class="q-label">Current Tools</div>
-    <div class="q-text" id="tools-question" style="font-size:17px">"What software are you using?"</div>
-    <div class="tools-known" style="font-size:12px;margin-bottom:10px;">Tap to confirm or remove:</div>
-    <div class="bubble-group" id="tool-bubbles"></div>
-  </div>
-</div>
-
-<!-- HOURS TOTAL BOTTOM BAR -->
-<div class="hours-box" style="margin-top:auto;">
-  <div>
-    <div class="hours-label">Total hours/week on pain points</div>
-    <div class="hours-unit" style="font-size:12px;margin-top:3px;">from qualifying questions</div>
-  </div>
-  <div style="text-align:right">
-    <div class="hours-count" id="hours-total">0</div>
-    <div class="hours-unit" style="font-size:13px;">hrs/wk</div>
-  </div>
-</div>
-```
-
-  </div>
-  <div class="btn-row">
-    <button class="btn btn-back" onclick="go('s-brands')">← Brands</button>
-    <button class="btn btn-primary" onclick="go('s-phase')">Next: Priority →</button>
-  </div>
-</div>
-
-<!-- SCREEN 4: PHASE + BUILD SCOPE -->
-
-<div class="screen" id="s-phase">
-  <div class="topbar">
-    <div class="topbar-logo" id="phase-topbar" style="display:flex;align-items:center;"><img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:36px;height:36px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B"><span id="phase-topbar-text">Brand</span></div>
-    <div class="topbar-brand">Priority</div>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
-  <div class="content" style="display:flex;gap:36px;">
-
-```
-<!-- LEFT: Phase selector -->
-<div style="flex:0 0 200px;display:flex;flex-direction:column;gap:14px;padding-top:8px;">
-  <div class="q-label">Build Priority</div>
-  <div class="q-text" id="phase-question" style="font-size:16px;">"Where does this land?"</div>
-  <div style="display:flex;flex-direction:column;gap:12px;flex:1;">
-    <div class="phase-btn p1" id="ph1" onclick="selPhase(1)" style="flex:1;">
-      <div class="phase-num">Phase 1</div><div class="phase-label">Start Now</div>
-    </div>
-    <div class="phase-btn p2" id="ph2" onclick="selPhase(2)" style="flex:1;">
-      <div class="phase-num">Phase 2</div><div class="phase-label">Soon</div>
-    </div>
-    <div class="phase-btn p3" id="ph3" onclick="selPhase(3)" style="flex:1;">
-      <div class="phase-num">Phase 3</div><div class="phase-label">Later</div>
-    </div>
-  </div>
-</div>
-
-<!-- VERTICAL DIVIDER -->
-<div style="width:1px;background:rgba(255,255,255,0.10);flex-shrink:0;margin:8px 0;"></div>
-
-<!-- RIGHT: Build scope -->
-<div style="flex:1;overflow-y:auto;">
-  <div class="q-label">What We'd Build</div>
-  <div style="font-size:14px;color:rgba(255,255,255,0.5);font-family:'Helvetica Neue',sans-serif;margin-bottom:14px;">Select phase first, then tap to assign items</div>
-  <div class="bubble-group" id="build-bubbles"></div>
-</div>
-```
-
-  </div>
-  <div class="btn-row">
-    <button class="btn btn-back" onclick="go('s-pain')">← Back</button>
-    <button class="btn btn-primary" onclick="saveBrandData(); go('s-summary')">See Summary →</button>
-  </div>
-</div>
-
-<!-- SCREEN 5: BRAND SUMMARY -->
-
-<div class="screen" id="s-summary">
-  <div class="topbar">
-    <div class="topbar-logo" id="summary-topbar" style="display:flex;align-items:center;"><img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:36px;height:36px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B"><span id="summary-topbar-text">Summary</span></div>
-    <div class="topbar-brand">Review</div>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
-  <div class="content">
-    <div id="summary-card-content"></div>
-  </div>
-  <div class="btn-row">
-    <button class="btn btn-back" onclick="go('s-phase')">← Edit</button>
-    <button class="btn btn-secondary" onclick="go('s-brands')">+ Next Brand</button>
-    <button class="btn btn-green" onclick="tryWrapUp()">Next →</button>
-  </div>
-</div>
-
-<!-- SCREEN 5B: EXPANSION MENU -->
-
-<div class="screen" id="s-expand">
-  <div class="topbar">
-    <div class="topbar-logo" style="display:flex;align-items:center;"><img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:36px;height:36px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B"><span>Investment Proposal</span></div>
-    <div class="topbar-brand">Three Groups</div>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div>
-  <div class="content" style="display:flex;gap:20px;">
-
-```
-<!-- LEFT: Three investment groups -->
-<div class="inv-groups" id="inv-groups-container">
-  <div style="font-size:13px;color:rgba(255,255,255,0.3);font-family:'Helvetica Neue',sans-serif;font-style:italic;">Complete discovery first to see your personalized investment menu.</div>
-</div>
-
-<!-- DIVIDER -->
-<div style="width:1px;background:rgba(255,255,255,0.08);flex-shrink:0;margin:4px 0;"></div>
-
-<!-- RIGHT: Totals + Closing Questions -->
-<div class="inv-right">
-
-  <!-- Group totals -->
-  <div class="group-total-box">
-    <div class="gt-name">GoPlay / CannaJo!nt</div>
-    <div class="gt-amount gt-goplay" id="gt-goplay">$0</div>
-  </div>
-  <div class="group-total-box">
-    <div class="gt-name">Estate-Minder</div>
-    <div class="gt-amount gt-estate" id="gt-estate">$0</div>
-  </div>
-  <div class="group-total-box">
-    <div class="gt-name">Around the Clock</div>
-    <div class="gt-amount gt-atc" id="gt-atc">$0</div>
-  </div>
-
-  <div class="grand-total-box">
-    <div class="grand-label">Total Investment</div>
-    <div class="grand-amount" id="grand-total">$0</div>
-    <div class="grand-sub">one-time build + monthly retainer</div>
-  </div>
-
-  <div class="close-section">
-    <div class="close-section-title">Most urgent?</div>
-    <div class="closing-q" onclick="selCQ(this,'urgent')"><div class="cq-text">Get everything organized first</div></div>
-    <div class="closing-q" onclick="selCQ(this,'urgent')"><div class="cq-text">Start generating leads immediately</div></div>
-    <div class="closing-q" onclick="selCQ(this,'urgent')"><div class="cq-text">Stop losing deals in follow-up</div></div>
-    <div class="closing-q" onclick="selCQ(this,'urgent')"><div class="cq-text">Full build -- all of it</div></div>
-  </div>
-
-  <div class="close-section">
-    <div class="close-section-title">DIY or done for you?</div>
-    <div class="closing-q" onclick="selCQ(this,'diy')"><div class="cq-text">Done for me completely</div></div>
-    <div class="closing-q" onclick="selCQ(this,'diy')"><div class="cq-text">Teach me, I'll run it</div></div>
-    <div class="closing-q" onclick="selCQ(this,'diy')"><div class="cq-text">Done for me, then hand off</div></div>
-  </div>
-
-  <div class="close-section">
-    <div class="close-section-title">Timeline?</div>
-    <div class="closing-q" onclick="selCQ(this,'timeline')"><div class="cq-text">ASAP</div></div>
-    <div class="closing-q" onclick="selCQ(this,'timeline')"><div class="cq-text">Next 30 days</div></div>
-    <div class="closing-q" onclick="selCQ(this,'timeline')"><div class="cq-text">Next 60-90 days</div></div>
-    <div class="closing-q" onclick="selCQ(this,'timeline')"><div class="cq-text">When budget confirmed</div></div>
-  </div>
-
-</div>
-```
-
-  </div>
-  <div class="btn-row">
-    <button class="btn btn-back" onclick="go('s-brands')">← Back</button>
-    <button class="btn btn-green" onclick="buildSessionSummary(); go('s-session')">Full Summary →</button>
-  </div>
-</div>
-
-<!-- SCREEN 6: SESSION SUMMARY -->
-
-<div class="screen" id="s-session">
-  <div class="topbar">
-    <div class="topbar-logo" style="display:flex;align-items:center;"><img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:32px;height:32px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B"><span>Full Summary</span></div>
-    <div class="topbar-brand">What We're Building</div>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
-  <div class="content" style="display:flex;gap:20px;">
-
-```
-<!-- LEFT: Product-first build summary -->
-<div class="session-left">
-  <div class="q-label" style="margin-bottom:14px;">Your AI System -- By Solution</div>
-  <div class="product-grid" id="product-grid">
-    <div style="font-size:13px;color:rgba(255,255,255,0.3);font-family:'Helvetica Neue',sans-serif;font-style:italic;">Complete discovery to see your full build summary.</div>
-  </div>
-</div>
-
-<!-- DIVIDER -->
-<div style="width:1px;background:rgba(255,255,255,0.08);flex-shrink:0;margin:4px 0;"></div>
-
-<!-- RIGHT: Stats + Next Steps -->
-<div class="session-right">
-
-  <div class="session-stat-box">
-    <div class="ssb-label">Total Hours/Week</div>
-    <div class="ssb-value" style="color:#00C2FF;" id="sess-hrs">0</div>
-    <div class="ssb-sub">identified across all brands</div>
-  </div>
-
-  <div class="session-stat-box">
-    <div class="ssb-label">Brands Covered</div>
-    <div class="ssb-value" style="color:#00E096;" id="sess-brands">0</div>
-    <div class="ssb-sub">of 6 total</div>
-  </div>
-
-  <div class="session-stat-box">
-    <div class="ssb-label">Solutions Identified</div>
-    <div class="ssb-value" style="color:#C080FF;" id="sess-solutions">0</div>
-    <div class="ssb-sub">unique builds across all brands</div>
-  </div>
-
-  <div style="height:1px;background:rgba(255,255,255,0.08);margin:4px 0;"></div>
-
-  <div class="q-label" style="margin-bottom:8px;">Your closing line</div>
-  <div class="note-blue" style="font-size:12px;">"Kelly -- I now have everything I need. I'm going to build you a clean phased proposal with exact numbers. Give me a few days."</div>
-
-  <div class="q-label" style="margin-bottom:8px;">Next steps:</div>
-  <div id="next-steps-list">
-    <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">✓</div><div class="ns-text">Send revised proposal</div></div>
-    <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">✓</div><div class="ns-text">Schedule follow-up call</div></div>
-    <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">✓</div><div class="ns-text">Verbal yes on Phase 1</div></div>
-    <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">✓</div><div class="ns-text">Intro call with Estate-Minder client</div></div>
-    <div class="next-step-item" onclick="togNS(this)"><div class="ns-check">✓</div><div class="ns-text">Connect directly on Around the Clock</div></div>
-  </div>
-
-</div>
-```
-
-  </div>
-  <div class="btn-row">
-    <button class="btn btn-back" onclick="go('s-expand')">← Back</button>
-    <button class="btn btn-secondary" onclick="go('s-brands')">&#8635; More Brands</button>
-    <button class="btn btn-primary">&#10003; Done</button>
-  </div>
-</div>
+</body>
+</html>
