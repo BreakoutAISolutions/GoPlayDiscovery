@@ -287,6 +287,102 @@ body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-hei
   margin-bottom: 14px;
 }
 
+
+.phase-screen-layout {
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+}
+.phase-selector-panel {
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 8px;
+}
+.phase-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.phase-build-panel {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+}
+.phase-divider {
+  width: 1px;
+  background: rgba(255,255,255,0.10);
+  flex-shrink: 0;
+  margin: 8px 0;
+}
+@media (max-width: 1024px) {
+  .phase-screen-layout {
+    flex-direction: column;
+    gap: 22px;
+  }
+  .phase-selector-panel {
+    flex: none;
+    width: 100%;
+    padding-top: 0;
+  }
+  .phase-cards {
+    width: 100%;
+  }
+  .phase-divider {
+    display: none;
+  }
+  .phase-build-panel {
+    width: 100%;
+    overflow: visible;
+  }
+  .phase-btn {
+    padding: 20px 14px;
+  }
+}
+
+
+.btn,
+.btn-big,
+.popup-close,
+.brand-card,
+.phase-btn,
+.bubble,
+.next-step-item,
+.closing-q,
+.inv-line,
+.modal-btn {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-row {
+  position: sticky;
+  bottom: 0;
+  z-index: 40;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.82) 24%, rgba(0,0,0,0.96) 100%);
+  padding-top: 14px !important;
+  padding-bottom: calc(18px + env(safe-area-inset-bottom)) !important;
+  margin-top: auto;
+}
+
+.content {
+  padding-bottom: 10px !important;
+}
+
+@media (max-width: 767px) {
+  .btn-row {
+    padding-top: 10px !important;
+    padding-bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+  }
+  .btn {
+    min-height: 58px;
+  }
+  .btn-big {
+    min-height: 58px;
+  }
+}
+
 /* THANK YOU SCREEN */
 .thankyou-wrap { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:56px 28px; background: radial-gradient(circle at 50% 30%, rgba(0,194,255,0.16) 0%, rgba(0,87,255,0.08) 32%, transparent 65%); }
 .thankyou-logo { width:180px; height:180px; border-radius:50%; margin-bottom:28px; filter:drop-shadow(0 0 36px rgba(0,194,255,0.45)); }
@@ -693,35 +789,37 @@ body {
     <div class="topbar-brand">Step 3 of 4</div>
   </div>
   <div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div>
-  <div class="content" style="display:flex;gap:36px;flex-direction:column;">
-    <div style="flex:0 0 210px;display:flex;flex-direction:column;gap:14px;padding-top:8px;">
-      <div class="q-label">Build Priority</div>
-      <div class="tools-known" style="font-size:12px;margin-bottom:8px;">Choose when each solution should happen.</div>
-      <div class="q-text" id="phase-question" style="font-size:16px;">"Where does this land?"</div>
-      <div style="display:flex;flex-direction:column;gap:12px;flex:1;">
-        <div class="phase-btn p1" id="ph1" onclick="selPhase(1)" style="flex:1;">
-          <div class="phase-num">Phase 1</div>
-          <div class="phase-label">Start Now</div>
-          <div class="phase-sub">Immediate priority</div>
-        </div>
-        <div class="phase-btn p2" id="ph2" onclick="selPhase(2)" style="flex:1;">
-          <div class="phase-num">Phase 2</div>
-          <div class="phase-label">Soon</div>
-          <div class="phase-sub">Important next layer</div>
-        </div>
-        <div class="phase-btn p3" id="ph3" onclick="selPhase(3)" style="flex:1;">
-          <div class="phase-num">Phase 3</div>
-          <div class="phase-label">Later</div>
-          <div class="phase-sub">Expansion and optimization</div>
+  <div class="content">
+    <div class="phase-screen-layout">
+      <div class="phase-selector-panel">
+        <div class="q-label">Build Priority</div>
+        <div class="tools-known" style="font-size:12px;margin-bottom:8px;">Choose when each solution should happen.</div>
+        <div class="q-text" id="phase-question" style="font-size:16px;">"Where does this land?"</div>
+        <div class="phase-cards">
+          <div class="phase-btn p1" id="ph1" onclick="selPhase(1)">
+            <div class="phase-num">Phase 1</div>
+            <div class="phase-label">Start Now</div>
+            <div class="phase-sub">Immediate priority</div>
+          </div>
+          <div class="phase-btn p2" id="ph2" onclick="selPhase(2)">
+            <div class="phase-num">Phase 2</div>
+            <div class="phase-label">Soon</div>
+            <div class="phase-sub">Important next layer</div>
+          </div>
+          <div class="phase-btn p3" id="ph3" onclick="selPhase(3)">
+            <div class="phase-num">Phase 3</div>
+            <div class="phase-label">Later</div>
+            <div class="phase-sub">Expansion and optimization</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div style="width:1px;background:rgba(255,255,255,0.10);flex-shrink:0;margin:8px 0;"></div>
-    <div style="flex:1;overflow-y:auto;">
-      <div class="q-label">What We'd Build</div>
-      <div class="tools-known" style="font-size:12px;margin-bottom:8px;">Select all that apply for this brand.</div>
-      <div style="font-size:14px;color:rgba(255,255,255,0.5);font-family:Helvetica Neue,sans-serif;margin-bottom:14px;">Choose a phase, then select the solutions that would help most.</div>
-      <div class="bubble-group" id="build-bubbles"></div>
+      <div class="phase-divider"></div>
+      <div class="phase-build-panel">
+        <div class="q-label">What We'd Build</div>
+        <div class="tools-known" style="font-size:12px;margin-bottom:8px;">Select all that apply for this brand.</div>
+        <div style="font-size:14px;color:rgba(255,255,255,0.5);font-family:Helvetica Neue,sans-serif;margin-bottom:14px;">Choose a phase, then select the solutions that would help most.</div>
+        <div class="bubble-group" id="build-bubbles"></div>
+      </div>
     </div>
   </div>
   <div class="btn-row">
@@ -1822,6 +1920,20 @@ async function sendTestEmail() {
   }
 }
 
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  var tapTargets = document.querySelectorAll('.btn, .btn-big, .popup-close, .modal-btn');
+  for (var i = 0; i < tapTargets.length; i++) {
+    (function(el) {
+      el.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        el.click();
+      }, { passive: false });
+    })(tapTargets[i]);
+  }
+});
 
 </script>
 
