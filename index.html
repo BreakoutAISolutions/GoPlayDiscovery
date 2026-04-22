@@ -217,6 +217,10 @@ body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-hei
 
 
 
+
+.submit-status-note { font-size:12px; color:rgba(255,255,255,0.55); font-family:Helvetica Neue, sans-serif; margin-top:8px; }
+.btn.is-loading { opacity:0.75; pointer-events:none; }
+
 /* THANK YOU SCREEN */
 .thankyou-wrap { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:56px 28px; background: radial-gradient(circle at 50% 30%, rgba(0,194,255,0.16) 0%, rgba(0,87,255,0.08) 32%, transparent 65%); }
 .thankyou-logo { width:180px; height:180px; border-radius:50%; margin-bottom:28px; filter:drop-shadow(0 0 36px rgba(0,194,255,0.45)); }
@@ -740,7 +744,7 @@ body {
   <div class="btn-row">
     <button class="btn btn-back" onclick="go('s-expand')">&#8592; Back</button>
     <button class="btn btn-secondary" onclick="go('s-brands')">&#8635; More Brands</button>
-    <button class="btn btn-primary" onclick="go('s-thankyou')">&#10003; Done</button>
+    <button class="btn btn-primary" id="submit-responses-btn" onclick="submitResponses()">Submit My Responses</button>
   </div>
 </div>
 
@@ -753,7 +757,7 @@ body {
       <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" alt="B">
       <span>Thank You</span>
     </div>
-    <div class="topbar-brand">Submission Complete</div>
+    <div class="topbar-brand">Session Complete</div>
   </div>
   <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
   <div class="thankyou-wrap">
@@ -765,7 +769,7 @@ body {
       <span class="thankyou-x">X</span>
       <span>Kelly</span>
     </div>
-    <div class="thankyou-copy">Thank you for taking the time to complete this planning session. Your responses have been sent successfully and will help shape the right next steps for each brand.</div>
+    <div class="thankyou-copy" id="thankyou-copy">Thank you for taking the time to complete this planning session. Your responses help shape a cleaner, smarter system for each brand and make it easier to prioritize the right next steps.</div>
     <div class="thankyou-footer">Breakout AI Solutions</div>
   </div>
   <div class="btn-row">
@@ -781,6 +785,7 @@ var curKey = '';
 var curPhase = 0;
 var sessionData = {};
 var popupHours = {};
+var SUBMIT_ENDPOINT = 'https://project-creator-BACON8R2026.replit.app/api/submit-intake';
 
 var otherPains = {
   cannabis_event: ['No ticketing system','Sponsor follow-up dropping off','Event check-in not automated','No post-event survey or feedback','Vendor management is manual','No email list being built','Brand partnerships not tracked','No content repurposing after events','No referral or affiliate program','Media and press outreach manual','No SMS alerts for attendees','Budget tracking is manual','Partnership deck needs updating','No retargeting for past attendees','Event debrief data not captured'],
