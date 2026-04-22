@@ -342,44 +342,75 @@ body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-hei
 }
 
 
-.btn,
-.btn-big,
-.popup-close,
-.brand-card,
-.phase-btn,
-.bubble,
-.next-step-item,
-.closing-q,
-.inv-line,
-.modal-btn {
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
+.compact-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 10px 24px 0;
 }
-
-.btn-row {
+.compact-nav .btn {
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 11px 18px;
+  font-size: 14px;
+  border-radius: 14px;
+}
+.compact-nav .btn-back {
+  min-width: 78px;
+}
+.compact-nav .btn-primary,
+.compact-nav .btn-green,
+.compact-nav .btn-secondary {
+  min-width: 142px;
+}
+.choice-callout {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(0,194,255,0.08);
+  border: 1px solid rgba(0,194,255,0.22);
+  color: #00C2FF;
+  font-size: 11px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  font-family: Helvetica Neue, sans-serif;
+  font-weight: 700;
+}
+.phase-selector-panel {
   position: sticky;
-  bottom: 0;
-  z-index: 40;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.82) 24%, rgba(0,0,0,0.96) 100%);
-  padding-top: 14px !important;
-  padding-bottom: calc(18px + env(safe-area-inset-bottom)) !important;
-  margin-top: auto;
+  top: 0;
+  z-index: 8;
+  padding-bottom: 8px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.9) 78%, rgba(0,0,0,0) 100%);
 }
-
-.content {
-  padding-bottom: 10px !important;
+.phase-guide-note {
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.52);
+  font-family: Helvetica Neue, sans-serif;
+  margin-top: 10px;
+  margin-bottom: 2px;
 }
-
 @media (max-width: 767px) {
-  .btn-row {
-    padding-top: 10px !important;
-    padding-bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+  .compact-nav {
+    padding: 8px 16px 0;
+    justify-content: flex-end;
+    gap: 8px;
   }
-  .btn {
-    min-height: 58px;
+  .compact-nav .btn {
+    min-height: 40px;
+    padding: 9px 14px;
+    font-size: 13px;
+    border-radius: 12px;
   }
-  .btn-big {
-    min-height: 58px;
+  .compact-nav .btn-back {
+    min-width: 68px;
+  }
+  .compact-nav .btn-primary,
+  .compact-nav .btn-green,
+  .compact-nav .btn-secondary {
+    min-width: 122px;
   }
 }
 
@@ -725,11 +756,15 @@ body {
     <div class="topbar-brand">Step 1 of 4</div>
   </div>
   <div class="progress-bar"><div class="progress-fill" style="width:28%"></div></div>
+  <div class="compact-nav">
+    <button class="btn btn-back" onclick="go('s-brands')">&#8592; Back</button>
+    <button class="btn btn-primary" onclick="go('s-tools')">Next &#8594;</button>
+  </div>
   <div class="content">
     <div class="page-fill">
       <div class="mobile-section">
         <div class="q-label">Pain Points / Needs</div>
-        <div class="tools-known" style="font-size:12px;margin-bottom:10px;">Check all that apply. Tap a pain point to answer a few quick follow up questions.</div>
+        <div class="tools-known" style="font-size:12px;margin-bottom:10px;"><span class="choice-callout">Choose all that apply</span><br>Tap a pain point to answer a few quick follow up questions.</div>
         <div class="q-text" id="pain-question">"Which challenges apply to this brand right now?"</div>
         <div class="bubble-group" id="pain-bubbles"></div>
       </div>
@@ -745,11 +780,7 @@ body {
       </div>
     </div>
   </div>
-  <div class="btn-row">
-    <button class="btn btn-back" onclick="go('s-brands')">&#8592; Brands</button>
-    <button class="btn btn-primary" onclick="go('s-tools')">Next: Current Tools &#8594;</button>
-  </div>
-</div>
+
 
 <!-- SCREEN 4: CURRENT TOOLS -->
 
@@ -762,21 +793,21 @@ body {
     <div class="topbar-brand">Step 2 of 4</div>
   </div>
   <div class="progress-bar"><div class="progress-fill" style="width:48%"></div></div>
+  <div class="compact-nav">
+    <button class="btn btn-back" onclick="go('s-pain')">&#8592; Back</button>
+    <button class="btn btn-primary" onclick="go('s-phase')">Next &#8594;</button>
+  </div>
   <div class="content">
     <div class="page-fill">
       <div class="mobile-section">
         <div class="q-label">Current Tools</div>
-        <div class="tools-known" style="font-size:12px;margin-bottom:10px;">Select the tools already in use. Add anything missing.</div>
+        <div class="tools-known" style="font-size:12px;margin-bottom:10px;"><span class="choice-callout">Choose all that apply</span><br>Select the tools already in use. Add anything missing.</div>
         <div class="q-text" id="tools-question-mobile" style="font-size:17px">"What software are you using?"</div>
         <div class="bubble-group" id="tool-bubbles-mobile"></div>
       </div>
     </div>
   </div>
-  <div class="btn-row">
-    <button class="btn btn-back" onclick="go('s-tools')">&#8592; Back</button>
-    <button class="btn btn-primary" onclick="go('s-phase')">Next: Build Priorities &#8594;</button>
-  </div>
-</div>
+
 
 <!-- SCREEN 5: PHASE + BUILD SCOPE -->
 
@@ -789,12 +820,17 @@ body {
     <div class="topbar-brand">Step 3 of 4</div>
   </div>
   <div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div>
+  <div class="compact-nav">
+    <button class="btn btn-back" onclick="go('s-tools')">&#8592; Back</button>
+    <button class="btn btn-primary" onclick="saveBrandData(); go('s-summary')">Summary &#8594;</button>
+  </div>
   <div class="content">
     <div class="phase-screen-layout">
       <div class="phase-selector-panel">
         <div class="q-label">Build Priority</div>
         <div class="tools-known" style="font-size:12px;margin-bottom:8px;">Choose when each solution should happen.</div>
         <div class="q-text" id="phase-question" style="font-size:16px;">"Where does this land?"</div>
+        <div class="phase-guide-note">Choose a phase, select the solutions you want, then tap the next phase card above whenever you are ready to keep going.</div>
         <div class="phase-cards">
           <div class="phase-btn p1" id="ph1" onclick="selPhase(1)">
             <div class="phase-num">Phase 1</div>
@@ -816,7 +852,7 @@ body {
       <div class="phase-divider"></div>
       <div class="phase-build-panel">
         <div class="q-label">What We'd Build</div>
-        <div class="tools-known" style="font-size:12px;margin-bottom:8px;">Select all that apply for this brand.</div>
+        <div class="tools-known" style="font-size:12px;margin-bottom:8px;"><span class="choice-callout">Choose all that apply</span><br>Select all that apply for this brand.</div>
         <div style="font-size:14px;color:rgba(255,255,255,0.5);font-family:Helvetica Neue,sans-serif;margin-bottom:14px;">Choose a phase, then select the solutions that would help most.</div>
         <div class="bubble-group" id="build-bubbles"></div>
       </div>
@@ -839,6 +875,11 @@ body {
     <div class="topbar-brand">Step 4 of 4</div>
   </div>
   <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
+  <div class="compact-nav">
+    <button class="btn btn-back" onclick="go('s-phase')">&#8592; Edit</button>
+    <button class="btn btn-secondary" id="summary-secondary-btn" onclick="go('s-brands')">Next Brand</button>
+    <button class="btn btn-green" id="summary-main-btn" onclick="tryWrapUp()">Continue &#8594;</button>
+  </div>
   <div class="content">
     <div id="summary-card-content"></div>
   </div>
@@ -926,7 +967,7 @@ body {
   <div class="btn-row">
     <button class="btn btn-back" onclick="go('s-expand')">&#8592; Back</button>
     <button class="btn btn-secondary" onclick="go('s-brands')">&#8635; More Brands</button>
-    <button class="btn btn-primary" id="submit-responses-btn" onclick="submitResponses()">Submit My Responses</button>
+    <button class="btn btn-primary" id="submit-responses-btn">Submit My Responses</button>
   </div>
 </div>
 
@@ -1836,6 +1877,24 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+
+document.addEventListener('DOMContentLoaded', function() {
+  var submitBtn = document.getElementById('submit-responses-btn');
+  if (!submitBtn) return;
+
+  var handleSubmitTap = function(event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    submitResponses();
+  };
+
+  submitBtn.addEventListener('click', handleSubmitTap, { passive: false });
+  submitBtn.addEventListener('touchend', handleSubmitTap, { passive: false });
+  submitBtn.addEventListener('pointerup', handleSubmitTap, { passive: false });
+});
+
 function openTestEmailModal() {
   var modal = document.getElementById('test-email-modal');
   var status = document.getElementById('test-email-status');
@@ -1920,20 +1979,6 @@ async function sendTestEmail() {
   }
 }
 
-
-
-document.addEventListener('DOMContentLoaded', function() {
-  var tapTargets = document.querySelectorAll('.btn, .btn-big, .popup-close, .modal-btn');
-  for (var i = 0; i < tapTargets.length; i++) {
-    (function(el) {
-      el.addEventListener('touchend', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        el.click();
-      }, { passive: false });
-    })(tapTargets[i]);
-  }
-});
 
 </script>
 
