@@ -780,7 +780,7 @@ body {
       </div>
     </div>
   </div>
-
+</div>
 
 <!-- SCREEN 4: CURRENT TOOLS -->
 
@@ -807,7 +807,7 @@ body {
       </div>
     </div>
   </div>
-
+</div>
 
 <!-- SCREEN 5: PHASE + BUILD SCOPE -->
 
@@ -1979,6 +1979,14 @@ async function sendTestEmail() {
   }
 }
 
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  var safeButtons = document.querySelectorAll(".compact-nav .btn, #summary-main-btn, #summary-secondary-btn");
+  for (var i = 0; i < safeButtons.length; i++) {
+    safeButtons[i].style.touchAction = 'manipulation';
+  }
+});
 
 </script>
 
