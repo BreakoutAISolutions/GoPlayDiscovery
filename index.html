@@ -15,9 +15,29 @@ body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-hei
 .topbar { padding: 22px 48px !important; min-height: 104px; }
 .cover-wrap { padding: 48px 80px !important; }
 }
+@media (max-width: 767px) {
+  .content { padding: 24px 20px 18px !important; }
+  .btn-row { padding: 12px 20px 18px !important; gap: 10px; }
+  .topbar { padding: 16px 18px !important; min-height: 84px; }
+  .topbar-logo { font-size: 14px; letter-spacing: 1.3px; }
+  .topbar-logo img { width: 52px !important; height: 52px !important; margin-right: 10px !important; }
+  .topbar-brand { font-size: 12px; }
+  .q-text { font-size: 18px; }
+  .cover-title, .thankyou-title { font-size: 42px !important; }
+  .sum-header { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .inv-wrap, .content[style*='display:flex;gap:20px'], .content[style*='display:flex;gap:36px'] { display:block !important; }
+  .session-left, .session-right, .inv-left, .inv-right { width: 100% !important; }
+  .brand-grid { grid-template-columns: 1fr; }
+  .btn { padding: 17px 16px; font-size: 15px; }
+  .btn-back { flex: 0 0 84px; }
+}
 
 .screen { display: none; min-height: 100vh; height: 100%; flex-direction: column; }
 .screen.active { display: flex; }
+.mobile-stack { display:flex; flex-direction:column; gap:18px; }
+.mobile-section { display:flex; flex-direction:column; }
+.mobile-intro { font-size:13px; line-height:1.6; color:rgba(255,255,255,0.62); font-family: Helvetica Neue, sans-serif; margin-bottom:14px; max-width:760px; }
+.page-fill { display:flex; flex-direction:column; min-height:100%; }
 .topbar { background: #0A0A0A; border-bottom: 1px solid rgba(0,194,255,0.15); padding: 20px 28px; min-height: 94px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
 .topbar-logo { font-size: 16px; letter-spacing: 2px; text-transform: uppercase; color: #00C2FF; font-family: Helvetica Neue, sans-serif; font-weight: 700; line-height: 1.2; }
 .topbar-logo img { width: 64px !important; height: 64px !important; border-radius: 50%; margin-right: 14px !important; vertical-align: middle; filter: drop-shadow(0 0 14px rgba(0,194,255,0.28)); }
@@ -510,50 +530,71 @@ body {
   </div>
 </div>
 
-<!-- SCREEN 3: PAIN POINTS + TOOLS + HOURS -->
+<!-- SCREEN 3: PAIN POINTS -->
 
 <div class="screen" id="s-pain">
   <div class="topbar">
     <div class="topbar-logo" id="pain-topbar" style="display:flex;align-items:center;">
-      <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:36px;height:36px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B">
+      <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" alt="B">
       <span id="pain-topbar-text">Brand</span>
     </div>
-    <div class="topbar-brand">Self Guided Intake</div>
+    <div class="topbar-brand">Step 1 of 4</div>
   </div>
-  <div class="progress-bar"><div class="progress-fill" style="width:35%"></div></div>
-  <div class="content" style="display:flex;flex-direction:column;gap:0;">
-    <div style="display:flex;gap:28px;flex:1;">
-      <div style="flex:1;">
+  <div class="progress-bar"><div class="progress-fill" style="width:28%"></div></div>
+  <div class="content">
+    <div class="page-fill">
+      <div class="mobile-section">
         <div class="q-label">Pain Points / Needs</div>
-        <div class="tools-known" style="font-size:12px;margin-bottom:10px;">Check all that apply.</div>
+        <div class="tools-known" style="font-size:12px;margin-bottom:10px;">Check all that apply. Tap a pain point to answer a few quick follow up questions.</div>
         <div class="q-text" id="pain-question">"Which challenges apply to this brand right now?"</div>
         <div class="bubble-group" id="pain-bubbles"></div>
       </div>
-      <div style="flex:1;">
-        <div class="q-label">Current Tools</div>
-        <div class="tools-known" style="font-size:12px;margin-bottom:10px;">Select the tools already in use. Add anything missing.</div>
-        <div class="q-text" id="tools-question" style="font-size:17px">"What software are you using?"</div>
-        <div class="bubble-group" id="tool-bubbles"></div>
-      </div>
-    </div>
-    <div class="hours-box" style="margin-top:auto;">
-      <div>
-        <div class="hours-label">Estimated hours per week</div>
-        <div class="hours-unit" style="font-size:12px;margin-top:3px;">based on your selections</div>
-      </div>
-      <div style="text-align:right">
-        <div class="hours-count" id="hours-total">0</div>
-        <div class="hours-unit" style="font-size:13px;">hrs/wk</div>
+      <div class="hours-box" style="margin-top:auto;">
+        <div>
+          <div class="hours-label">Estimated hours per week</div>
+          <div class="hours-unit" style="font-size:12px;margin-top:3px;">based on your selections</div>
+        </div>
+        <div style="text-align:right">
+          <div class="hours-count" id="hours-total">0</div>
+          <div class="hours-unit" style="font-size:13px;">hrs/wk</div>
+        </div>
       </div>
     </div>
   </div>
   <div class="btn-row">
     <button class="btn btn-back" onclick="go('s-brands')">&#8592; Brands</button>
-    <button class="btn btn-primary" onclick="go('s-phase')">Next: Priority &#8594;</button>
+    <button class="btn btn-primary" onclick="go('s-tools')">Next: Current Tools &#8594;</button>
   </div>
 </div>
 
-<!-- SCREEN 4: PHASE + BUILD SCOPE -->
+<!-- SCREEN 4: CURRENT TOOLS -->
+
+<div class="screen" id="s-tools">
+  <div class="topbar">
+    <div class="topbar-logo" id="tools-topbar" style="display:flex;align-items:center;">
+      <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" alt="B">
+      <span id="tools-topbar-text">Brand</span>
+    </div>
+    <div class="topbar-brand">Step 2 of 4</div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" style="width:48%"></div></div>
+  <div class="content">
+    <div class="page-fill">
+      <div class="mobile-section">
+        <div class="q-label">Current Tools</div>
+        <div class="tools-known" style="font-size:12px;margin-bottom:10px;">Select the tools already in use. Add anything missing.</div>
+        <div class="q-text" id="tools-question-mobile" style="font-size:17px">"What software are you using?"</div>
+        <div class="bubble-group" id="tool-bubbles-mobile"></div>
+      </div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-back" onclick="go('s-tools')">&#8592; Back</button>
+    <button class="btn btn-primary" onclick="go('s-phase')">Next: Build Priorities &#8594;</button>
+  </div>
+</div>
+
+<!-- SCREEN 5: PHASE + BUILD SCOPE -->
 
 <div class="screen" id="s-phase">
   <div class="topbar">
@@ -561,10 +602,10 @@ body {
       <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:36px;height:36px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B">
       <span id="phase-topbar-text">Brand</span>
     </div>
-    <div class="topbar-brand">Choose Timing</div>
+    <div class="topbar-brand">Step 3 of 4</div>
   </div>
-  <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
-  <div class="content" style="display:flex;gap:36px;">
+  <div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div>
+  <div class="content" style="display:flex;gap:36px;flex-direction:column;">
     <div style="flex:0 0 210px;display:flex;flex-direction:column;gap:14px;padding-top:8px;">
       <div class="q-label">Build Priority</div>
       <div class="tools-known" style="font-size:12px;margin-bottom:8px;">Choose when each solution should happen.</div>
@@ -601,7 +642,7 @@ body {
   </div>
 </div>
 
-<!-- SCREEN 5: BRAND SUMMARY -->
+<!-- SCREEN 6: BRAND SUMMARY -->
 
 <div class="screen" id="s-summary">
   <div class="topbar">
@@ -609,7 +650,7 @@ body {
       <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:36px;height:36px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B">
       <span id="summary-topbar-text">Summary</span>
     </div>
-    <div class="topbar-brand">Your Responses</div>
+    <div class="topbar-brand">Step 4 of 4</div>
   </div>
   <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
   <div class="content">
@@ -622,7 +663,7 @@ body {
   </div>
 </div>
 
-<!-- SCREEN 5B: INVESTMENT PROPOSAL -->
+<!-- SCREEN 7: SYSTEM MAP -->
 
 <div class="screen" id="s-expand">
   <div class="topbar">
@@ -651,7 +692,7 @@ body {
   </div>
 </div>
 
-<!-- SCREEN 6: SESSION SUMMARY -->
+<!-- SCREEN 8: FINAL SUMMARY -->
 
 <div class="screen" id="s-session">
   <div class="topbar">
@@ -704,7 +745,7 @@ body {
 </div>
 
 
-<!-- SCREEN 7: THANK YOU -->
+<!-- SCREEN 9: THANK YOU -->
 
 <div class="screen" id="s-thankyou">
   <div class="topbar">
@@ -718,7 +759,7 @@ body {
   <div class="thankyou-wrap">
     <img class="thankyou-logo" src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" alt="Breakout AI Solutions">
     <div class="thankyou-eyebrow">Thank You Kelly</div>
-    <div class="thankyou-title">Thank You<span>.</span></div>
+    <div class="thankyou-title">Thank you, Kelly<span>.</span></div>
     <div class="thankyou-collab">
       <span>GoPlay</span>
       <span class="thankyou-x">X</span>
@@ -865,8 +906,9 @@ function startBrand() {
   var d = brandData[curKey];
   document.getElementById('pain-topbar-text').innerText = curBrand;
   document.getElementById('phase-topbar-text').innerText = curBrand;
+  var toolsTopbar = document.getElementById('tools-topbar-text'); if (toolsTopbar) { toolsTopbar.innerText = curBrand; }
   document.getElementById('pain-question').innerText = d.painQ;
-  document.getElementById('tools-question').innerText = d.toolsQ;
+  var toolsQuestionMobile = document.getElementById('tools-question-mobile'); if (toolsQuestionMobile) { toolsQuestionMobile.innerText = d.toolsQ; }
 
   var painsForBrand = uniqueArray(d.pains.concat(commonPainOptions));
   var toolsForBrand = mergeToolPairs(d.tools, commonToolOptions);
@@ -905,7 +947,7 @@ function startBrand() {
   painInputRow.appendChild(painAddBtn);
   pb.appendChild(painInputRow);
 
-  var tb = document.getElementById('tool-bubbles');
+  var tb = document.getElementById('tool-bubbles-mobile');
   tb.innerHTML = '';
   for (var i = 0; i < toolsForBrand.length; i++) {
     var cls = toolsForBrand[i][1] === 'sel' ? 'bubble selected' : 'bubble';
@@ -992,7 +1034,7 @@ function addCustomTool() {
   if (!input) { return; }
   var val = input.value.trim();
   if (!val) { return; }
-  var tb = document.getElementById('tool-bubbles');
+  var tb = document.getElementById('tool-bubbles-mobile');
   var inputRows = tb.querySelectorAll('.custom-input-row');
   var inputRow = inputRows.length ? inputRows[inputRows.length - 1] : null;
   var newBubble = document.createElement('div');
@@ -1234,7 +1276,7 @@ function saveBrandData() {
   for (var key in popupHours) { totalHrs += popupHours[key]; }
   var builds = getBuildWithPhase();
   var pains = getSel('pain-bubbles');
-  var tools = getSel('tool-bubbles');
+  var tools = getSel('tool-bubbles-mobile');
   var currentSolutions = getCurrentSolutions(builds);
 
   var phaseCounts = {1:0, 2:0, 3:0};
