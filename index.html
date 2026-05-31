@@ -8,7 +8,6 @@
 <style>
   :root {
     --bg: #f4f1eb;
-    --white: #ffffff;
     --black: #0a0a0a;
     --brand-cyan: #00bcd4;
     --brand-cyan-dark: #0097a7;
@@ -27,7 +26,7 @@
 
   .rainbow-bar { height: 5px; background: linear-gradient(to right, #e53935 0%, #e53935 20%, #f57c00 20%, #f57c00 40%, #43a047 40%, #43a047 60%, #fdd835 60%, #fdd835 80%, #00bcd4 80%, #00bcd4 100%); }
 
-  .header { background: var(--black); color: white; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(0,188,212,0.15); border-bottom: 2px solid var(--brand-cyan); }
+  .header { background: var(--black); color: white; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid var(--brand-cyan); }
   .header-left { display: flex; align-items: center; gap: 16px; }
   .header-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: 0.08em; color: #fff; text-transform: uppercase; }
   .header-logo span { color: var(--brand-cyan); }
@@ -37,7 +36,7 @@
 
   .hero { background: var(--black); color: white; padding: 56px 40px 48px; border-bottom: 4px solid var(--brand-cyan); }
   .hero-tag { display: inline-block; border: 1px solid rgba(0,188,212,0.5); font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; padding: 4px 12px; border-radius: 2px; color: var(--brand-cyan); margin-bottom: 20px; }
-  .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(40px, 6vw, 68px); line-height: 1.0; letter-spacing: 0.01em; text-transform: uppercase; margin-bottom: 16px; }
+  .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(40px, 6vw, 68px); line-height: 1.0; text-transform: uppercase; margin-bottom: 16px; }
   .hero h1 span { color: var(--brand-cyan); }
   .hero p { font-size: 16px; color: rgba(255,255,255,0.78); max-width: 580px; line-height: 1.7; }
 
@@ -56,9 +55,8 @@
   .field-label { display: block; font-weight: 600; font-size: 13px; color: var(--text); margin-bottom: 6px; margin-top: 18px; }
   .field-label:first-of-type { margin-top: 0; }
 
-  input[type="text"], input[type="email"], textarea, select { width: 100%; background: #fff; border: 1.5px solid var(--border-dark); border-radius: 3px; color: var(--text); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 500; padding: 10px 14px; outline: none; transition: border-color 0.15s, box-shadow 0.15s; resize: vertical; }
+  input[type="text"], input[type="email"], input[type="number"], textarea, select { width: 100%; background: #fff; border: 1.5px solid var(--border-dark); border-radius: 3px; color: var(--text); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 500; padding: 10px 14px; outline: none; transition: border-color 0.15s, box-shadow 0.15s; resize: vertical; }
   input:focus, textarea:focus, select:focus { border-color: var(--brand-cyan); box-shadow: 0 0 0 3px rgba(0,188,212,0.15); }
-  select option { background: white; color: var(--text); }
   ::placeholder { color: #aaa; }
 
   .tag-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
@@ -66,58 +64,55 @@
   .tag:hover { border-color: var(--brand-cyan); background: #e0f7fa; color: var(--brand-cyan-dark); }
   .tag.selected { background: var(--black); border-color: var(--brand-cyan); color: var(--brand-cyan); }
 
-  .field-builder { display: flex; flex-direction: column; gap: 8px; }
-  .field-row { display: grid; grid-template-columns: 1fr 150px 40px; gap: 8px; align-items: center; }
-  .field-row input, .field-row select { margin: 0; }
-  .remove-btn { background: #fff0ee; border: 1.5px solid #e8b4ae; color: var(--red-err); border-radius: 3px; cursor: pointer; font-size: 18px; height: 40px; font-weight: 700; transition: all 0.15s; display: flex; align-items: center; justify-content: center; }
-  .remove-btn:hover { background: #fde0db; border-color: var(--red-err); }
-  .add-field-btn { align-self: flex-start; margin-top: 8px; background: none; border: 1.5px dashed var(--brand-cyan); color: var(--brand-cyan-dark); border-radius: 3px; padding: 8px 18px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.15s; font-family: 'Barlow', sans-serif; }
-  .add-field-btn:hover { background: #e0f7fa; border-style: solid; }
-
+  /* EMAIL ROWS */
   .email-row { background: #f8f8f8; border: 1.5px solid var(--border); border-radius: 4px; padding: 16px 20px; margin-bottom: 12px; }
-  .email-row-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-  .email-row-brand { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; color: var(--brand-cyan-dark); letter-spacing: 0.05em; text-transform: uppercase; }
+  .email-row-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .email-brand-input { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 15px; color: var(--brand-cyan-dark); border: none; background: transparent; padding: 0; box-shadow: none; width: 65%; letter-spacing: 0.04em; }
+  .email-brand-input:focus { border: none; box-shadow: none; outline: 1px dashed var(--brand-cyan); border-radius: 2px; }
   .email-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .email-grid input { margin: 0; font-size: 13px; }
   .email-field-label { font-size: 11px; font-weight: 700; color: var(--text-mid); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; display: block; }
+  .remove-btn { background: #fff0ee; border: 1.5px solid #e8b4ae; color: var(--red-err); border-radius: 3px; cursor: pointer; font-size: 18px; height: 36px; width: 36px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .remove-btn:hover { background: #fde0db; border-color: var(--red-err); }
 
+  /* FIELD BUILDER */
+  .field-builder { display: flex; flex-direction: column; gap: 8px; }
+  .field-row { display: grid; grid-template-columns: 1fr 150px 40px; gap: 8px; align-items: center; }
+  .field-row input, .field-row select { margin: 0; }
+  .add-field-btn { align-self: flex-start; margin-top: 8px; background: none; border: 1.5px dashed var(--brand-cyan); color: var(--brand-cyan-dark); border-radius: 3px; padding: 8px 18px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.15s; font-family: 'Barlow', sans-serif; }
+  .add-field-btn:hover { background: #e0f7fa; border-style: solid; }
+
+  /* PLATFORM ROWS */
+  .platform-row { display: grid; grid-template-columns: 44px 1fr 120px 120px; gap: 12px; align-items: center; padding: 12px 16px; background: #f8f8f8; border: 1.5px solid var(--border); border-radius: 4px; margin-bottom: 8px; transition: border-color 0.15s; }
+  .platform-row.active { border-color: var(--brand-cyan); background: #e0f7fa; }
+  .platform-toggle { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--border-dark); cursor: pointer; font-size: 18px; transition: all 0.15s; background: white; }
+  .platform-row.active .platform-toggle { background: var(--black); border-color: var(--brand-cyan); }
+  .platform-info { display: flex; align-items: center; gap: 10px; }
+  .platform-icon { font-size: 22px; }
+  .platform-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 0.04em; }
+  .platform-row input[type="number"] { margin: 0; text-align: center; font-weight: 700; font-size: 14px; }
+  .platform-row select { margin: 0; font-size: 13px; }
+  .platform-col-label { font-size: 11px; font-weight: 700; color: var(--text-mid); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* NOTES */
   .notes-card { background: #fffef5; border: 1.5px solid #e8d88a; border-radius: 4px; padding: 16px 20px; margin-top: 12px; }
   .notes-card .field-label { color: #7a6a00; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; margin-top: 0; }
   .notes-card textarea { border-color: #d4c060; background: #fffff8; font-size: 13px; }
   .notes-card textarea:focus { border-color: #b8a020; box-shadow: 0 0 0 3px rgba(184,160,32,0.12); }
 
-  .brand-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--border-dark); margin-bottom: 20px; overflow-x: auto; }
-  .brand-tab { padding: 10px 22px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.15s; color: var(--text-mid); white-space: nowrap; }
-  .brand-tab:hover { color: var(--brand-cyan-dark); background: #e0f7fa; }
-  .brand-tab.active { color: var(--brand-cyan-dark); border-bottom-color: var(--brand-cyan); background: #e0f7fa; }
-  .brand-panel { display: none; }
-  .brand-panel.active { display: block; }
-
-  .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
-  .platform-card { border: 2px solid var(--border-dark); border-radius: 4px; padding: 14px 12px; text-align: center; cursor: pointer; transition: all 0.15s; background: var(--tag-bg); user-select: none; }
-  .platform-card:hover { border-color: var(--brand-cyan); background: #e0f7fa; }
-  .platform-card.selected { border-color: var(--brand-cyan); background: var(--black); color: var(--brand-cyan); }
-  .platform-icon { font-size: 24px; margin-bottom: 6px; }
-  .platform-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; }
-
-  input[type="range"] { -webkit-appearance: none; width: 100%; height: 4px; background: var(--border); border-radius: 4px; outline: none; margin-top: 10px; border: none; box-shadow: none; padding: 0; }
-  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; background: var(--brand-cyan); border-radius: 50%; cursor: pointer; border: 2px solid white; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
-  .range-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-light); margin-top: 6px; font-weight: 600; }
-
+  /* SUBMIT */
   .submit-section { background: var(--black); border-radius: 6px; padding: 48px 40px; text-align: center; margin-top: 48px; border: 2px solid var(--brand-cyan); }
   .submit-section h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 36px; color: white; text-transform: uppercase; margin-bottom: 12px; }
   .submit-section h2 span { color: var(--brand-cyan); }
   .submit-section p { color: rgba(255,255,255,0.75); font-size: 15px; margin-bottom: 28px; line-height: 1.6; }
   .submit-btn { background: var(--brand-cyan); color: var(--black); border: none; padding: 16px 48px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: all 0.15s; }
   .submit-btn:hover { background: var(--brand-cyan-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,188,212,0.35); }
-
-  /* OUTPUT */
   .output-panel { display: none; margin-top: 32px; background: #111; border-radius: 4px; padding: 24px; text-align: left; border: 1px solid var(--brand-cyan); }
   .output-panel.show { display: block; }
   .output-panel pre { font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.8; color: #e8e4d8; white-space: pre-wrap; word-break: break-word; }
   .copy-btn { margin-top: 16px; background: none; border: 1.5px solid rgba(0,188,212,0.5); color: var(--brand-cyan); padding: 10px 24px; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; border-radius: 3px; transition: all 0.15s; }
-  .copy-btn:hover { border-color: var(--brand-cyan); background: rgba(0,188,212,0.08); }
-  .copy-btn.copied { background: rgba(0,188,212,0.15); color: #00e096; border-color: #00e096; }
+  .copy-btn:hover { background: rgba(0,188,212,0.08); }
+  .copy-btn.copied { color: #00e096; border-color: #00e096; }
 
   .success-screen { display: none; position: fixed; inset: 0; background: var(--black); z-index: 999; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 48px; border-top: 4px solid var(--brand-cyan); }
   .success-screen.show { display: flex; }
@@ -132,8 +127,10 @@
     .hero { padding: 36px 20px 32px; }
     .main { padding: 32px 16px 80px; }
     .card-grid { grid-template-columns: 1fr; }
-    .platform-grid { grid-template-columns: repeat(2, 1fr); }
-    .field-row { grid-template-columns: 1fr 120px 40px; }
+    .field-row { grid-template-columns: 1fr 110px 40px; }
+    .platform-row { grid-template-columns: 36px 1fr; }
+    .platform-row input[type="number"], .platform-row select { display: none; }
+    .email-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -153,16 +150,16 @@
 <div class="hero">
   <div class="hero-tag">Confidential · May 2026</div>
   <h1>Your <span>Build Brief</span></h1>
-  <p>Walk through each section together. Hit Generate at the end and your full Build Brief is ready to copy instantly — no server, no waiting.</p>
+  <p>Walk through each section together. Hit Generate at the end and your full Build Brief is ready to copy instantly.</p>
 </div>
 
 <div class="main">
 
-  <!-- 1: BRANDS -->
+  <!-- SECTION 1: BRANDS + EMAIL -->
   <div class="section">
     <div class="section-header"><div class="section-num">1</div><div class="section-title">Your Brands</div><div class="section-line"></div></div>
     <div class="card">
-      <div class="card-label">Which brands should be tracked inside the CRM?</div>
+      <div class="card-label">Which brands should be tracked in the CRM?</div>
       <div class="tag-group" id="brandTags">
         <div class="tag selected" onclick="toggleTag(this)">Root &amp; Rise Symposium</div>
         <div class="tag selected" onclick="toggleTag(this)">Sports Cannabis Olympics</div>
@@ -171,16 +168,25 @@
         <div class="tag selected" onclick="toggleTag(this)">Advanced Laser</div>
         <div class="tag" onclick="toggleTag(this)">NC3 Chamber</div>
       </div>
-      <label class="field-label" style="margin-top:18px;">Any other brands or projects to add?</label>
+      <label class="field-label" style="margin-top:18px;">Any other brands to add?</label>
       <input type="text" id="extraBrands" placeholder="Type additional brands here...">
     </div>
+
+    <!-- EMAIL ADDRESSES PER BRAND -->
+    <div class="card">
+      <div class="card-label">Email Addresses Per Brand</div>
+      <p style="font-size:13px;color:var(--text-mid);margin-bottom:18px;line-height:1.6;">Each brand may have its own sending address, reply-to, and notification inbox. This tells us how to wire automations correctly for each one.</p>
+      <div id="brandEmailRows"></div>
+      <button class="add-field-btn" onclick="addEmailRow()">+ Add Brand Email</button>
+    </div>
+
     <div class="notes-card">
       <label class="field-label">📝 Section Notes</label>
-      <textarea id="notes1" rows="2" placeholder="Anything to flag about brands, priorities, or context..."></textarea>
+      <textarea id="notes1" rows="2" placeholder="Anything to flag about brands, email setup, or priorities..."></textarea>
     </div>
   </div>
 
-  <!-- 2: CONTACTS & PIPELINE -->
+  <!-- SECTION 2: CONTACTS & PIPELINE -->
   <div class="section">
     <div class="section-header"><div class="section-num">2</div><div class="section-title">Contacts &amp; Pipeline</div><div class="section-line"></div></div>
     <div class="card">
@@ -199,7 +205,7 @@
       </div>
     </div>
     <div class="card">
-      <div class="card-label">Deal pipeline stages</div>
+      <div class="card-label">Deal Pipeline Stages</div>
       <div class="tag-group" id="stageTags">
         <div class="tag selected" onclick="toggleTag(this)">New Lead</div>
         <div class="tag selected" onclick="toggleTag(this)">Contacted</div>
@@ -220,7 +226,7 @@
     </div>
   </div>
 
-  <!-- 3: CRM FIELDS -->
+  <!-- SECTION 3: CRM CUSTOM FIELDS -->
   <div class="section">
     <div class="section-header"><div class="section-num">3</div><div class="section-title">CRM Custom Fields</div><div class="section-line"></div></div>
     <div class="card">
@@ -233,48 +239,15 @@
       <div class="field-builder" id="crmFields"></div>
       <button class="add-field-btn" onclick="addCrmField()">+ Add Field</button>
     </div>
-    <!-- EMAIL ADDRESSES PER BRAND -->
-    <div class="card" style="margin-top:0;">
-      <div class="card-label">Email Addresses Per Brand</div>
-      <p style="font-size:13px;color:var(--text-mid);margin-bottom:18px;line-height:1.6;">Each brand may need its own sending address, reply-to, and notification inbox. Fill in what applies — this tells us how to wire automations correctly.</p>
-      <div id="brandEmailRows">
-        <!-- rendered by JS -->
-      </div>
-      <button class="add-field-btn" onclick="addBrandEmailRow()" style="margin-top:12px;">+ Add Brand</button>
-    </div>
     <div class="notes-card">
       <label class="field-label">📝 Section Notes</label>
       <textarea id="notes3" rows="2" placeholder="Notes on specific fields, data types, or CRM logic..."></textarea>
     </div>
   </div>
 
-  <!-- 4: AUTOMATION -->
+  <!-- SECTION 4: TOOLS & INTEGRATIONS -->
   <div class="section">
-    <div class="section-header"><div class="section-num">4</div><div class="section-title">Automation &amp; Follow-Up</div><div class="section-line"></div></div>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-label">Email Follow-Up Cadence</div>
-        <label class="field-label">Days until first follow-up</label>
-        <input type="text" id="followup1" placeholder="e.g. 3 days">
-        <label class="field-label">Days until second follow-up</label>
-        <input type="text" id="followup2" placeholder="e.g. 7 days">
-        <label class="field-label">Max attempts before marking cold</label>
-        <input type="text" id="followupMax" placeholder="e.g. 4 attempts">
-      </div>
-      <div class="card">
-        <div class="card-label">Email Tone</div>
-        <label class="field-label">Tone for sponsor / sales emails</label>
-        <input type="range" min="1" max="5" value="3" id="toneRange">
-        <div class="range-labels"><span>Formal &amp; Polished</span><span>Warm &amp; Conversational</span></div>
-        <label class="field-label" style="margin-top:20px;">Words / phrases to NEVER use</label>
-        <textarea id="neverSay" rows="3" placeholder="e.g. avoid competitor names, no pricing without approval..."></textarea>
-      </div>
-    </div>
-  </div>
-
-  <!-- 5: TOOLS -->
-  <div class="section">
-    <div class="section-header"><div class="section-num">5</div><div class="section-title">Tools &amp; Integrations</div><div class="section-line"></div></div>
+    <div class="section-header"><div class="section-num">4</div><div class="section-title">Tools &amp; Integrations</div><div class="section-line"></div></div>
     <div class="card">
       <div class="card-label">Tools currently in use</div>
       <div class="tag-group" id="toolTags">
@@ -305,22 +278,57 @@
     </div>
     <div class="notes-card">
       <label class="field-label">📝 Section Notes</label>
-      <textarea id="notes5" rows="2" placeholder="Notes on integrations, API access, or tool consolidation..."></textarea>
+      <textarea id="notes4" rows="2" placeholder="Notes on integrations, API access, or tool consolidation..."></textarea>
     </div>
   </div>
 
-  <!-- 6: SOCIAL -->
+  <!-- SECTION 5: SOCIAL MEDIA -->
   <div class="section">
-    <div class="section-header"><div class="section-num">6</div><div class="section-title">Social Media Automation</div><div class="section-line"></div></div>
+    <div class="section-header"><div class="section-num">5</div><div class="section-title">Social Media Automation</div><div class="section-line"></div></div>
+
     <div class="card">
-      <div class="card-label">Post Approval Flow</div>
-      <label class="field-label">Require approval before posts go live?</label>
+      <div class="card-label">Which platforms do you want to post on?</div>
+      <p style="font-size:13px;color:var(--text-mid);margin-bottom:18px;line-height:1.6;">Toggle each platform on or off, then set how many times per week and what type of content to auto-schedule.</p>
+
+      <!-- Column headers -->
+      <div style="display:grid;grid-template-columns:44px 1fr 120px 160px;gap:12px;padding:0 16px;margin-bottom:8px;">
+        <span></span>
+        <span class="platform-col-label">Platform</span>
+        <span class="platform-col-label">Posts / Week</span>
+        <span class="platform-col-label">Best Time to Post</span>
+      </div>
+
+      <div id="platformRows"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Content Types to Auto-Schedule</div>
+      <p style="font-size:13px;color:var(--text-mid);margin-bottom:14px;">Select everything you want the system to be able to generate and schedule.</p>
+      <div class="tag-group" id="contentTypeTags">
+        <div class="tag selected" onclick="toggleTag(this)">Event announcements</div>
+        <div class="tag selected" onclick="toggleTag(this)">Speaker / brand spotlights</div>
+        <div class="tag selected" onclick="toggleTag(this)">Behind the scenes</div>
+        <div class="tag" onclick="toggleTag(this)">Sponsor callouts</div>
+        <div class="tag" onclick="toggleTag(this)">Industry news &amp; commentary</div>
+        <div class="tag selected" onclick="toggleTag(this)">Ticket promotions</div>
+        <div class="tag" onclick="toggleTag(this)">Countdown posts</div>
+        <div class="tag" onclick="toggleTag(this)">Recap / highlights</div>
+        <div class="tag" onclick="toggleTag(this)">Educational content</div>
+        <div class="tag" onclick="toggleTag(this)">User-generated reposts</div>
+        <div class="tag" onclick="toggleTag(this)">Testimonials / reviews</div>
+        <div class="tag" onclick="toggleTag(this)">Team / culture posts</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Post Approval</div>
+      <label class="field-label">Require your approval before posts go live?</label>
       <div class="tag-group" id="approvalTags">
         <div class="tag selected" onclick="exclusiveTag(this,'approvalTags')">Yes — approve every post</div>
         <div class="tag" onclick="exclusiveTag(this,'approvalTags')">New content types only</div>
-        <div class="tag" onclick="exclusiveTag(this,'approvalTags')">No — auto-publish all</div>
+        <div class="tag" onclick="exclusiveTag(this,'approvalTags')">No — auto-publish</div>
       </div>
-      <label class="field-label" style="margin-top:16px;">Preferred approval method</label>
+      <label class="field-label" style="margin-top:16px;">How do you want to approve?</label>
       <div class="tag-group" id="approvalMethodTags">
         <div class="tag selected" onclick="exclusiveTag(this,'approvalMethodTags')">Email</div>
         <div class="tag" onclick="exclusiveTag(this,'approvalMethodTags')">Text / SMS</div>
@@ -328,20 +336,16 @@
         <div class="tag" onclick="exclusiveTag(this,'approvalMethodTags')">Slack</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-label">Configure per brand</div>
-      <div class="brand-tabs" id="socialBrandTabs"></div>
-      <div id="socialBrandPanels"></div>
-    </div>
+
     <div class="notes-card">
       <label class="field-label">📝 Section Notes</label>
-      <textarea id="notes6" rows="2" placeholder="Notes on social strategy, content pillars, or brand voice specifics..."></textarea>
+      <textarea id="notes5" rows="2" placeholder="Notes on posting strategy, brand voice, or content priorities..."></textarea>
     </div>
   </div>
 
-  <!-- 7: FINAL NOTES -->
+  <!-- SECTION 6: FINAL NOTES -->
   <div class="section">
-    <div class="section-header"><div class="section-num">7</div><div class="section-title">Final Notes</div><div class="section-line"></div></div>
+    <div class="section-header"><div class="section-num">6</div><div class="section-title">Final Notes</div><div class="section-line"></div></div>
     <div class="card">
       <div class="card-label">Priorities &amp; Open Notes</div>
       <label class="field-label">Most important thing the CRM needs to solve</label>
@@ -349,11 +353,7 @@
       <label class="field-label">Most important thing social automation needs to solve</label>
       <textarea id="socialPriority" rows="3" placeholder="Your answer..."></textarea>
       <label class="field-label">Anything else before we build?</label>
-      <textarea id="misc" rows="3" placeholder="Open notes, questions, preferences..."></textarea>
-    </div>
-    <div class="notes-card">
-      <label class="field-label">📝 Section Notes</label>
-      <textarea id="notes7" rows="2" placeholder="Any final context, decisions made on the call, or next steps..."></textarea>
+      <textarea id="misc" rows="3" placeholder="Open notes, decisions made on this call, next steps..."></textarea>
     </div>
     <div class="card">
       <div class="card-label">Your Info</div>
@@ -362,12 +362,16 @@
       <label class="field-label">Best email</label>
       <input type="email" id="userEmail" placeholder="kelly@goplayagency.com">
     </div>
+    <div class="notes-card">
+      <label class="field-label">📝 Call Notes</label>
+      <textarea id="notes6" rows="3" placeholder="Anything flagged during the call, decisions made, follow-up items..."></textarea>
+    </div>
   </div>
 
-  <!-- SUBMIT -->
+  <!-- GENERATE -->
   <div class="submit-section">
     <h2>Generate Your <span>Brief</span></h2>
-    <p>Hit the button — your complete Build Brief generates instantly. Copy it and you're done.</p>
+    <p>Hit the button — your complete Build Brief generates instantly and is ready to copy.</p>
     <button class="submit-btn" onclick="generateBrief()">Generate Build Brief →</button>
     <div class="output-panel" id="outputPanel">
       <pre id="outputText"></pre>
@@ -380,179 +384,114 @@
 <div class="success-screen" id="successScreen">
   <div class="success-icon">✅</div>
   <h2>Brief <span>Generated.</span></h2>
-  <p>Your Build Brief is ready. Copy it from the panel below and paste it anywhere — notes, email, Slack, wherever you need it.</p>
+  <p>Copy it from the panel below and paste it anywhere — notes, email, Slack, wherever you need it.</p>
   <button class="success-back" onclick="document.getElementById('successScreen').classList.remove('show'); document.getElementById('outputPanel').scrollIntoView({behavior:'smooth'});">View &amp; Copy Brief</button>
 </div>
 
 <script>
-  var brandEmailDefaults = [
-    { brand: 'Root & Rise Symposium' },
-    { brand: 'Sports Cannabis Olympics' },
-    { brand: 'Touch Grass Fest' },
-    { brand: 'Estate-Minder' },
-    { brand: 'Advanced Laser' },
+  // ---- PLATFORMS ----
+  var platformDefs = [
+    { name: 'Instagram',  icon: '📸' },
+    { name: 'Facebook',   icon: '👥' },
+    { name: 'LinkedIn',   icon: '💼' },
+    { name: 'X / Twitter',icon: '🐦' },
+    { name: 'TikTok',     icon: '🎵' },
+    { name: 'YouTube',    icon: '▶️' },
   ];
+  var timeOptions = ['Morning (7–9am)','Midday (11am–1pm)','Afternoon (3–5pm)','Evening (6–8pm)','No preference'];
 
-  function renderBrandEmailRows() {
-    brandEmailDefaults.forEach(function(b){ addBrandEmailRow(b.brand); });
+  function renderPlatforms() {
+    var container = document.getElementById('platformRows');
+    platformDefs.forEach(function(p, i) {
+      var row = document.createElement('div');
+      row.className = 'platform-row' + (i < 2 ? ' active' : '');
+      row.id = 'prow_' + i;
+      row.innerHTML =
+        '<div class="platform-toggle" onclick="togglePlatform(' + i + ')">✓</div>' +
+        '<div class="platform-info"><span class="platform-icon">' + p.icon + '</span><span class="platform-name">' + p.name + '</span></div>' +
+        '<input type="number" id="pfreq_' + i + '" min="1" max="14" value="3" placeholder="3">' +
+        '<select id="ptime_' + i + '">' + timeOptions.map(function(t){ return '<option>' + t + '</option>'; }).join('') + '</select>';
+      container.appendChild(row);
+    });
   }
 
-  function addBrandEmailRow(brandName) {
+  function togglePlatform(i) {
+    var row = document.getElementById('prow_' + i);
+    row.classList.toggle('active');
+  }
+
+  // ---- EMAIL ROWS ----
+  var defaultEmailBrands = [
+    'Root & Rise Symposium',
+    'Sports Cannabis Olympics',
+    'Touch Grass Fest',
+    'Estate-Minder',
+    'Advanced Laser',
+  ];
+
+  function renderEmailRows() {
+    defaultEmailBrands.forEach(function(b){ addEmailRow(b); });
+  }
+
+  function addEmailRow(brandName) {
     brandName = brandName || '';
-    var container = document.getElementById('brandEmailRows');
+    var c = document.getElementById('brandEmailRows');
     var row = document.createElement('div');
     row.className = 'email-row';
     row.innerHTML =
-      '<div class="email-row-header">' +
-        '<input type="text" value="' + brandName + '" placeholder="Brand name..." style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:14px;color:var(--brand-cyan-dark);letter-spacing:0.05em;text-transform:uppercase;border:none;background:transparent;padding:0;box-shadow:none;width:60%;">' +
-        '<button class="remove-btn" style="flex-shrink:0;" onclick="this.closest('.email-row').remove()">×</button>' +
+      '<div class="email-row-top">' +
+        '<input class="email-brand-input" type="text" value="' + brandName + '" placeholder="Brand name...">' +
+        '<button class="remove-btn" onclick="this.closest(\'.email-row\').remove()">×</button>' +
       '</div>' +
       '<div class="email-grid">' +
         '<div><span class="email-field-label">Sending / From Address</span><input type="email" placeholder="e.g. hello@rootandrrise.com"></div>' +
         '<div><span class="email-field-label">Reply-To Address</span><input type="email" placeholder="e.g. kelly@goplayagency.com"></div>' +
         '<div><span class="email-field-label">Notification / Alert Inbox</span><input type="email" placeholder="e.g. alerts@goplayagency.com"></div>' +
         '<div><span class="email-field-label">Shared Team Inbox (if any)</span><input type="email" placeholder="e.g. team@goplayagency.com"></div>' +
-      '</div>' +
-      '<div style="margin-top:10px;"><span class="email-field-label">Automation triggers from this address</span>' +
-        '<div class="tag-group" style="margin-top:4px;">' +
-          '<div class="tag selected" onclick="toggleTag(this)">Sponsor outreach</div>' +
-          '<div class="tag selected" onclick="toggleTag(this)">Follow-up sequences</div>' +
-          '<div class="tag" onclick="toggleTag(this)">Ticket confirmations</div>' +
-          '<div class="tag" onclick="toggleTag(this)">Internal alerts</div>' +
-          '<div class="tag" onclick="toggleTag(this)">Newsletter / broadcast</div>' +
-          '<div class="tag" onclick="toggleTag(this)">Proposal delivery</div>' +
-        '</div>' +
       '</div>';
-    container.appendChild(row);
+    c.appendChild(row);
   }
 
+  // ---- CRM FIELDS ----
   var defaultFields = [
-    { name: "Brand", type: "dropdown" },
-    { name: "Contact Type", type: "dropdown" },
-    { name: "Company / Organization", type: "text" },
-    { name: "Event", type: "dropdown" },
-    { name: "Deal / Sponsorship Value", type: "currency" },
-    { name: "Sponsorship Tier", type: "dropdown" },
-    { name: "Last Contact Date", type: "date" },
-    { name: "Next Follow-Up Date", type: "date" },
-    { name: "Lead Source", type: "dropdown" },
-    { name: "Notes", type: "textarea" },
+    { name: 'Brand',                     type: 'dropdown' },
+    { name: 'Contact Type',              type: 'dropdown' },
+    { name: 'Company / Organization',    type: 'text'     },
+    { name: 'Event',                     type: 'dropdown' },
+    { name: 'Deal / Sponsorship Value',  type: 'currency' },
+    { name: 'Sponsorship Tier',          type: 'dropdown' },
+    { name: 'Last Contact Date',         type: 'date'     },
+    { name: 'Next Follow-Up Date',       type: 'date'     },
+    { name: 'Lead Source',               type: 'dropdown' },
+    { name: 'Notes',                     type: 'textarea' },
   ];
-  var fieldTypes = ["text","dropdown","date","number","currency","checkbox","textarea","url","phone","email"];
+  var fieldTypes = ['text','dropdown','date','number','currency','checkbox','textarea','url','phone','email'];
 
   function renderCrmFields() { defaultFields.forEach(function(f){ addCrmField(f.name, f.type); }); }
+
   function addCrmField(name, type) {
     name = name || ''; type = type || 'text';
     var c = document.getElementById('crmFields');
     var row = document.createElement('div');
     row.className = 'field-row';
-    row.innerHTML = '<input type="text" placeholder="Field name..." value="' + name + '"><select>' + fieldTypes.map(function(t){ return '<option value="'+t+'"'+(t===type?' selected':'')+'>'+t.charAt(0).toUpperCase()+t.slice(1)+'</option>'; }).join('') + '</select><button class="remove-btn" onclick="this.parentElement.remove()">×</button>';
+    row.innerHTML =
+      '<input type="text" placeholder="Field name..." value="' + name + '">' +
+      '<select>' + fieldTypes.map(function(t){ return '<option value="'+t+'"'+(t===type?' selected':'')+'>'+t.charAt(0).toUpperCase()+t.slice(1)+'</option>'; }).join('') + '</select>' +
+      '<button class="remove-btn" onclick="this.parentElement.remove()" style="height:40px;width:40px;">×</button>';
     c.appendChild(row);
   }
 
-  var socialBrands = ["Root & Rise", "Sports Cannabis Olympics", "Touch Grass Fest", "Estate-Minder", "Advanced Laser"];
-  var platforms = [{name:"Instagram",icon:"📸"},{name:"Facebook",icon:"👥"},{name:"LinkedIn",icon:"💼"},{name:"X / Twitter",icon:"🐦"},{name:"TikTok",icon:"🎵"},{name:"YouTube",icon:"▶️"}];
-  var contentTypes = ["Event announcements","Speaker / brand spotlights","Behind the scenes","Sponsor callouts","Industry news & commentary","Ticket promotions","Countdown posts","Recap / highlights","Educational content","User-generated reposts"];
-  var toneOptions = ["Professional","Energetic","Educational","Bold / Provocative","Community-focused","Playful","Luxury / Elevated","Grassroots"];
-
-  function renderSocialPanels() {
-    var tabBar = document.getElementById('socialBrandTabs');
-    var panelArea = document.getElementById('socialBrandPanels');
-    socialBrands.forEach(function(brand, i) {
-      var tab = document.createElement('div');
-      tab.className = 'brand-tab'+(i===0?' active':'');
-      tab.textContent = brand;
-      tab.onclick = (function(idx){ return function(){ activateBrandTab(idx); }; })(i);
-      tabBar.appendChild(tab);
-      var panel = document.createElement('div');
-      panel.className = 'brand-panel'+(i===0?' active':'');
-      panel.innerHTML =
-        '<div style="margin-bottom:20px;"><label class="field-label">Platforms for '+brand+'</label><div class="platform-grid">'+
-        platforms.map(function(p,pi){ return '<div class="platform-card'+(pi<2?' selected':'')+'" onclick="this.classList.toggle(\'selected\')"><div class="platform-icon">'+p.icon+'</div><div class="platform-name">'+p.name+'</div></div>'; }).join('')+
-        '</div></div>'+
-        '<div class="card-grid" style="margin-bottom:16px;"><div>'+
-        '<label class="field-label">Posting frequency</label><input type="text" placeholder="e.g. 3–5 posts/week">'+
-        '<label class="field-label">Best days / times</label><input type="text" placeholder="e.g. Tue, Thu — morning">'+
-        '<label class="field-label">Handles to always tag</label><input type="text" placeholder="e.g. @handle">'+
-        '<label class="field-label">Always-include hashtags</label><input type="text" placeholder="e.g. #RootAndRise">'+
-        '</div><div>'+
-        '<label class="field-label">Brand voice / tone</label><div class="tag-group">'+
-        toneOptions.map(function(t,ti){ return '<div class="tag'+(ti<2?' selected':'')+'" onclick="toggleTag(this)">'+t+'</div>'; }).join('')+
-        '</div><label class="field-label" style="margin-top:16px;">Accounts to avoid</label><input type="text" placeholder="List accounts...">'+
-        '</div></div>'+
-        '<div><label class="field-label">Content types to auto-schedule</label><div class="tag-group">'+
-        contentTypes.map(function(c,ci){ return '<div class="tag'+(ci<3?' selected':'')+'" onclick="toggleTag(this)">'+c+'</div>'; }).join('')+
-        '</div></div>'+
-        '<div style="margin-top:16px;"><label class="field-label">Key dates to pre-schedule around</label><textarea rows="2" placeholder="e.g. Symposium July 23–25, ticket launch..."></textarea></div>';
-      panelArea.appendChild(panel);
-    });
-  }
-
-  function activateBrandTab(idx) {
-    document.querySelectorAll('.brand-tab').forEach(function(t,i){ t.classList.toggle('active',i===idx); });
-    document.querySelectorAll('.brand-panel').forEach(function(p,i){ p.classList.toggle('active',i===idx); });
-  }
-
+  // ---- HELPERS ----
   function toggleTag(el) { el.classList.toggle('selected'); }
-  function exclusiveTag(el, groupId) {
-    document.querySelectorAll('#'+groupId+' .tag').forEach(function(t){ t.classList.remove('selected'); });
+  function exclusiveTag(el, id) {
+    document.querySelectorAll('#'+id+' .tag').forEach(function(t){ t.classList.remove('selected'); });
     el.classList.add('selected');
   }
+  function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+  function sel(id) { return Array.from(document.querySelectorAll('#'+id+' .tag.selected')).map(function(t){ return t.textContent.trim(); }).join(', '); }
 
-  function sel(id) { return Array.from(document.querySelectorAll('#'+id+' .tag.selected')).map(function(t){ return t.textContent; }).join(', '); }
-  function val(id) { var el = document.getElementById(id); return el ? el.value : ''; }
-
+  // ---- GENERATE ----
   function generateBrief() {
-    var toneVal = parseInt(val('toneRange'));
-    var toneLabel = toneVal<=2?'Formal & Polished':toneVal>=4?'Warm & Conversational':'Balanced';
-
-    var crmFields = Array.from(document.querySelectorAll('#crmFields .field-row')).map(function(r){
-      var n = r.querySelector('input').value.trim();
-      var t = r.querySelector('select').value;
-      return n ? '  • ' + n + ' (' + t + ')' : null;
-    }).filter(Boolean).join('\n');
-
-    // Brand emails
-    var emailLines = [];
-    document.querySelectorAll('#brandEmailRows .email-row').forEach(function(row){
-      var inputs = row.querySelectorAll('input');
-      var brand = inputs[0] ? inputs[0].value : 'Unknown';
-      var from  = inputs[1] ? inputs[1].value : '';
-      var replyTo = inputs[2] ? inputs[2].value : '';
-      var notif = inputs[3] ? inputs[3].value : '';
-      var team  = inputs[4] ? inputs[4].value : '';
-      var triggers = Array.from(row.querySelectorAll('.tag.selected')).map(function(t){ return t.textContent; }).join(', ');
-      emailLines.push('  ── ' + brand);
-      if (from)     emailLines.push('    From: ' + from);
-      if (replyTo)  emailLines.push('    Reply-To: ' + replyTo);
-      if (notif)    emailLines.push('    Notifications: ' + notif);
-      if (team)     emailLines.push('    Team Inbox: ' + team);
-      if (triggers) emailLines.push('    Triggers: ' + triggers);
-    });
-    var emailSection = emailLines.length ? emailLines.join('\n') : '  Not configured';
-
-    // Social per brand
-    var socialLines = [];
-    socialBrands.forEach(function(brand, i) {
-      var panel = document.querySelectorAll('.brand-panel')[i];
-      if (!panel) return;
-      var plats = Array.from(panel.querySelectorAll('.platform-card.selected')).map(function(c){ return c.querySelector('.platform-name').textContent; }).join(', ');
-      var inputs = panel.querySelectorAll('input[type="text"]');
-      var toneGroups = panel.querySelectorAll('.tag-group');
-      var tones = toneGroups[0] ? Array.from(toneGroups[0].querySelectorAll('.tag.selected')).map(function(t){ return t.textContent; }).join(', ') : '';
-      var contentTags = toneGroups[1] ? Array.from(toneGroups[1].querySelectorAll('.tag.selected')).map(function(t){ return t.textContent; }).join(', ') : '';
-      socialLines.push('  ── ' + brand + ' ──');
-      socialLines.push('  Platforms: ' + (plats || 'None'));
-      socialLines.push('  Frequency: ' + (inputs[0]&&inputs[0].value ? inputs[0].value : 'Not specified'));
-      socialLines.push('  Best Times: ' + (inputs[1]&&inputs[1].value ? inputs[1].value : 'Not specified'));
-      socialLines.push('  Handles: ' + (inputs[2]&&inputs[2].value ? inputs[2].value : 'Not specified'));
-      socialLines.push('  Hashtags: ' + (inputs[3]&&inputs[3].value ? inputs[3].value : 'Not specified'));
-      socialLines.push('  Tone: ' + (tones || 'Not specified'));
-      socialLines.push('  Content Types: ' + (contentTags || 'Not specified'));
-      socialLines.push('');
-    });
-    var socialSections = socialLines.join('\n');
-
     var lines = [
       '══════════════════════════════════════════════',
       'GOPLAY × BREAKOUT AI — BUILD BRIEF',
@@ -561,68 +500,79 @@
       '══════════════════════════════════════════════',
       '',
       '[01] BRANDS IN CRM',
-      '  ' + (sel('brandTags') || 'None selected'),
+      '  ' + (sel('brandTags')||'None selected'),
     ];
     if (val('extraBrands')) lines.push('  Additional: ' + val('extraBrands'));
+
+    // Email addresses
+    lines.push('', '  BRAND EMAIL ADDRESSES:');
+    document.querySelectorAll('#brandEmailRows .email-row').forEach(function(row){
+      var inputs = row.querySelectorAll('input');
+      var brand   = inputs[0] ? inputs[0].value.trim() : '';
+      var from    = inputs[1] ? inputs[1].value.trim() : '';
+      var replyTo = inputs[2] ? inputs[2].value.trim() : '';
+      var notif   = inputs[3] ? inputs[3].value.trim() : '';
+      var team    = inputs[4] ? inputs[4].value.trim() : '';
+      if (brand) lines.push('  ── ' + brand);
+      if (from)     lines.push('      From: ' + from);
+      if (replyTo)  lines.push('      Reply-To: ' + replyTo);
+      if (notif)    lines.push('      Notifications: ' + notif);
+      if (team)     lines.push('      Team Inbox: ' + team);
+    });
     if (val('notes1')) lines.push('  Notes: ' + val('notes1'));
 
-    lines.push('', '[02] CONTACT TYPES', '  ' + (sel('contactTypeTags') || 'None selected'));
-    lines.push('', '[03] PIPELINE STAGES', '  ' + (sel('stageTags') || 'None selected'));
-    if (val('customStages')) lines.push('  Custom: ' + val('customStages'));
+    lines.push('', '[02] CONTACTS & PIPELINE');
+    lines.push('  Contact types: ' + (sel('contactTypeTags')||'None'));
+    lines.push('  Pipeline stages: ' + (sel('stageTags')||'None'));
+    if (val('customStages')) lines.push('  Custom stages: ' + val('customStages'));
     if (val('notes2')) lines.push('  Notes: ' + val('notes2'));
 
-    lines.push('', '[03b] BRAND EMAIL ADDRESSES', emailSection);
-
-    lines.push('', '[04] CRM CUSTOM FIELDS', crmFields || '  None defined');
+    lines.push('', '[03] CRM CUSTOM FIELDS');
+    document.querySelectorAll('#crmFields .field-row').forEach(function(r){
+      var n = r.querySelector('input').value.trim();
+      var t = r.querySelector('select').value;
+      if (n) lines.push('  • ' + n + ' (' + t + ')');
+    });
     if (val('notes3')) lines.push('  Notes: ' + val('notes3'));
 
-    lines.push(
-      '', '[05] AUTOMATION & FOLLOW-UP',
-      '  First follow-up: ' + (val('followup1')||'Not specified'),
-      '  Second follow-up: ' + (val('followup2')||'Not specified'),
-      '  Max attempts: ' + (val('followupMax')||'Not specified'),
-      '  Email tone: ' + toneLabel,
-      '  Never say: ' + (val('neverSay')||'None specified')
-    );
-    if (val('notes4')) lines.push('  Notes: ' + val('notes4'));
-
-    lines.push('', '[06] TOOLS & INTEGRATIONS', '  ' + (sel('toolTags')||'None selected'));
+    lines.push('', '[04] TOOLS & INTEGRATIONS');
+    lines.push('  ' + (sel('toolTags')||'None selected'));
     if (val('extraTools')) lines.push('  Additional: ' + val('extraTools'));
     lines.push('  Credentials: ' + (sel('credsTags')||'Not specified'));
+    if (val('notes4')) lines.push('  Notes: ' + val('notes4'));
+
+    lines.push('', '[05] SOCIAL MEDIA AUTOMATION');
+    lines.push('  PLATFORMS:');
+    platformDefs.forEach(function(p, i){
+      var row = document.getElementById('prow_' + i);
+      if (row && row.classList.contains('active')) {
+        var freq = document.getElementById('pfreq_' + i);
+        var time = document.getElementById('ptime_' + i);
+        lines.push('  • ' + p.name + ' — ' + (freq ? freq.value : '?') + 'x/week — ' + (time ? time.value : ''));
+      }
+    });
+    lines.push('  Content types: ' + (sel('contentTypeTags')||'None'));
+    lines.push('  Approval: ' + (sel('approvalTags')||'Not specified'));
+    lines.push('  Approval method: ' + (sel('approvalMethodTags')||'Not specified'));
     if (val('notes5')) lines.push('  Notes: ' + val('notes5'));
 
-    lines.push(
-      '', '[07] SOCIAL MEDIA AUTOMATION',
-      '  Approval flow: ' + (sel('approvalTags')||'Not specified'),
-      '  Approval method: ' + (sel('approvalMethodTags')||'Not specified'),
-      '', '  PER BRAND:',
-      socialSections
-    );
-    if (val('notes6')) lines.push('  Notes: ' + val('notes6'));
+    lines.push('', '[06] FINAL NOTES');
+    lines.push('  CRM priority: ' + (val('crmPriority')||'Not specified'));
+    lines.push('  Social priority: ' + (val('socialPriority')||'Not specified'));
+    lines.push('  Open notes: ' + (val('misc')||'None'));
+    if (val('notes6')) lines.push('  Call notes: ' + val('notes6'));
 
-    lines.push(
-      '', '[08] FINAL NOTES',
-      '  CRM priority: ' + (val('crmPriority')||'Not specified'),
-      '  Social priority: ' + (val('socialPriority')||'Not specified'),
-      '  Open notes: ' + (val('misc')||'None')
-    );
-    if (val('notes7')) lines.push('  Call notes: ' + val('notes7'));
+    lines.push('', '══════════════════════════════════════════════');
+    lines.push('END OF BUILD BRIEF — BREAKOUT AI SOLUTIONS');
+    lines.push('══════════════════════════════════════════════');
 
-    lines.push(
-      '',
-      '══════════════════════════════════════════════',
-      'END OF BUILD BRIEF — BREAKOUT AI SOLUTIONS',
-      '══════════════════════════════════════════════'
-    );
-
-    var output = lines.join('\n');
-    document.getElementById('outputText').textContent = output;
+    document.getElementById('outputText').textContent = lines.join('\n');
     document.getElementById('outputPanel').classList.add('show');
     setTimeout(function(){ document.getElementById('successScreen').classList.add('show'); }, 600);
   }
+
   function copyOutput() {
-    var text = document.getElementById('outputText').textContent;
-    navigator.clipboard.writeText(text).then(function(){
+    navigator.clipboard.writeText(document.getElementById('outputText').textContent).then(function(){
       var btn = document.getElementById('copyBtn');
       btn.textContent = 'Copied ✓';
       btn.classList.add('copied');
@@ -630,9 +580,10 @@
     });
   }
 
+  // ---- INIT ----
+  renderPlatforms();
+  renderEmailRows();
   renderCrmFields();
-  renderBrandEmailRows();
-  renderSocialPanels();
 </script>
 </body>
 </html>
