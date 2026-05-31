@@ -1,2105 +1,817 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>GoPlay Discovery | Breakout AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Brief — GoPlay Agency × Breakout AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-body { background: #000000; color: #FFFFFF; font-family: Georgia, serif; min-height: 100vh; overflow-x: hidden; }
-
-@media (min-width: 768px) {
-.content { padding: 36px 48px 20px !important; }
-.btn-row { padding: 16px 48px 28px !important; }
-.topbar { padding: 22px 48px !important; min-height: 104px; }
-.cover-wrap { padding: 48px 80px !important; }
-}
-@media (max-width: 767px) {
-  .content { padding: 24px 20px 18px !important; }
-  .btn-row { padding: 12px 20px 18px !important; gap: 10px; }
-  .topbar { padding: 16px 18px !important; min-height: 84px; }
-  .topbar-logo { font-size: 14px; letter-spacing: 1.3px; }
-  .topbar-logo img { width: 52px !important; height: 52px !important; margin-right: 10px !important; }
-  .topbar-brand { font-size: 12px; }
-  .q-text { font-size: 18px; }
-  .cover-title, .thankyou-title { font-size: 42px !important; }
-  .sum-header { flex-direction: column; align-items: flex-start; gap: 14px; }
-  .inv-wrap, .content[style*='display:flex;gap:20px'], .content[style*='display:flex;gap:36px'] { display:block !important; }
-  .session-left, .session-right, .inv-left, .inv-right { width: 100% !important; }
-  .brand-grid { grid-template-columns: 1fr; }
-  .btn { padding: 17px 16px; font-size: 15px; }
-  .btn-back { flex: 0 0 84px; }
-}
-
-.screen { display: none; min-height: 100vh; height: 100%; flex-direction: column; }
-.screen.active { display: flex; }
-.mobile-stack { display:flex; flex-direction:column; gap:18px; }
-.mobile-section { display:flex; flex-direction:column; }
-.mobile-intro { font-size:13px; line-height:1.6; color:rgba(255,255,255,0.62); font-family: Helvetica Neue, sans-serif; margin-bottom:14px; max-width:760px; }
-.page-fill { display:flex; flex-direction:column; min-height:100%; }
-.topbar { background: #0A0A0A; border-bottom: 1px solid rgba(0,194,255,0.15); padding: 20px 28px; min-height: 94px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-.topbar-logo { font-size: 16px; letter-spacing: 2px; text-transform: uppercase; color: #00C2FF; font-family: Helvetica Neue, sans-serif; font-weight: 700; line-height: 1.2; }
-.topbar-logo img { width: 64px !important; height: 64px !important; border-radius: 50%; margin-right: 14px !important; vertical-align: middle; filter: drop-shadow(0 0 14px rgba(0,194,255,0.28)); }
-.topbar-brand { font-size: 14px; color: rgba(255,255,255,0.65); font-family: Helvetica Neue, sans-serif; letter-spacing: 0.8px; }
-.progress-bar { height: 3px; background: rgba(255,255,255,0.08); flex-shrink: 0; }
-.progress-fill { height: 100%; background: linear-gradient(90deg, #0057FF, #00C2FF); transition: width 0.4s ease; box-shadow: 0 0 8px rgba(0,194,255,0.6); }
-.content { flex: 1; padding: 28px 28px 16px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-.screen-label { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #00C2FF; font-family: Helvetica Neue, sans-serif; margin-bottom: 10px; }
-.q-text { font-size: 20px; line-height: 1.4; margin-bottom: 16px; }
-.q-label { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #00C2FF; font-family: Helvetica Neue, sans-serif; margin-bottom: 10px; font-weight: 700; }
-.bubble-group { display: flex; flex-wrap: wrap; gap: 11px; margin-bottom: 24px; }
-.bubble { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.10); border-radius: 30px; padding: 13px 20px; font-size: 15px; font-family: Helvetica Neue, sans-serif; cursor: pointer; transition: all 0.2s ease; user-select: none; touch-action: manipulation; }
-.bubble:active { transform: scale(0.96); }
-.bubble.selected { background: rgba(0,87,255,0.22); border-color: #0057FF; color: #fff; }
-.bubble.sel-green { background: rgba(0,224,150,0.18); border-color: #00E096; color: #00E096; }
-.bubble.sel-blue { background: rgba(0,87,255,0.22); border-color: #0057FF; color: #00C2FF; }
-.bubble.sel-orange { background: rgba(255,140,0,0.18); border-color: #FF8C00; color: #FF8C00; }
-.bubble.other-btn { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); font-style: italic; }
-.note-blue { background: rgba(0,194,255,0.06); border-left: 3px solid #00C2FF; border-radius: 0 10px 10px 0; padding: 11px 14px; margin-bottom: 16px; font-size: 12px; color: rgba(255,255,255,0.7); font-family: Helvetica Neue, sans-serif; font-style: italic; line-height: 1.5; }
-.tools-known { font-size: 11px; color: #00C2FF; font-family: Helvetica Neue, sans-serif; margin-bottom: 8px; }
-.hours-box { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 22px 28px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; }
-.hours-label { font-size: 16px; color: rgba(255,255,255,0.7); font-family: Helvetica Neue, sans-serif; }
-.hours-count { font-size: 44px; color: #00C2FF; font-family: Helvetica Neue, sans-serif; font-weight: 700; text-shadow: 0 0 20px rgba(0,194,255,0.5); }
-.hours-unit { font-size: 11px; color: rgba(255,255,255,0.4); font-family: Helvetica Neue, sans-serif; }
-
-/* PHASE BUTTONS - PREMIUM */
-.phase-row { display: flex; gap: 14px; margin-bottom: 28px; }
-.phase-btn { flex: 1; background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 18px; padding: 24px 12px; text-align: center; cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden; }
-.phase-btn:active { transform: scale(0.97); }
-.phase-btn .phase-num { font-size: 11px; color: rgba(255,255,255,0.4); font-family: Helvetica Neue, sans-serif; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
-.phase-btn .phase-label { font-size: 22px; font-family: Helvetica Neue, sans-serif; font-weight: 700; margin-bottom: 6px; }
-.phase-btn .phase-sub { font-size: 11px; font-family: Helvetica Neue, sans-serif; color: rgba(255,255,255,0.35); letter-spacing: 0.5px; }
-.phase-btn.p1.sel { background: rgba(0,224,150,0.10); border-color: #00E096; box-shadow: 0 0 20px rgba(0,224,150,0.2), inset 0 0 30px rgba(0,224,150,0.05); }
-.phase-btn.p1.sel .phase-label { color: #00E096; }
-.phase-btn.p1.sel .phase-sub { color: rgba(0,224,150,0.6); }
-.phase-btn.p2.sel { background: rgba(0,87,255,0.12); border-color: #0057FF; box-shadow: 0 0 20px rgba(0,87,255,0.2), inset 0 0 30px rgba(0,87,255,0.05); }
-.phase-btn.p2.sel .phase-label { color: #00C2FF; }
-.phase-btn.p2.sel .phase-sub { color: rgba(0,194,255,0.6); }
-.phase-btn.p3.sel { background: rgba(255,140,0,0.10); border-color: #FF8C00; box-shadow: 0 0 20px rgba(255,140,0,0.2), inset 0 0 30px rgba(255,140,0,0.05); }
-.phase-btn.p3.sel .phase-label { color: #FF8C00; }
-.phase-btn.p3.sel .phase-sub { color: rgba(255,140,0,0.6); }
-
-.divider { height: 1px; background: rgba(255,255,255,0.10); margin: 8px 0 24px; }
-.brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
-.brand-card { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.10); border-radius: 18px; padding: 22px 16px; cursor: pointer; transition: all 0.2s ease; text-align: center; position: relative; overflow: hidden; }
-.brand-card:active { transform: scale(0.97); }
-.brand-card:hover { border-color: rgba(0,194,255,0.3); background: rgba(0,194,255,0.05); }
-.brand-card.sel { background: rgba(0,87,255,0.22); border-color: #00C2FF; box-shadow: 0 0 16px rgba(0,194,255,0.2); }
-.brand-card .b-name { font-size: 15px; font-family: Helvetica Neue, sans-serif; font-weight: 700; }
-.brand-card .b-check { position: absolute; top: 8px; right: 8px; width: 18px; height: 18px; background: #0057FF; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 10px; }
-.brand-card.sel .b-check { display: flex; }
-
-/* SUMMARY */
-.sc-title { font-size: 17px; font-family: Helvetica Neue, sans-serif; font-weight: 700; margin-bottom: 10px; color: #00C2FF; }
-.sum-wrap { display: flex; flex-direction: column; height: 100%; gap: 16px; }
-.sum-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.10); flex-shrink: 0; }
-.sum-brand-name { font-size: 32px; font-weight: normal; line-height: 1.1; }
-.sum-brand-name span { color: #00C2FF; }
-.sum-hrs-badge { text-align: right; }
-.sum-hrs-num { font-size: 44px; color: #00C2FF; font-family: Helvetica Neue, sans-serif; font-weight: 700; line-height: 1; text-shadow: 0 0 20px rgba(0,194,255,0.5); }
-.sum-hrs-label { font-size: 11px; color: rgba(255,255,255,0.5); font-family: Helvetica Neue, sans-serif; letter-spacing: 1px; text-transform: uppercase; }
-.sum-col-title { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; font-family: Helvetica Neue, sans-serif; font-weight: 700; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 10px; }
-.sum-col-title.t-pain { color: #FF8C00; border-color: rgba(255,140,0,0.3); }
-.sum-col-title.t-tools { color: #00C2FF; border-color: rgba(0,194,255,0.3); }
-.sum-col-title.t-build { color: #00E096; border-color: rgba(0,224,150,0.3); }
-.sum-items { display: flex; flex-direction: column; gap: 7px; }
-.sum-item { font-size: 13px; font-family: Helvetica Neue, sans-serif; padding: 8px 12px; border-radius: 10px; line-height: 1.3; }
-.sum-item-pain { background: rgba(255,140,0,0.08); border: 1px solid rgba(255,140,0,0.2); color: rgba(255,255,255,0.85); }
-.sum-item-tool { background: rgba(0,194,255,0.08); border: 1px solid rgba(0,194,255,0.2); color: rgba(255,255,255,0.85); }
-.sum-empty { font-size: 12px; color: rgba(255,255,255,0.25); font-family: Helvetica Neue, sans-serif; font-style: italic; padding: 8px 0; }
-.summary-flow { display:flex; flex-direction:column; gap:18px; flex:1; min-height:0; }
-.summary-section-block { display:flex; flex-direction:column; }
-.summary-section-block.fill-top { flex:1.15; }
-.summary-section-block.fill-mid { flex:0.9; }
-.summary-section-block.fill-sol { flex:0.9; }
-.summary-section-block.fill-build { flex:1.1; }
-.summary-card-shell { display:flex; flex-direction:column; height:100%; gap:18px; }
-.current-solution-chip { display:inline-flex; align-items:center; padding:8px 12px; border-radius:12px; font-size:12px; font-family:Helvetica Neue, sans-serif; background:rgba(0,224,150,0.10); border:1px solid rgba(0,224,150,0.25); color:#00E096; margin:0 6px 6px 0; }
-.summary-chip-wrap { display:flex; flex-wrap:wrap; gap:6px; }
-.summary-build-group { margin-bottom:10px; }
-.tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-family: Helvetica Neue, sans-serif; margin: 2px; }
-.tb { background: rgba(0,87,255,0.2); border: 1px solid rgba(0,87,255,0.4); color: #00C2FF; }
-.tg { background: rgba(0,224,150,0.15); border: 1px solid rgba(0,224,150,0.4); color: #00E096; }
-.to { background: rgba(255,140,0,0.15); border: 1px solid rgba(255,140,0,0.4); color: #FF8C00; }
-
-/* BUTTONS */
-.btn-row { display: flex; gap: 12px; padding: 12px 24px 20px; flex-shrink: 0; }
-.btn { flex: 1; padding: 20px; border-radius: 16px; font-size: 16px; font-family: Helvetica Neue, sans-serif; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; outline: none; }
-.btn:active { transform: scale(0.97); }
-.btn-primary { background: linear-gradient(135deg, #0057FF, #1A6FFF); color: white; box-shadow: 0 2px 12px rgba(0,87,255,0.3); }
-.btn-secondary { background: rgba(255,255,255,0.10); border: 1.5px solid rgba(255,255,255,0.10); color: rgba(255,255,255,0.55); }
-.btn-back { background: transparent; border: 1.5px solid rgba(255,255,255,0.10); color: rgba(255,255,255,0.55); flex: 0 0 90px; font-size: 14px; }
-.btn-green { background: linear-gradient(135deg, #00A86B, #00E096); color: #050D1A; box-shadow: 0 2px 12px rgba(0,224,150,0.3); }
-
-/* COVER */
-.cover-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; text-align: center; background: radial-gradient(ellipse at 50% 40%, rgba(0,194,255,0.08) 0%, rgba(0,87,255,0.05) 40%, transparent 70%); }
-.cover-eyebrow { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #00C2FF; font-family: Helvetica Neue, sans-serif; margin-bottom: 20px; }
-.cover-title { font-size: 52px; line-height: 1.1; margin-bottom: 12px; text-shadow: 0 0 40px rgba(0,194,255,0.15); }
-.cover-title span { color: #00C2FF; text-shadow: 0 0 30px rgba(0,194,255,0.4); }
-.cover-divider { width: 40px; height: 2px; background: #0057FF; margin: 18px auto; }
-.cover-date { font-size: 11px; color: rgba(255,255,255,0.4); font-family: Helvetica Neue, sans-serif; margin-top: 18px; }
-.btn-big { width: 100%; padding: 20px; border-radius: 16px; font-size: 17px; font-family: Helvetica Neue, sans-serif; font-weight: 700; background: linear-gradient(135deg, #0057FF, #0080FF); color: white; border: none; cursor: pointer; letter-spacing: 3px; text-transform: uppercase; transition: all 0.2s; box-shadow: 0 4px 24px rgba(0,87,255,0.4); }
-.btn-big:active { transform: scale(0.98); opacity: 0.9; }
-
-/* POPUP */
-.popup-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 100; align-items: flex-end; justify-content: center; }
-.popup-overlay.active { display: flex; }
-.popup-sheet { background: #0A0A0A; border-top: 2px solid rgba(0,194,255,0.3); border-radius: 20px 20px 0 0; padding: 24px 20px 28px; width: 100%; max-height: 82vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-.popup-handle { width: 40px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; margin: 0 auto 18px; }
-.popup-title { font-size: 17px; font-family: Helvetica Neue, sans-serif; font-weight: 700; margin-bottom: 18px; color: #fff; }
-.popup-question { font-size: 10px; color: #00C2FF; font-family: Helvetica Neue, sans-serif; margin-bottom: 10px; margin-top: 16px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
-.popup-close { width: 100%; padding: 16px; border-radius: 12px; background: #0057FF; color: white; border: none; font-size: 15px; font-family: Helvetica Neue, sans-serif; font-weight: 700; cursor: pointer; margin-top: 20px; }
-
-/* CUSTOM MODAL */
-.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 200; align-items: center; justify-content: center; }
-.modal-overlay.active { display: flex; }
-.modal-box { background: #0A0A0A; border: 1px solid rgba(0,194,255,0.3); border-radius: 20px; padding: 28px 24px; width: 340px; text-align: center; box-shadow: 0 0 40px rgba(0,194,255,0.15); }
-.modal-title { font-size: 18px; font-family: Helvetica Neue, sans-serif; font-weight: 700; color: #fff; margin-bottom: 8px; }
-.modal-body { font-size: 13px; font-family: Helvetica Neue, sans-serif; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 20px; }
-.modal-brand-list { background: rgba(255,255,255,0.04); border-radius: 10px; padding: 10px 14px; margin-bottom: 18px; text-align: left; }
-.modal-brand-item { font-size: 13px; font-family: Helvetica Neue, sans-serif; color: #FF8C00; padding: 4px 0; }
-.modal-brand-item::before { content: 'Ã¢ÂÂ¢ '; }
-.modal-btns { display: flex; gap: 10px; }
-.modal-btn { flex: 1; padding: 14px; border-radius: 12px; font-size: 14px; font-family: Helvetica Neue, sans-serif; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; }
-.modal-btn-cancel { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); }
-.modal-btn-confirm { background: linear-gradient(135deg, #0057FF, #1A6FFF); color: white; }
-
-/* INVESTMENT PROPOSAL */
-.inv-wrap { display: flex; gap: 20px; height: 100%; }
-.inv-left { flex: 1.4; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; }
-.inv-right { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-.inv-brand-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 16px; }
-.inv-brand-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.06); }
-.inv-brand-name { font-size: 15px; font-family: Helvetica Neue, sans-serif; font-weight: 700; color: #fff; }
-.inv-brand-hrs { font-size: 11px; font-family: Helvetica Neue, sans-serif; color: rgba(255,255,255,0.4); }
-.inv-phase-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; font-family: Helvetica Neue, sans-serif; font-weight: 700; padding: 3px 8px; border-radius: 6px; display: inline-block; margin-bottom: 8px; margin-top: 8px; }
-.ipl-green { color: #00E096; background: rgba(0,224,150,0.08); }
-.ipl-blue { color: #00C2FF; background: rgba(0,194,255,0.08); }
-.ipl-orange { color: #FF8C00; background: rgba(255,140,0,0.08); }
-.inv-build-item { font-size: 12px; font-family: Helvetica Neue, sans-serif; padding: 7px 10px; border-radius: 8px; margin-bottom: 5px; color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); }
-.inv-empty { font-size: 12px; color: rgba(255,255,255,0.25); font-family: Helvetica Neue, sans-serif; font-style: italic; padding: 4px 0; }
-.shared-card { background: rgba(0,87,255,0.06); border: 1px solid rgba(0,87,255,0.2); border-radius: 16px; padding: 16px; }
-.shared-title { font-size: 13px; font-family: Helvetica Neue, sans-serif; font-weight: 700; color: #00C2FF; margin-bottom: 8px; }
-.shared-brands { display: flex; flex-wrap: wrap; gap: 6px; }
-.shared-brand-pill { font-size: 11px; font-family: Helvetica Neue, sans-serif; padding: 4px 10px; border-radius: 20px; background: rgba(0,87,255,0.15); border: 1px solid rgba(0,87,255,0.3); color: #00C2FF; }
-.shared-brand-pill.pill-estate { background: rgba(160,80,255,0.12); border-color: rgba(160,80,255,0.3); color: #C080FF; }
-.shared-brand-pill.pill-atc { background: rgba(255,64,96,0.12); border-color: rgba(255,64,96,0.3); color: #FF6080; }
-.inv-section-label { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: #00C2FF; font-family: Helvetica Neue, sans-serif; font-weight: 700; margin-bottom: 12px; }
-
-/* SESSION SUMMARY */
-.product-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
-.product-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 16px 18px; }
-.product-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-.product-card-name { font-size: 16px; font-family: Helvetica Neue, sans-serif; font-weight: 700; color: #fff; }
-.product-brands { display: flex; flex-wrap: wrap; gap: 7px; }
-.product-brand-pill { font-size: 12px; font-family: Helvetica Neue, sans-serif; padding: 5px 12px; border-radius: 20px; }
-.pill-goplay { background: rgba(0,87,255,0.12); border: 1px solid rgba(0,87,255,0.3); color: #00C2FF; }
-.pill-estate { background: rgba(160,80,255,0.12); border: 1px solid rgba(160,80,255,0.3); color: #C080FF; }
-.pill-atc { background: rgba(255,64,96,0.12); border: 1px solid rgba(255,64,96,0.3); color: #FF6080; }
-.session-left { flex: 1.6; overflow-y: auto; }
-.session-right { flex: 1; display: flex; flex-direction: column; gap: 12px; }
-.session-stat-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px 16px; }
-.ssb-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); font-family: Helvetica Neue, sans-serif; margin-bottom: 5px; }
-.ssb-value { font-size: 28px; font-family: Helvetica Neue, sans-serif; font-weight: 700; }
-.ssb-sub { font-size: 11px; color: rgba(255,255,255,0.4); font-family: Helvetica Neue, sans-serif; margin-top: 3px; }
-.next-step-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; cursor: pointer; border: 1px solid transparent; transition: all 0.2s; }
-.next-step-item.sel-ns { background: rgba(0,194,255,0.06); border-color: rgba(0,194,255,0.3); }
-.ns-check { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; transition: all 0.2s; }
-.next-step-item.sel-ns .ns-check { background: #00C2FF; border-color: #00C2FF; color: #000; }
-.ns-text { font-size: 13px; font-family: Helvetica Neue, sans-serif; color: rgba(255,255,255,0.8); }
-.ns-link { color: #00C2FF; text-decoration: underline; text-underline-offset: 3px; font-weight: 700; }
-.thankyou-next-wrap { width:min(100%,760px); margin: 0 auto 22px; padding:18px 18px 14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:18px; text-align:left; box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 10px 30px rgba(0,0,0,0.18); }
-#thankyou-next-steps-list { display:flex; flex-direction:column; gap:8px; }
-#thankyou-next-steps-list .next-step-item { background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); }
-#thankyou-next-steps-list .next-step-item .ns-check { border-color: rgba(0,194,255,0.24); color:#00C2FF; }
-#thankyou-next-steps-list .thankyou-booking-item { background: rgba(0,194,255,0.06); border-color: rgba(0,194,255,0.28); }
-#thankyou-next-steps-list .thankyou-booking-item:hover { background: rgba(0,194,255,0.1); }
-
-/* CUSTOM INPUT ROW */
-.custom-input-row { display: inline-flex; align-items: center; gap: 6px; margin-top: 2px; }
-.custom-text-input { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.15); border-radius: 30px; padding: 10px 16px; font-size: 13px; color: #fff; outline: none; width: 150px; font-family: Helvetica Neue, sans-serif; }
-.custom-add-btn { padding: 10px 14px; font-size: 16px; background: rgba(0,194,255,0.1); border: 1.5px solid rgba(0,194,255,0.3); color: #00C2FF; border-radius: 30px; cursor: pointer; font-family: Helvetica Neue, sans-serif; }
-.btn, .brand-card, .phase-btn, .custom-add-btn, .next-step-item, .popup-close { touch-action: manipulation; }
-
-
-
-
-.submit-status-note { font-size:12px; color:rgba(255,255,255,0.55); font-family:Helvetica Neue, sans-serif; margin-top:8px; }
-.btn.is-loading { opacity:0.75; pointer-events:none; }
-
-
-.cover-logo-wrap { position: relative; display: inline-block; margin-bottom: 28px; cursor: pointer; }
-.cover-logo-wrap:focus {
-  outline: 1px solid rgba(0,194,255,0.4);
-  outline-offset: 4px;
-  border-radius: 50%;
-}
-.cover-logo-wrap img { display:block; pointer-events:none; }
-
-.test-modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.84);
-  z-index: 350;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
-.test-modal-overlay.active { display: flex; }
-.test-modal-box {
-  width: min(92vw, 460px);
-  background: #0A0A0A;
-  border: 1px solid rgba(0,194,255,0.28);
-  border-radius: 22px;
-  padding: 26px 22px 24px;
-  box-shadow: 0 0 34px rgba(0,194,255,0.16);
-}
-.test-modal-title {
-  font-size: 22px;
-  font-family: Helvetica Neue, sans-serif;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 10px;
-}
-.test-modal-copy {
-  font-size: 14px;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.68);
-  font-family: Helvetica Neue, sans-serif;
-  margin-bottom: 18px;
-}
-.test-email-chip-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 18px;
-}
-.test-email-chip {
-  padding: 12px 14px;
-  border-radius: 14px;
-  background: rgba(0,194,255,0.07);
-  border: 1px solid rgba(0,194,255,0.2);
-  color: #00C2FF;
-  font-size: 13px;
-  font-family: Helvetica Neue, sans-serif;
-  word-break: break-word;
-}
-.test-modal-status {
-  min-height: 20px;
-  font-size: 12px;
-  color: rgba(255,255,255,0.52);
-  font-family: Helvetica Neue, sans-serif;
-  margin-bottom: 14px;
-}
-
-
-.phase-screen-layout {
-  display: flex;
-  gap: 36px;
-  align-items: flex-start;
-}
-.phase-selector-panel {
-  flex: 0 0 260px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding-top: 8px;
-}
-.phase-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.phase-build-panel {
-  flex: 1;
-  min-width: 0;
-  overflow-y: auto;
-}
-.phase-divider {
-  width: 1px;
-  background: rgba(255,255,255,0.10);
-  flex-shrink: 0;
-  margin: 8px 0;
-}
-@media (max-width: 1024px) {
-  .phase-screen-layout {
-    flex-direction: column;
-    gap: 22px;
+  :root {
+    --bg: #f4f1eb;
+    --white: #ffffff;
+    --black: #0a0a0a;
+    --brand-dark: #0a0a0a;
+    --brand-cyan: #00bcd4;
+    --brand-cyan-dark: #0097a7;
+    --brand-cyan-light: #4dd0e1;
+    --brand-red: #e53935;
+    --brand-orange: #f57c00;
+    --brand-green-logo: #43a047;
+    --brand-yellow: #fdd835;
+    --text: #1a1a1a;
+    --text-mid: #444444;
+    --text-light: #666666;
+    --border: #c8c0b0;
+    --border-dark: #a09888;
+    --input-bg: #ffffff;
+    --card-bg: #ffffff;
+    --tag-bg: #e8e4da;
+    --tag-selected-bg: #0a0a0a;
+    --tag-selected-text: #00bcd4;
+    --red-err: #c0392b;
   }
-  .phase-selector-panel {
-    flex: none;
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--black);
+    color: white;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,188,212,0.15);
+    border-bottom: 2px solid var(--brand-cyan);
+  }
+  .header-left { display: flex; align-items: center; gap: 16px; }
+  .header-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 20px;
+    letter-spacing: 0.08em; color: #fff;
+    text-transform: uppercase;
+  }
+  .header-logo span { color: var(--brand-cyan); }
+  .header-divider { width: 1px; height: 28px; background: rgba(255,255,255,0.2); }
+  .header-sub { font-size: 13px; color: rgba(255,255,255,0.65); font-weight: 500; }
+  .header-badge {
+    background: var(--brand-cyan);
+    color: var(--black);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 14px; border-radius: 2px;
+  }
+
+  /* RAINBOW BAR — logo-inspired accent */
+  .rainbow-bar {
+    height: 5px;
+    background: linear-gradient(to right,
+      #e53935 0%, #e53935 20%,
+      #f57c00 20%, #f57c00 40%,
+      #43a047 40%, #43a047 60%,
+      #fdd835 60%, #fdd835 80%,
+      #00bcd4 80%, #00bcd4 100%
+    );
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--black);
+    color: white;
+    padding: 56px 40px 48px;
+    border-bottom: 4px solid var(--brand-cyan);
+  }
+  .hero-tag {
+    display: inline-block;
+    border: 1px solid rgba(0,188,212,0.5);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 12px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 2px;
+    color: var(--brand-cyan);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: clamp(40px, 6vw, 68px);
+    line-height: 1.0; letter-spacing: 0.01em;
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--brand-cyan); }
+  .hero p {
+    font-size: 16px; color: rgba(255,255,255,0.78);
+    max-width: 580px; line-height: 1.7;
+  }
+
+  /* LAYOUT */
+  .main { max-width: 900px; margin: 0 auto; padding: 48px 24px 120px; }
+
+  /* SECTION */
+  .section { margin-bottom: 56px; }
+  .section-header {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 24px;
+  }
+  .section-num {
+    background: var(--black);
+    color: var(--brand-cyan);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 14px;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 2px; flex-shrink: 0;
+    border: 2px solid var(--brand-cyan);
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 26px;
+    letter-spacing: 0.02em; text-transform: uppercase;
+    color: var(--black);
+  }
+  .section-line { flex: 1; height: 2px; background: var(--border); }
+
+  /* CARD */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .card-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 14px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--brand-cyan-dark);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e8f8fa;
+  }
+  .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* LABELS & INPUTS */
+  .field-label {
+    display: block;
+    font-weight: 600; font-size: 13px;
+    color: var(--text);
+    margin-bottom: 6px; margin-top: 18px;
+  }
+  .field-label:first-of-type { margin-top: 0; }
+
+  input[type="text"], input[type="email"], textarea, select {
     width: 100%;
-    padding-top: 0;
+    background: var(--input-bg);
+    border: 1.5px solid var(--border-dark);
+    border-radius: 3px;
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px; font-weight: 500;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    resize: vertical;
   }
-  .phase-cards {
-    width: 100%;
+  input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focus {
+    border-color: var(--brand-cyan);
+    box-shadow: 0 0 0 3px rgba(0,188,212,0.15);
   }
-  .phase-divider {
-    display: none;
+  select option { background: white; color: var(--text); }
+  ::placeholder { color: #aaa; }
+
+  /* TAGS */
+  .tag-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .tag {
+    padding: 7px 14px;
+    background: var(--tag-bg);
+    border: 1.5px solid var(--border-dark);
+    border-radius: 3px;
+    font-size: 13px; font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    color: var(--text);
+    user-select: none;
+    line-height: 1;
   }
-  .phase-build-panel {
-    width: 100%;
-    overflow: visible;
+  .tag:hover { border-color: var(--brand-cyan); background: #e0f7fa; color: var(--brand-cyan-dark); }
+  .tag.selected {
+    background: var(--black);
+    border-color: var(--brand-cyan);
+    color: var(--brand-cyan);
   }
-  .phase-btn {
-    padding: 20px 14px;
+  .tag.selected:hover { background: #111; }
+
+  /* FIELD BUILDER */
+  .field-builder { display: flex; flex-direction: column; gap: 8px; }
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 150px 40px;
+    gap: 8px; align-items: center;
   }
-}
-
-
-.compact-nav {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  padding: 10px 24px 0;
-}
-.compact-nav .btn {
-  flex: 0 0 auto;
-  min-height: 44px;
-  padding: 11px 18px;
-  font-size: 14px;
-  border-radius: 14px;
-}
-.compact-nav .btn-back {
-  min-width: 78px;
-}
-.compact-nav .btn-primary,
-.compact-nav .btn-green,
-.compact-nav .btn-secondary {
-  min-width: 142px;
-}
-.choice-callout {
-  display: inline-block;
-  margin-bottom: 12px;
-  padding: 7px 12px;
-  border-radius: 999px;
-  background: rgba(0,194,255,0.08);
-  border: 1px solid rgba(0,194,255,0.22);
-  color: #00C2FF;
-  font-size: 11px;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
-  font-family: Helvetica Neue, sans-serif;
-  font-weight: 700;
-}
-.phase-selector-panel {
-  position: sticky;
-  top: 0;
-  z-index: 8;
-  padding-bottom: 8px;
-  background: linear-gradient(180deg, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.9) 78%, rgba(0,0,0,0) 100%);
-}
-.phase-guide-note {
-  font-size: 12px;
-  line-height: 1.55;
-  color: rgba(255,255,255,0.52);
-  font-family: Helvetica Neue, sans-serif;
-  margin-top: 10px;
-  margin-bottom: 2px;
-}
-@media (max-width: 767px) {
-  .compact-nav {
-    padding: 8px 16px 0;
-    justify-content: flex-end;
-    gap: 8px;
+  .field-row input, .field-row select { margin: 0; }
+  .remove-btn {
+    background: #fff0ee; border: 1.5px solid #e8b4ae;
+    color: var(--red-err); border-radius: 3px;
+    cursor: pointer; font-size: 18px; height: 40px;
+    font-weight: 700;
+    transition: all 0.15s; display: flex; align-items: center; justify-content: center;
   }
-  .compact-nav .btn {
-    min-height: 40px;
-    padding: 9px 14px;
-    font-size: 13px;
-    border-radius: 12px;
+  .remove-btn:hover { background: #fde0db; border-color: var(--red-err); }
+  .add-field-btn {
+    align-self: flex-start; margin-top: 8px;
+    background: none;
+    border: 1.5px dashed var(--brand-cyan);
+    color: var(--brand-cyan-dark); border-radius: 3px;
+    padding: 8px 18px; font-size: 13px; font-weight: 700;
+    cursor: pointer; transition: all 0.15s;
+    font-family: 'Barlow', sans-serif;
   }
-  .compact-nav .btn-back {
-    min-width: 68px;
+  .add-field-btn:hover { background: #e0f7fa; border-style: solid; }
+
+  /* BRAND TABS */
+  .brand-tabs {
+    display: flex; gap: 0;
+    border-bottom: 2px solid var(--border-dark);
+    margin-bottom: 20px;
+    overflow-x: auto;
   }
-  .compact-nav .btn-primary,
-  .compact-nav .btn-green,
-  .compact-nav .btn-secondary {
-    min-width: 122px;
+  .brand-tab {
+    padding: 10px 22px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 14px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.15s; color: var(--text-mid);
+    white-space: nowrap;
   }
-}
+  .brand-tab:hover { color: var(--brand-cyan-dark); background: #e0f7fa; }
+  .brand-tab.active { color: var(--brand-cyan-dark); border-bottom-color: var(--brand-cyan); background: #e0f7fa; }
+  .brand-panel { display: none; }
+  .brand-panel.active { display: block; }
 
+  /* PLATFORM CARDS */
+  .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
+  .platform-card {
+    border: 2px solid var(--border-dark);
+    border-radius: 4px; padding: 14px 12px;
+    text-align: center; cursor: pointer;
+    transition: all 0.15s; background: var(--tag-bg);
+    user-select: none;
+  }
+  .platform-card:hover { border-color: var(--brand-cyan); background: #e0f7fa; }
+  .platform-card.selected { border-color: var(--brand-cyan); background: var(--black); color: var(--brand-cyan); }
+  .platform-icon { font-size: 24px; margin-bottom: 6px; }
+  .platform-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; }
 
-#submit-responses-btn.is-pressed {
-  transform: scale(0.98);
-  opacity: 0.9;
-}
+  /* RANGE */
+  input[type="range"] {
+    -webkit-appearance: none; width: 100%; height: 4px;
+    background: var(--border); border-radius: 4px;
+    outline: none; margin-top: 10px; border: none;
+    box-shadow: none; padding: 0;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 20px; height: 20px;
+    background: var(--brand-cyan); border-radius: 50%; cursor: pointer;
+    border: 2px solid white; box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+  .range-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-light); margin-top: 6px; font-weight: 600; }
 
-/* THANK YOU SCREEN */
-.thankyou-wrap { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:56px 28px; background: radial-gradient(circle at 50% 30%, rgba(0,194,255,0.16) 0%, rgba(0,87,255,0.08) 32%, transparent 65%); }
-.thankyou-logo { width:180px; height:180px; border-radius:50%; margin-bottom:28px; filter:drop-shadow(0 0 36px rgba(0,194,255,0.45)); }
-.thankyou-eyebrow { font-size:12px; letter-spacing:4px; text-transform:uppercase; color:#00C2FF; font-family:Helvetica Neue, sans-serif; margin-bottom:18px; }
-.thankyou-title { font-size:58px; line-height:1.05; margin-bottom:14px; text-shadow:0 0 32px rgba(0,194,255,0.18); }
-.thankyou-title span { color:#00C2FF; text-shadow:0 0 24px rgba(0,194,255,0.4); }
-.thankyou-collab { display:inline-flex; align-items:center; gap:14px; padding:12px 22px; border-radius:999px; background:rgba(255,255,255,0.05); border:1px solid rgba(0,194,255,0.22); color:#fff; font-family:Helvetica Neue, sans-serif; font-size:18px; font-weight:700; letter-spacing:0.5px; margin-bottom:22px; box-shadow:0 0 22px rgba(0,194,255,0.12); }
-.thankyou-x { color:#00C2FF; font-size:24px; text-shadow:0 0 16px rgba(0,194,255,0.45); }
-.thankyou-copy { max-width:700px; font-size:16px; line-height:1.7; color:rgba(255,255,255,0.72); font-family:Helvetica Neue, sans-serif; margin:0 auto 26px; }
-.thankyou-footer { font-size:12px; color:rgba(255,255,255,0.38); font-family:Helvetica Neue, sans-serif; letter-spacing:1.2px; text-transform:uppercase; }
+  /* SUBMIT */
+  .submit-section {
+    background: var(--black);
+    border-radius: 6px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 48px;
+    border: 2px solid var(--brand-cyan);
+  }
+  .submit-section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 36px;
+    color: white; text-transform: uppercase;
+    margin-bottom: 12px; letter-spacing: 0.02em;
+  }
+  .submit-section h2 span { color: var(--brand-cyan); }
+  .submit-section p { color: rgba(255,255,255,0.75); font-size: 15px; margin-bottom: 28px; line-height: 1.6; }
+  .submit-btn {
+    background: var(--brand-cyan); color: var(--black);
+    border: none; padding: 16px 48px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 18px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; border-radius: 3px;
+    transition: all 0.15s;
+  }
+  .submit-btn:hover { background: var(--brand-cyan-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,188,212,0.35); }
 
-/* OVERALL POLISH PASS */
-body {
-  background:
-    radial-gradient(circle at 50% 0%, rgba(0,194,255,0.08) 0%, transparent 28%),
-    radial-gradient(circle at 12% 88%, rgba(0,87,255,0.06) 0%, transparent 24%),
-    #000000;
-}
+  /* OUTPUT */
+  .output-panel {
+    display: none; margin-top: 32px;
+    background: #111; border-radius: 4px; padding: 24px;
+    text-align: left; border: 1px solid var(--brand-cyan);
+  }
+  .output-panel.show { display: block; }
+  .output-panel pre {
+    font-family: 'Courier New', monospace;
+    font-size: 12px; line-height: 1.8;
+    color: #e8e4d8; white-space: pre-wrap; word-break: break-word;
+  }
+  .copy-btn {
+    margin-top: 16px; background: none;
+    border: 1.5px solid rgba(0,188,212,0.5);
+    color: var(--brand-cyan); padding: 8px 20px;
+    font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600;
+    cursor: pointer; border-radius: 3px; transition: all 0.15s;
+  }
+  .copy-btn:hover { border-color: var(--brand-cyan); background: rgba(0,188,212,0.08); }
 
-.content {
-  padding: 36px 34px 24px;
-}
+  /* SUCCESS */
+  .success-screen {
+    display: none; position: fixed; inset: 0;
+    background: var(--black); z-index: 999;
+    flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 48px;
+    border-top: 4px solid var(--brand-cyan);
+  }
+  .success-screen.show { display: flex; }
+  .success-icon { font-size: 72px; margin-bottom: 24px; }
+  .success-screen h2 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 52px; color: white; text-transform: uppercase;
+    letter-spacing: 0.02em; margin-bottom: 16px;
+  }
+  .success-screen h2 span { color: var(--brand-cyan); }
+  .success-screen p { color: rgba(255,255,255,0.8); max-width: 440px; line-height: 1.8; font-size: 16px; }
+  .success-back {
+    margin-top: 32px; background: var(--brand-cyan); color: var(--black);
+    border: none; padding: 14px 36px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 16px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; border-radius: 3px;
+  }
 
-@media (min-width: 768px) {
-  .content { padding: 42px 54px 28px !important; }
-  .btn-row { padding: 18px 54px 30px !important; }
-  .cover-wrap { padding: 56px 92px !important; }
-}
-
-.q-text {
-  max-width: 820px;
-  margin-bottom: 18px;
-}
-
-.q-label,
-.screen-label {
-  margin-bottom: 12px;
-}
-
-.bubble-group {
-  gap: 12px;
-  margin-bottom: 22px;
-}
-
-.bubble {
-  min-height: 46px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.brand-grid {
-  gap: 18px;
-  margin-bottom: 0;
-}
-
-.brand-card {
-  min-height: 92px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 18px;
-}
-
-.hours-box,
-.summary-card-shell,
-.inv-brand-card,
-.shared-card,
-.product-card,
-.session-stat-box {
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 10px 30px rgba(0,0,0,0.18);
-}
-
-.hours-box {
-  margin-top: 24px;
-}
-
-.btn-row {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-#s-brands .content,
-#s-pain .content,
-#s-phase .content,
-#s-summary .content,
-#s-expand .content,
-#s-session .content {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-#s-brands .content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 18px;
-}
-
-#s-pain .content,
-#s-phase .content,
-#s-summary .content,
-#s-expand .content,
-#s-session .content {
-  height: 100%;
-  min-height: 0;
-}
-
-#s-pain .content > div:first-child,
-#s-phase .content > div:first-child,
-#s-expand .content > div:first-child,
-#s-session .content > div:first-child {
-  min-height: 0;
-}
-
-#summary-card-content {
-  height: 100%;
-}
-
-.summary-card-shell {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 24px;
-  padding: 24px 26px;
-}
-
-.summary-flow {
-  gap: 22px;
-}
-
-.summary-section-block {
-  min-height: 0;
-}
-
-.sum-items {
-  gap: 9px;
-}
-
-.sum-item {
-  padding: 10px 14px;
-}
-
-.summary-chip-wrap {
-  gap: 8px;
-}
-
-.current-solution-chip {
-  padding: 9px 13px;
-  border-radius: 14px;
-}
-
-.summary-build-group {
-  margin-bottom: 12px;
-}
-
-.inv-left,
-.inv-right,
-.session-left,
-.session-right {
-  min-height: 0;
-}
-
-#inv-brand-cards,
-#inv-shared-systems {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.inv-brand-card {
-  padding: 18px;
-}
-
-.inv-brand-header {
-  margin-bottom: 14px;
-}
-
-.shared-card {
-  padding: 18px;
-}
-
-.product-grid {
-  gap: 14px;
-}
-
-.product-card {
-  padding: 18px 20px;
-}
-
-.session-right {
-  gap: 14px;
-}
-
-.session-stat-box {
-  padding: 16px 18px;
-}
-
-.note-blue {
-  margin-bottom: 0;
-}
-
-.next-step-item {
-  padding: 12px 14px;
-}
-
-.custom-text-input {
-  width: 180px;
-}
-
-.topbar {
-  backdrop-filter: blur(10px);
-}
-
-.cover-wrap {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.cover-title {
-  margin-bottom: 16px;
-}
-
-.cover-divider {
-  margin: 20px auto;
-}
-
+  @media (max-width: 640px) {
+    .header { padding: 0 16px; }
+    .hero { padding: 36px 20px 32px; }
+    .main { padding: 32px 16px 80px; }
+    .card-grid { grid-template-columns: 1fr; }
+    .platform-grid { grid-template-columns: repeat(2, 1fr); }
+    .field-row { grid-template-columns: 1fr 120px 40px; }
+  }
 </style>
-
 </head>
 <body>
 
-<!-- POPUP -->
+<!-- RAINBOW BAR TOP -->
+<div class="rainbow-bar"></div>
 
-<div class="popup-overlay" id="popup-overlay" onclick="closePopupOnBg(event)">
-  <div class="popup-sheet" id="popup-sheet">
-    <div class="popup-handle"></div>
-    <div class="popup-title" id="popup-title">Pain Point</div>
-    <div id="popup-body"></div>
-    <button class="popup-close" onclick="closePopup()">Done</button>
+<header class="header">
+  <div class="header-left">
+    <div class="header-logo">Breakout <span>AI</span></div>
+    <div class="header-divider"></div>
+    <div class="header-sub">GoPlay Agency — Build Brief</div>
   </div>
+  <div class="header-badge">CRM + Social Setup</div>
+</header>
+
+<div class="hero">
+  <div class="hero-tag">Confidential · May 2026</div>
+  <h1>Your <span>Build Brief</span></h1>
+  <p>Walk through each section so we can build your CRM and Social Media Automation exactly right — no guesswork, no back-and-forth. Your answers go directly to Dave and the team.</p>
 </div>
 
-<!-- CUSTOM MODAL -->
+<div class="main">
 
-<div class="modal-overlay" id="wrap-modal">
-  <div class="modal-box">
-    <div class="modal-title">You still have brands left</div>
-    <div class="modal-body">You still have brands left to complete:</div>
-    <div class="modal-brand-list" id="modal-brand-list"></div>
-    <div class="modal-body">Continue anyway?</div>
-    <div class="modal-btns">
-      <button class="modal-btn modal-btn-cancel" onclick="closeModal()">Back</button>
-      <button class="modal-btn modal-btn-confirm" onclick="confirmWrapUp()">Continue</button>
+  <!-- SECTION 1: BRANDS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title">Your Brands</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Which brands should be tracked inside the CRM?</div>
+      <div class="tag-group" id="brandTags">
+        <div class="tag selected" onclick="toggleTag(this)">Root &amp; Rise Symposium</div>
+        <div class="tag selected" onclick="toggleTag(this)">Sports Cannabis Olympics</div>
+        <div class="tag selected" onclick="toggleTag(this)">Touch Grass Fest</div>
+        <div class="tag selected" onclick="toggleTag(this)">Estate-Minder</div>
+        <div class="tag selected" onclick="toggleTag(this)">Advanced Laser</div>
+        <div class="tag" onclick="toggleTag(this)">NC3 Chamber</div>
+      </div>
+      <label class="field-label" style="margin-top:18px;">Any other brands or projects to add?</label>
+      <input type="text" id="extraBrands" placeholder="Type additional brands here...">
     </div>
   </div>
-</div>
 
-<!-- SCREEN 1: COVER -->
-
-<div class="screen active" id="s-cover">
-  <div class="cover-wrap">
-    <div class="cover-logo-wrap" id="cover-test-trigger" tabindex="0" role="button" aria-label="Open hidden test email">
-    <img id="cover-test-trigger-image" src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:240px;height:240px;border-radius:50%;filter:drop-shadow(0 0 32px rgba(0,194,255,0.5));" alt="Breakout AI Solutions">
-  </div>
-    <div class="cover-eyebrow">Self Guided Planning Session</div>
-    <div class="cover-title">GoPlay /<br><span>CannaJo!nt</span></div>
-    <div class="cover-divider"></div>
-    <div style="max-width:620px;font-size:14px;line-height:1.6;color:rgba(255,255,255,0.65);font-family:Helvetica Neue, sans-serif;margin:0 auto 22px;">This is a self guided planning experience. Select each brand, answer the questions that apply, and choose the solutions that would help most.</div>
-    <button class="btn-big" onclick="go('s-brands')">LET'S GO!</button>
-    <div class="cover-date" id="coverDate"></div>
-  </div>
-</div>
-
-<div class="test-modal-overlay" id="test-email-modal" onclick="closeTestEmailModalOnBg(event)">
-  <div class="test-modal-box">
-    <div class="test-modal-title">Test Email</div>
-    <div class="test-modal-copy">This sends a small test submission through the exact same live submit route as the final questionnaire so you can confirm delivery without completing all 6 brands.</div>
-    <div class="test-email-chip-wrap">
-      <div class="test-email-chip">To: dave@breakoutaisolutions.com</div>
-      <div class="test-email-chip">BCC: dave.bacon@ymail.com</div>
+  <!-- SECTION 2: CONTACTS & PIPELINE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title">Contacts &amp; Pipeline</div>
+      <div class="section-line"></div>
     </div>
-    <div class="test-modal-status" id="test-email-status">Ready to send a test submission.</div>
-    <div class="modal-btns">
-      <button class="modal-btn modal-btn-cancel" onclick="closeTestEmailModal()">Cancel</button>
-      <button class="modal-btn modal-btn-confirm" id="test-email-send-btn">Initiate</button>
-    </div>
-  </div>
-</div>
-
-<!-- SCREEN 2: BRAND SELECTOR -->
-
-<div class="screen" id="s-brands">
-  <div class="topbar" style="justify-content:center;">
-    <div class="topbar-logo" style="display:flex;align-items:center;">
-      <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:32px;height:32px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B">
-      <span>Select a Brand</span>
-    </div>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" style="width:10%"></div></div>
-  <div class="content">
-    <div class="screen-label" style="margin-bottom:10px">GoPlay / CannaJo!nt</div>
-    <div class="note-blue" style="margin-bottom:18px;max-width:860px;">Complete one brand at a time. Your progress will stay saved as you move through the experience.</div>
-    <div class="tools-known" style="font-size:12px;margin-bottom:14px;">Choose any brand to begin. Completed brands will stay highlighted.</div>
-    <div class="brand-grid">
-      <div class="brand-card" id="bc-sc" onclick="pickAndStart('Sports Cannabis','sc')">
-        <div class="b-name" style="font-size:18px;padding:8px 0;">Sports Cannabis</div><div class="b-check">&#10003;</div>
-      </div>
-      <div class="brand-card" id="bc-tgf" onclick="pickAndStart('Touch Grass Fest','tgf')">
-        <div class="b-name" style="font-size:18px;padding:8px 0;">Touch Grass Fest</div><div class="b-check">&#10003;</div>
-      </div>
-      <div class="brand-card" id="bc-rr" onclick="pickAndStart('R&amp;R Symposium','rr')">
-        <div class="b-name" style="font-size:18px;padding:8px 0;">R&amp;R Symposium</div><div class="b-check">&#10003;</div>
-      </div>
-      <div class="brand-card" id="bc-al" onclick="pickAndStart('Advanced Laser','al')">
-        <div class="b-name" style="font-size:18px;padding:8px 0;">Advanced Laser</div><div class="b-check">&#10003;</div>
+    <div class="card">
+      <div class="card-label">Who will you track in the CRM? (select all that apply)</div>
+      <div class="tag-group" id="contactTypeTags">
+        <div class="tag selected" onclick="toggleTag(this)">Sponsors</div>
+        <div class="tag selected" onclick="toggleTag(this)">Retail Buyers</div>
+        <div class="tag selected" onclick="toggleTag(this)">Brands / Vendors</div>
+        <div class="tag" onclick="toggleTag(this)">Media / Press</div>
+        <div class="tag" onclick="toggleTag(this)">Speakers</div>
+        <div class="tag" onclick="toggleTag(this)">Athletes</div>
+        <div class="tag" onclick="toggleTag(this)">Investors</div>
+        <div class="tag" onclick="toggleTag(this)">Ticket Buyers</div>
+        <div class="tag" onclick="toggleTag(this)">Partners / Affiliates</div>
+        <div class="tag" onclick="toggleTag(this)">Regulators / Policy</div>
       </div>
     </div>
-    <div class="screen-label" style="margin-bottom:10px;margin-top:4px;">Separate</div>
-    <div class="brand-grid">
-      <div class="brand-card" id="bc-em" onclick="pickAndStart('Estate-Minder','em')">
-        <div class="b-name" style="font-size:18px;padding:8px 0;">Estate-Minder</div><div class="b-check">&#10003;</div>
+    <div class="card">
+      <div class="card-label">Deal pipeline stages — how does a deal move through your process?</div>
+      <div class="tag-group" id="stageTags">
+        <div class="tag selected" onclick="toggleTag(this)">New Lead</div>
+        <div class="tag selected" onclick="toggleTag(this)">Contacted</div>
+        <div class="tag selected" onclick="toggleTag(this)">Proposal Sent</div>
+        <div class="tag selected" onclick="toggleTag(this)">In Negotiation</div>
+        <div class="tag selected" onclick="toggleTag(this)">Closed — Won</div>
+        <div class="tag selected" onclick="toggleTag(this)">Closed — Lost</div>
+        <div class="tag" onclick="toggleTag(this)">On Hold</div>
+        <div class="tag" onclick="toggleTag(this)">Follow-Up Needed</div>
+        <div class="tag" onclick="toggleTag(this)">Contract Out</div>
       </div>
-      <div class="brand-card" id="bc-atc" onclick="pickAndStart('Around the Clock Bail Bonds','atc')">
-        <div class="b-name" style="font-size:18px;padding:8px 0;">Around the Clock</div><div class="b-check">&#10003;</div>
+      <label class="field-label" style="margin-top:16px;">Any custom stages to add?</label>
+      <input type="text" id="customStages" placeholder="e.g. Awaiting Budget Approval, Internal Review...">
+    </div>
+  </div>
+
+  <!-- SECTION 3: CRM FIELDS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title">CRM Custom Fields</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Define the fields you want on each contact / deal record. Add or remove as needed.</div>
+      <div style="display:grid;grid-template-columns:1fr 150px 40px;gap:8px;margin-bottom:8px;padding:0 2px;">
+        <span style="font-size:12px;font-weight:700;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.06em;">Field Name</span>
+        <span style="font-size:12px;font-weight:700;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.06em;">Field Type</span>
+        <span></span>
+      </div>
+      <div class="field-builder" id="crmFields"></div>
+      <button class="add-field-btn" onclick="addCrmField()">+ Add Field</button>
+    </div>
+  </div>
+
+  <!-- SECTION 4: AUTOMATION & FOLLOW-UP (CRM) -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title">Automation &amp; Follow-Up</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-label">Email Follow-Up Cadence</div>
+        <label class="field-label">Days until first follow-up after outreach</label>
+        <input type="text" id="followup1" placeholder="e.g. 3 days">
+        <label class="field-label">Days until second follow-up (no response)</label>
+        <input type="text" id="followup2" placeholder="e.g. 7 days">
+        <label class="field-label">Max attempts before marking cold</label>
+        <input type="text" id="followupMax" placeholder="e.g. 4 attempts">
+      </div>
+      <div class="card">
+        <div class="card-label">Email Tone for Outreach</div>
+        <label class="field-label">Where should the AI land on tone for sponsor / sales emails?</label>
+        <input type="range" min="1" max="5" value="3" id="toneRange">
+        <div class="range-labels"><span>Formal &amp; Polished</span><span>Warm &amp; Conversational</span></div>
+        <label class="field-label" style="margin-top:20px;">Words or phrases that should NEVER appear in automated emails</label>
+        <textarea id="neverSay" rows="3" placeholder="e.g. avoid competitor names, no aggressive language, never mention pricing without approval..."></textarea>
       </div>
     </div>
   </div>
-</div>
 
-<!-- SCREEN 3: PAIN POINTS -->
-
-<div class="screen" id="s-pain">
-  <div class="topbar">
-    <div class="topbar-logo" id="pain-topbar" style="display:flex;align-items:center;">
-      <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" alt="B">
-      <span id="pain-topbar-text">Brand</span>
+  <!-- SECTION 5: TOOLS & INTEGRATIONS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title">Tools &amp; Integrations</div>
+      <div class="section-line"></div>
     </div>
-    <div class="topbar-brand">Step 1 of 4</div>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" style="width:28%"></div></div>
-  <div class="compact-nav">
-    <button class="btn btn-back" onclick="go('s-brands')">&#8592; Back</button>
-    <button class="btn btn-primary" onclick="go('s-tools')">Next &#8594;</button>
-  </div>
-  <div class="content">
-    <div class="page-fill">
-      <div class="mobile-section">
-        <div class="q-label">Pain Points / Needs</div>
-        <div class="tools-known" style="font-size:12px;margin-bottom:10px;"><span class="choice-callout">Choose all that apply</span><br>Tap a pain point to answer a few quick follow up questions.</div>
-        <div class="q-text" id="pain-question">"Which challenges apply to this brand right now?"</div>
-        <div class="bubble-group" id="pain-bubbles"></div>
+    <div class="card">
+      <div class="card-label">Which tools are you currently using? (select all that apply)</div>
+      <div class="tag-group" id="toolTags">
+        <div class="tag selected" onclick="toggleTag(this)">Make (Integromat)</div>
+        <div class="tag selected" onclick="toggleTag(this)">Mailchimp</div>
+        <div class="tag" onclick="toggleTag(this)">Constant Contact</div>
+        <div class="tag selected" onclick="toggleTag(this)">Wix</div>
+        <div class="tag selected" onclick="toggleTag(this)">Circle.so</div>
+        <div class="tag" onclick="toggleTag(this)">Kajabi</div>
+        <div class="tag" onclick="toggleTag(this)">Microsoft Ads</div>
+        <div class="tag" onclick="toggleTag(this)">Google Workspace</div>
+        <div class="tag" onclick="toggleTag(this)">Calendly</div>
+        <div class="tag" onclick="toggleTag(this)">Zoom</div>
+        <div class="tag" onclick="toggleTag(this)">Slack</div>
+        <div class="tag" onclick="toggleTag(this)">Zapier</div>
       </div>
-      <div class="hours-box" style="margin-top:auto;">
-        <div>
-          <div class="hours-label">Estimated hours per week</div>
-          <div class="hours-unit" style="font-size:12px;margin-top:3px;">based on your selections</div>
+      <label class="field-label" style="margin-top:18px;">Any tools not listed above?</label>
+      <input type="text" id="extraTools" placeholder="Add any other platforms...">
+    </div>
+    <div class="card">
+      <div class="card-label">Credential / Access Sharing</div>
+      <label class="field-label">How do you prefer to share logins and API keys securely?</label>
+      <div class="tag-group" id="credsTags">
+        <div class="tag" onclick="exclusiveTag(this,'credsTags')">Password Manager (1Password, etc.)</div>
+        <div class="tag" onclick="exclusiveTag(this,'credsTags')">Encrypted Email</div>
+        <div class="tag" onclick="exclusiveTag(this,'credsTags')">Screen Share / Call</div>
+        <div class="tag selected" onclick="exclusiveTag(this,'credsTags')">Dave will coordinate directly</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: SOCIAL MEDIA -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title">Social Media Automation</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="card" style="margin-bottom:0;border-radius:4px 4px 0 0;border-bottom:none;">
+      <div class="card-label">Configure social settings per brand</div>
+
+      <div class="card" style="margin-bottom:12px;background:#f9f7f3;">
+        <div class="card-label">Post Approval Flow</div>
+        <label class="field-label">Require your approval before posts go live?</label>
+        <div class="tag-group" id="approvalTags">
+          <div class="tag selected" onclick="exclusiveTag(this,'approvalTags')">Yes — approve every post</div>
+          <div class="tag" onclick="exclusiveTag(this,'approvalTags')">New content types only</div>
+          <div class="tag" onclick="exclusiveTag(this,'approvalTags')">No — auto-publish all</div>
         </div>
-        <div style="text-align:right">
-          <div class="hours-count" id="hours-total">0</div>
-          <div class="hours-unit" style="font-size:13px;">hrs/wk</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SCREEN 4: CURRENT TOOLS -->
-
-<div class="screen" id="s-tools">
-  <div class="topbar">
-    <div class="topbar-logo" id="tools-topbar" style="display:flex;align-items:center;">
-      <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" alt="B">
-      <span id="tools-topbar-text">Brand</span>
-    </div>
-    <div class="topbar-brand">Step 2 of 4</div>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" style="width:48%"></div></div>
-  <div class="compact-nav">
-    <button class="btn btn-back" onclick="go('s-pain')">&#8592; Back</button>
-    <button class="btn btn-primary" onclick="go('s-phase')">Next &#8594;</button>
-  </div>
-  <div class="content">
-    <div class="page-fill">
-      <div class="mobile-section">
-        <div class="q-label">Current Tools</div>
-        <div class="tools-known" style="font-size:12px;margin-bottom:10px;"><span class="choice-callout">Choose all that apply</span><br>Select the tools already in use. Add anything missing.</div>
-        <div class="q-text" id="tools-question-mobile" style="font-size:17px">"What software are you using?"</div>
-        <div class="bubble-group" id="tool-bubbles-mobile"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SCREEN 5: PHASE + BUILD SCOPE -->
-
-<div class="screen" id="s-phase">
-  <div class="topbar">
-    <div class="topbar-logo" id="phase-topbar" style="display:flex;align-items:center;">
-      <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:36px;height:36px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B">
-      <span id="phase-topbar-text">Brand</span>
-    </div>
-    <div class="topbar-brand">Step 3 of 4</div>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div>
-  <div class="compact-nav">
-    <button class="btn btn-back" onclick="go('s-tools')">&#8592; Back</button>
-    <button class="btn btn-primary" onclick="saveBrandData(); go('s-summary')">Summary &#8594;</button>
-  </div>
-  <div class="content">
-    <div class="phase-screen-layout">
-      <div class="phase-selector-panel">
-        <div class="q-label">Build Priority</div>
-        <div class="tools-known" style="font-size:12px;margin-bottom:8px;">Choose when each solution should happen.</div>
-        <div class="q-text" id="phase-question" style="font-size:16px;">"Where does this land?"</div>
-        <div class="phase-guide-note">Choose a phase, select the solutions you want, then tap the next phase card above whenever you are ready to keep going.</div>
-        <div class="phase-cards">
-          <div class="phase-btn p1" id="ph1" onclick="selPhase(1)">
-            <div class="phase-num">Phase 1</div>
-            <div class="phase-label">Start Now</div>
-            <div class="phase-sub">Immediate priority</div>
-          </div>
-          <div class="phase-btn p2" id="ph2" onclick="selPhase(2)">
-            <div class="phase-num">Phase 2</div>
-            <div class="phase-label">Soon</div>
-            <div class="phase-sub">Important next layer</div>
-          </div>
-          <div class="phase-btn p3" id="ph3" onclick="selPhase(3)">
-            <div class="phase-num">Phase 3</div>
-            <div class="phase-label">Later</div>
-            <div class="phase-sub">Expansion and optimization</div>
-          </div>
+        <label class="field-label" style="margin-top:16px;">Preferred approval method</label>
+        <div class="tag-group" id="approvalMethodTags">
+          <div class="tag selected" onclick="exclusiveTag(this,'approvalMethodTags')">Email</div>
+          <div class="tag" onclick="exclusiveTag(this,'approvalMethodTags')">Text / SMS</div>
+          <div class="tag" onclick="exclusiveTag(this,'approvalMethodTags')">Dashboard</div>
+          <div class="tag" onclick="exclusiveTag(this,'approvalMethodTags')">Slack</div>
         </div>
       </div>
-      <div class="phase-divider"></div>
-      <div class="phase-build-panel">
-        <div class="q-label">What We'd Build</div>
-        <div class="tools-known" style="font-size:12px;margin-bottom:8px;"><span class="choice-callout">Choose all that apply</span><br>Select all that apply for this brand.</div>
-        <div style="font-size:14px;color:rgba(255,255,255,0.5);font-family:Helvetica Neue,sans-serif;margin-bottom:14px;">Choose a phase, then select the solutions that would help most.</div>
-        <div class="bubble-group" id="build-bubbles"></div>
-      </div>
+
+      <div class="brand-tabs" id="socialBrandTabs"></div>
+      <div id="socialBrandPanels"></div>
     </div>
   </div>
-  <div class="btn-row">
-    <button class="btn btn-back" onclick="go('s-pain')">&#8592; Back</button>
-    <button class="btn btn-primary" onclick="saveBrandData(); go('s-summary')">See Summary &#8594;</button>
+
+  <!-- SECTION 7: FINAL NOTES -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div class="section-title">Final Notes</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Priorities &amp; Open Notes</div>
+      <label class="field-label">The single most important thing the CRM needs to solve for you</label>
+      <textarea id="crmPriority" rows="3" placeholder="Your answer..."></textarea>
+      <label class="field-label">The single most important thing social automation needs to solve for you</label>
+      <textarea id="socialPriority" rows="3" placeholder="Your answer..."></textarea>
+      <label class="field-label">Anything else we should know before we start building?</label>
+      <textarea id="misc" rows="3" placeholder="Open notes, questions, preferences..."></textarea>
+    </div>
+    <div class="card">
+      <div class="card-label">Your Info</div>
+      <label class="field-label">Your name</label>
+      <input type="text" id="userName" value="Kelly Riddle">
+      <label class="field-label">Best email for confirmation</label>
+      <input type="email" id="userEmail" placeholder="kelly@goplayagency.com">
+    </div>
   </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-section">
+    <h2>Ready to <span>Build?</span></h2>
+    <p>Hit submit and Dave gets a complete summary of everything above — ready to hand off to the team with zero back-and-forth.</p>
+    <button class="submit-btn" onclick="submitBrief()">Submit Build Brief →</button>
+    <div class="output-panel" id="outputPanel">
+      <pre id="outputText"></pre>
+      <button class="copy-btn" onclick="copyOutput()">Copy to Clipboard</button>
+    </div>
+  </div>
+
 </div>
 
-<!-- SCREEN 6: BRAND SUMMARY -->
-
-<div class="screen" id="s-summary">
-  <div class="topbar">
-    <div class="topbar-logo" id="summary-topbar" style="display:flex;align-items:center;">
-      <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:36px;height:36px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B">
-      <span id="summary-topbar-text">Summary</span>
-    </div>
-    <div class="topbar-brand">Step 4 of 4</div>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
-  <div class="compact-nav">
-    <button class="btn btn-back" onclick="go('s-phase')">&#8592; Edit</button>
-    <button class="btn btn-secondary summary-secondary-btn" onclick="go('s-brands')">Next Brand</button>
-    <button class="btn btn-green summary-main-btn" onclick="tryWrapUp()">Continue &#8594;</button>
-  </div>
-  <div class="content">
-    <div id="summary-card-content"></div>
-  </div>
-  <div class="btn-row">
-    <button class="btn btn-back" onclick="go('s-phase')">&#8592; Edit</button>
-    <button class="btn btn-secondary summary-secondary-btn" onclick="go('s-brands')">+ Next Brand</button>
-    <button class="btn btn-green summary-main-btn" onclick="tryWrapUp()">Next &#8594;</button>
-  </div>
-</div>
-
-<!-- SCREEN 7: SYSTEM MAP -->
-
-<div class="screen" id="s-expand">
-  <div class="topbar">
-    <div class="topbar-logo" style="display:flex;align-items:center;">
-      <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:36px;height:36px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B">
-      <span>Recommended Systems</span>
-    </div>
-    <div class="topbar-brand">Recommended Systems</div>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div>
-  <div class="content" style="display:flex;gap:20px;">
-    <div class="inv-left">
-      <div class="inv-section-label">Brand by Brand</div>
-      <div id="inv-brand-cards"></div>
-    </div>
-    <div style="width:1px;background:rgba(255,255,255,0.08);flex-shrink:0;margin:4px 0;"></div>
-    <div class="inv-right">
-      <div class="inv-section-label">Shared Systems</div>
-      <div style="font-size:12px;color:rgba(255,255,255,0.35);font-family:Helvetica Neue,sans-serif;margin-bottom:12px;font-style:italic;">Solutions needed by 2 or more brands</div>
-      <div id="inv-shared-systems"></div>
-    </div>
-  </div>
-  <div class="btn-row">
-    <button class="btn btn-back" onclick="go('s-brands')">&#8592; Back</button>
-    <button class="btn btn-green" onclick="buildSessionSummary(); go('s-session')">Full Summary &#8594;</button>
-  </div>
-</div>
-
-<!-- SCREEN 8: FINAL SUMMARY -->
-
-<div class="screen" id="s-session">
-  <div class="topbar">
-    <div class="topbar-logo" style="display:flex;align-items:center;">
-      <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" style="width:32px;height:32px;border-radius:50%;margin-right:10px;vertical-align:middle;" alt="B">
-      <span>Final Summary</span>
-    </div>
-    <div class="topbar-brand">Recommended Systems</div>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
-  <div class="content" style="display:flex;gap:20px;">
-    <div class="session-left">
-      <div class="q-label" style="margin-bottom:14px;">Recommended Systems by Solution</div>
-      <div class="product-grid" id="product-grid">
-        <div style="font-size:13px;color:rgba(255,255,255,0.3);font-family:Helvetica Neue,sans-serif;font-style:italic;">Complete discovery to see your full build summary.</div>
-      </div>
-    </div>
-    <div style="width:1px;background:rgba(255,255,255,0.08);flex-shrink:0;margin:4px 0;"></div>
-    <div class="session-right">
-      <div class="session-stat-box">
-        <div class="ssb-label">Total Hours/Week</div>
-        <div class="ssb-value" style="color:#00C2FF;" id="sess-hrs">0</div>
-        <div class="ssb-sub">identified across all brands</div>
-      </div>
-      <div class="session-stat-box">
-        <div class="ssb-label">Brands Covered</div>
-        <div class="ssb-value" style="color:#00E096;" id="sess-brands">0</div>
-        <div class="ssb-sub">of 6 total</div>
-      </div>
-      <div class="session-stat-box">
-        <div class="ssb-label">Solutions Identified</div>
-        <div class="ssb-value" style="color:#C080FF;" id="sess-solutions">0</div>
-        <div class="ssb-sub">unique builds across all brands</div>
-      </div>
-      <div style="height:1px;background:rgba(255,255,255,0.08);margin:4px 0;"></div>
-      <div class="q-label" style="margin-bottom:8px;">Next step</div>
-      <div style="font-size:13px;color:rgba(255,255,255,0.58);font-family:Helvetica Neue,sans-serif;line-height:1.6;">Submit your responses first. Your thank you page will show the follow up actions and Friday booking link.</div>
-    </div>
-  </div>
-  <div class="btn-row">
-    <button class="btn btn-back" onclick="go('s-expand')">&#8592; Back</button>
-    <button class="btn btn-secondary" onclick="go('s-brands')">&#8635; More Brands</button>
-    <button class="btn btn-primary" id="submit-responses-btn">Submit My Responses</button>
-  </div>
-</div>
-
-
-<!-- SCREEN 9: THANK YOU -->
-
-<div class="screen" id="s-thankyou">
-  <div class="topbar">
-    <div class="topbar-logo" style="display:flex;align-items:center;">
-      <img src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" alt="B">
-      <span>Thank You</span>
-    </div>
-    <div class="topbar-brand">Session Complete</div>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
-  <div class="thankyou-wrap">
-    <img class="thankyou-logo" src="https://raw.githubusercontent.com/BreakoutAISolutions/Goplay/main/breakout_ai_logo_transparent_bg.png" alt="Breakout AI Solutions">
-    <div class="thankyou-eyebrow">Thank You Kelly</div>
-    <div class="thankyou-title">Thank you, Kelly<span>.</span></div>
-    <div class="thankyou-collab">
-      <span>GoPlay</span>
-      <span class="thankyou-x">X</span>
-      <span>Kelly</span>
-    </div>
-    <div class="thankyou-copy" id="thankyou-copy">Thank you for taking the time to complete this planning session. Your responses are in, and the next moves are ready below.</div>
-    <div class="thankyou-next-wrap">
-      <div class="q-label" style="margin-bottom:10px;">What happens next</div>
-      <div id="thankyou-next-steps-list">
-        <div class="next-step-item"><div class="ns-check">&#10003;</div><div class="ns-text">Dave will get back to you with tailored solutions for each brand</div></div>
-        <div class="next-step-item thankyou-booking-item" onclick="window.location.href='https://calendly.com/dave-breakoutaisolutions/'" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='https://calendly.com/dave-breakoutaisolutions/';}"><div class="ns-check">&#10003;</div><div class="ns-text"><span class="ns-link">Book some time Friday</span></div></div>
-        <div class="next-step-item"><div class="ns-check">&#10003;</div><div class="ns-text">Intro to Estate Minder</div></div>
-        <div class="next-step-item"><div class="ns-check">&#10003;</div><div class="ns-text">Lock in a potential start date for Phase 1</div></div>
-      </div>
-    </div>
-    <div class="thankyou-footer">Breakout AI Solutions</div>
-  </div>
-  <div class="btn-row">
-    <button class="btn btn-back" onclick="go('s-session')">&#8592; Back</button>
-    <button class="btn btn-secondary" onclick="go('s-brands')">&#8635; Review Brands</button>
-    <button class="btn btn-primary" onclick="go('s-cover')">Start Over</button>
-  </div>
+<!-- SUCCESS -->
+<div class="success-screen" id="successScreen">
+  <div class="success-icon">🚀</div>
+  <h2>Brief <span>Received.</span></h2>
+  <p>Dave and the team have everything they need. Expect a kickoff update within 24 hours.</p>
+  <button class="success-back" onclick="document.getElementById('successScreen').classList.remove('show')">Back to Brief</button>
 </div>
 
 <script>
-var curBrand = '';
-var curKey = '';
-var curPhase = 0;
-var sessionData = {};
-var popupHours = {};
-var SUBMIT_ENDPOINT = 'https://project-creator-BACON8R2026.replit.app/api/submit-intake';
+  // ---- CRM FIELDS ----
+  const defaultFields = [
+    { name: "Brand", type: "dropdown" },
+    { name: "Contact Type", type: "dropdown" },
+    { name: "Company / Organization", type: "text" },
+    { name: "Event", type: "dropdown" },
+    { name: "Deal / Sponsorship Value", type: "currency" },
+    { name: "Sponsorship Tier", type: "dropdown" },
+    { name: "Last Contact Date", type: "date" },
+    { name: "Next Follow-Up Date", type: "date" },
+    { name: "Lead Source", type: "dropdown" },
+    { name: "Notes", type: "textarea" },
+  ];
+  const fieldTypes = ["text","dropdown","date","number","currency","checkbox","textarea","url","phone","email"];
 
-var otherPains = {
-  cannabis_event: ['No ticketing system','Sponsor follow-up dropping off','Event check-in not automated','No post-event survey or feedback','Vendor management is manual','No email list being built','Brand partnerships not tracked','No content repurposing after events','No referral or affiliate program','Media and press outreach manual','No SMS alerts for attendees','Budget tracking is manual','Partnership deck needs updating','No retargeting for past attendees','Event debrief data not captured'],
-  non_cannabis: ['No referral program in place','Client retention not being tracked','No upsell or cross-sell sequences','Reputation management missing','Google reviews not being requested','No loyalty or VIP program','Appointment reminders manual','Before and after tracking missing','No patient reactivation campaigns','Staff scheduling not automated','Intake forms still on paper','No online booking integration','Post-treatment follow-up manual','Insurance or billing gaps','New patient welcome sequence missing'],
-  estate_minder: ['No automated renewal reminders','Member churn not being tracked','Content library not organized','No onboarding video or tutorial','Affiliate or referral program missing','No upsell to premium tier','Community moderation is manual','No drip campaign after signup','Event or webinar follow-up missing','Search and SEO not optimized','No member feedback loop','Partner or expert directory missing','Podcast or audio content missing','No win-back campaign for lapsed members','Analytics not connected to Circle'],
-  bail_bonds: ['No CRM for bond leads','No client intake form','No referral tracking from attorneys','No SMS confirmation for clients','No payment plan follow-up','Bond renewal reminders not automated','No Google Business optimization','No review generation system','Attorney referral outreach missing','No client satisfaction follow-up','Jail and court date tracking manual','Co-signer follow-up dropping off','No emergency after-hours page','Competitor monitoring not in place','No retargeting ads in place']
-};
-
-var qualifyData = {
-  'No CRM in place': { questions: [{ q: 'How are contacts tracked right now?', opts: ['Spreadsheets','Phone contacts','Email threads','Not at all'] },{ q: 'How many active contacts or leads?', opts: ['Under 50','50-200','200-500','500+'] }] },
-  'Leads falling through cracks': { questions: [{ q: 'How often does a lead go cold from no follow-up?', opts: ['Daily','Few times a week','Few times a month','Rarely'] },{ q: 'What happens after first contact?', opts: ['Manual follow-up','Nothing yet','Occasional email','Depends'] }] },
-  'Sponsorship outreach is manual': { questions: [{ q: 'How many sponsors actively being reached out to?', opts: ['Under 10','10-50','50-100','100+'] },{ q: 'How is outreach happening right now?', opts: ['Email one by one','DMs on social','Phone calls','No system yet'] }] },
-  'No follow-up system': { questions: [{ q: 'What percent of leads get a second touch?', opts: ['Almost none','About 25%','About 50%','Most of them'] },{ q: 'What stops consistent follow-up?', opts: ['Time','Forget to','No system','Too many leads'] }] },
-  'Social media inconsistent': { questions: [{ q: 'How often posting right now?', opts: ['Never or rarely','Few times a month','1-2x per week','Daily'] },{ q: 'How often would you WANT to post?', opts: ['Daily','3-5x per week','1-2x per week','Not sure yet'] },{ q: 'Who creates content?', opts: ['Me personally','A team member','No one yet','Inconsistent'] }] },
-  'Too much manual data entry': { questions: [{ q: 'What is being entered most often?', opts: ['Contact info','Lead status','Event details','Sales data','All of it'] },{ q: 'Hours per week on data entry?', opts: ['1-2 hrs','3-5 hrs','5-10 hrs','10+ hrs'] }] },
-  'Proposals take too long': { questions: [{ q: 'How long to put together a proposal?', opts: ['Hours','Half a day','Full day','Multiple days'] },{ q: 'How many proposals per month?', opts: ['1-2','3-5','5-10','10+'] }] },
-  "Can't track what's working": { questions: [{ q: 'Any reporting or analytics in place?', opts: ['Nothing','Basic social insights','Spreadsheet','Disconnected tools'] },{ q: 'What would you most want to track?', opts: ['Sponsorship pipeline','Social performance','Email open rates','Revenue by brand','All of it'] }] },
-  'Email follow-up falling behind': { questions: [{ q: 'How are follow-up emails sent right now?', opts: ['Manually one by one','Mailchimp blasts','Constant Contact','Not sending them'] },{ q: 'How many people should be getting emails?', opts: ['Under 100','100-500','500-1000','1000+'] }] },
-  'No lead generation system': { questions: [{ q: 'Where are leads coming from now?', opts: ['Word of mouth','Social media','Events','Nowhere consistent'] },{ q: 'Ideal lead source?', opts: ['Paid ads','Outbound outreach','Content marketing','Referrals','Not sure'] }] },
-  'No CRM at all': { questions: [{ q: 'How are contacts managed?', opts: ['Not at all','Email threads','Spreadsheet','Phone contacts'] },{ q: 'How many contacts total?', opts: ['Under 50','50-200','200-500','500+'] }] },
-  'No lead capture system': { questions: [{ q: 'Any form or signup capturing interest?', opts: ['No','Wix form (disconnected)','Instagram DMs','Email only'] },{ q: 'How many people expressed interest so far?', opts: ['Under 25','25-100','100-500','500+'] }] },
-  'Venue situation creating uncertainty': { questions: [{ q: 'Backup venue in place?', opts: ['Yes -- Curaleaf golf course','Working on it','Not yet','Need help finding one'] },{ q: 'Current event timeline?', opts: ['Next 30 days','Next 60 days','Next 90 days','Not locked in'] }] },
-  'No sponsorship pipeline': { questions: [{ q: 'How many potential sponsors identified?', opts: ['None yet','Under 10','10-30','30+'] },{ q: 'Sponsorship deck or package ready?', opts: ['Yes','Draft only','No','Need help building one'] }] },
-  'Audience not being built yet': { questions: [{ q: 'Any email list or audience for this event?', opts: ['No','Small list under 100','100-500','500+'] },{ q: 'Where is target audience most active?', opts: ['Instagram','LinkedIn','TikTok','Facebook','Email'] }] },
-  'Lead generation': { questions: [{ q: 'Where do most clients come from?', opts: ['Referrals','Walk-ins','Online search','Social media','Nowhere consistent'] },{ q: 'How many new leads per month is the goal?', opts: ['5-10','10-25','25-50','50+'] }] },
-  'Appointment booking automation': { questions: [{ q: 'How are appointments booked now?', opts: ['Phone only','Email back and forth','Online booking tool','No system'] },{ q: 'How many appointments per week?', opts: ['Under 5','5-15','15-30','30+'] }] },
-  'Missed calls after hours = missed revenue': { questions: [{ q: 'What happens to after-hours calls now?', opts: ['Goes to voicemail','Rings unanswered','Forwarded to cell','Nothing'] },{ q: 'Calls per week total?', opts: ['Under 10','10-30','30-60','60+'] },{ q: 'Typical bond value?', opts: ['Under $500','$500-$2000','$2000-$5000','$5000+'] }] },
-  'No AI phone agent': { questions: [{ q: 'Owner handling all calls personally?', opts: ['Yes all calls','Has one helper','Has staff','It varies'] },{ q: 'Calls going unanswered per week?', opts: ['A few','5-10','10-20','20+'] }] },
-  'No social media presence': { questions: [{ q: 'Any social presence at all?', opts: ['Nothing','Instagram only','Facebook page','Website only'] },{ q: 'Which platforms make sense for local bail bonds?', opts: ['Reddit','TikTok','YouTube Shorts','Facebook','All of them'] }] },
-  'No private community space for members': { questions: [{ q: 'What kind of community is envisioned?', opts: ['Forum/discussion','Group chat','Live calls','Resource sharing','Mix of all'] },{ q: 'Paying members only?', opts: ['Yes paying only','Free tier too','Not decided yet'] }] },
-  'Member onboarding is manual': { questions: [{ q: 'What happens after someone subscribes?', opts: ['Manual welcome email','Nothing automated','Kelly does it herself','Unclear'] },{ q: 'New members per month on average?', opts: ['Under 10','10-30','30-100','100+'] }] },
-  'Circle.so not fully configured': { questions: [{ q: 'What is Circle currently being used for?', opts: ['Courses only','Community only','Subscriptions only','Mix of all three','Not sure'] },{ q: 'What is Circle NOT doing that you wish it did?', opts: ['Automated onboarding','Member drip emails','Integration with other tools','Private sub-groups','Analytics and reporting','Gated content by tier'] }] },
-  'No customer-facing web app': { questions: [{ q: 'What would the web app need to do for members?', opts: ['Access courses and resources','Track estate progress','Connect with community','Get AI-guided next steps','All of the above'] },{ q: 'Does your client have a budget allocated for this?', opts: ['Yes -- dedicated budget','Part of existing budget','Not yet but open to it','Needs to be justified'] },{ q: 'What platform is the current website on?', opts: ['Wix','WordPress','Squarespace','Custom built','No website yet'] }] },
-  'No automated drip content for members': { questions: [{ q: 'Is there any content sequence after signup?', opts: ['Nothing automated','One welcome email','A few manual emails','Circle posts only'] },{ q: 'What format works best for this audience?', opts: ['Short emails','Video guides','Checklists','Community posts','Mix of formats'] }] },
-  'Circle not integrated with CRM or email': { questions: [{ q: 'What tools need to connect to Circle?', opts: ['Mailchimp','Constant Contact','Kajabi','Make automations','A CRM system','All of them'] },{ q: 'Is Make currently doing any Circle automation?', opts: ['Yes some','No not yet','Not sure','Tried but failed'] }] },
-  'Client has no visibility into engagement': { questions: [{ q: 'Does Kelly provide any reporting to the client?', opts: ['No','Ad hoc updates','Monthly report','Client has own login'] },{ q: 'What would the client most want to see?', opts: ['Member count','Engagement rate','Revenue','Community activity','All of it'] }] }
-};
-
-
-var commonPainOptions = ['CRM needs attention','Lead follow-up needs attention','Contracts are manual','Proposals are manual','Billing integration is missing','Payments are not connected'];
-var commonToolOptions = ['QuickBooks','Stripe','Square','DocuSign','PandaDoc','HubSpot','Zoho CRM','Salesforce'];
-var commonBuildOptions = ['Smart CRM pipeline','Automated follow-up','Contracts workflow','Proposal generation','Billing integration','Payments integration','E-sign document flow'];
-
-qualifyData['CRM needs attention'] = { questions: [{ q: 'How are customer records managed right now?', opts: ['Spreadsheet','Email threads','Multiple places','No system'] },{ q: 'How urgent is a cleaner CRM?', opts: ['High','Medium','Low','Not sure'] }] };
-qualifyData['Lead follow-up needs attention'] = { questions: [{ q: 'What usually happens after a new lead comes in?', opts: ['Manual follow-up','Delayed follow-up','No clear process','Depends on the brand'] },{ q: 'How often are leads missed or delayed?', opts: ['Daily','Weekly','Monthly','Rarely'] }] };
-qualifyData['Contracts are manual'] = { questions: [{ q: 'How are contracts handled today?', opts: ['Email attachments','Word docs','PDFs','No standard process'] },{ q: 'Would e-sign or approval tracking help?', opts: ['Yes definitely','Probably','Maybe','Not needed'] }] };
-qualifyData['Proposals are manual'] = { questions: [{ q: 'How are proposals created now?', opts: ['From scratch','Copy and paste','Template based','Not consistent'] },{ q: 'How often are proposals sent?', opts: ['Weekly','Monthly','Occasionally','Varies by brand'] }] };
-qualifyData['Billing integration is missing'] = { questions: [{ q: 'How is billing managed right now?', opts: ['Manual invoicing','Accounting software','Different tools','Not set up'] },{ q: 'What would help most?', opts: ['Cleaner invoicing','Connected reporting','Automated reminders','Payments sync'] }] };
-qualifyData['Payments are not connected'] = { questions: [{ q: 'How are payments collected today?', opts: ['Bank transfer','Card links','Manual invoices','Different tools'] },{ q: 'What kind of payment flow would help?', opts: ['Online checkout','Deposit collection','Recurring payments','Simple payment links'] }] };
-
-function uniqueArray(arr) {
-  var seen = {};
-  var out = [];
-  for (var i = 0; i < arr.length; i++) {
-    if (!seen[arr[i]]) {
-      seen[arr[i]] = true;
-      out.push(arr[i]);
-    }
-  }
-  return out;
-}
-
-function mergeToolPairs(basePairs, extras) {
-  var out = basePairs.slice();
-  var seen = {};
-  for (var i = 0; i < out.length; i++) { seen[out[i][0]] = true; }
-  for (var j = 0; j < extras.length; j++) {
-    if (!seen[extras[j]]) { out.push([extras[j], '']); }
-  }
-  return out;
-}
-
-var brandData = {
-  sc: { name: 'Sports Cannabis', otherType: 'cannabis_event', painQ: '"What are the top things holding Sports Cannabis back right now?"', pains: ['No CRM in place','Leads falling through cracks','Sponsorship outreach is manual','No follow-up system','Social media inconsistent','Too much manual data entry','Proposals take too long',"Can't track what's working",'Email follow-up falling behind','No lead generation system'], toolsQ: '"What software are you currently using for Sports Cannabis?"', tools: [['Make','sel'],['Mailchimp','sel'],['Constant Contact','sel'],['Wix',''],['Google Sheets',''],['Instagram / Meta',''],['Nothing yet','']], phaseQ: '"If we could start one thing for Sports Cannabis in the next 30 days, what makes the biggest impact?"', builds: ['Smart CRM pipeline','Sponsorship outreach sequences','Lead sourcing automation','Automated follow-up','Social content automation','Email campaigns','Proposal generation','Lead scoring','Analytics dashboard'] },
-  tgf: { name: 'Touch Grass Fest', otherType: 'cannabis_event', painQ: '"Touch Grass Fest -- with the venue still in flux, what is the biggest operational gap right now?"', pains: ['No CRM at all','No lead capture system','Venue situation creating uncertainty','No follow-up system','Social media inconsistent','No lead generation system','No sponsorship pipeline'], toolsQ: '"What are you using to manage Touch Grass Fest right now?"', tools: [['Wix','sel'],['Make',''],['Mailchimp',''],['Instagram / Meta',''],['Google Sheets',''],['Nothing yet','']], phaseQ: '"Should we get the foundation built now so you move fast once the venue locks in?"', builds: ['Smart CRM pipeline','Lead capture from Wix','CRM pipeline for sponsors and attendees','Automated follow-up','Automated follow-up sequences','Event registration system','Social content automation','Email outreach campaigns','Venue and partner tracking','Sponsorship CRM pipeline'] },
-  rr: { name: 'R&R Symposium', otherType: 'cannabis_event', painQ: '"For R&R -- is this primarily a sponsorship challenge, an audience challenge, or both?"', pains: ['No sponsorship pipeline','Sponsorship outreach is manual','No follow-up system','Audience not being built yet','Social media inconsistent','No lead generation system',"Can't track what's working"], toolsQ: '"What tools are you using for R&R right now -- or mostly manual?"', tools: [['Make',''],['Mailchimp',''],['Wix',''],['Google Sheets',''],['Instagram / Meta',''],['Nothing yet','sel']], phaseQ: '"Should R&R run on the same system as Sports Cannabis or its own pipeline?"', builds: ['Smart CRM pipeline','Sponsorship CRM pipeline','Outreach sequences','Automated follow-up','Lead gen automation','Audience building campaigns','Social content automation','Event management system','Co-sponsor tracking','Analytics dashboard'] },
-  al: { name: 'Advanced Laser', otherType: 'non_cannabis', painQ: '"Advanced Laser is a different world from the events -- what does that client need most right now?"', pains: ['Lead generation','No follow-up system','Appointment booking automation','Social media inconsistent',"Can't track what's working",'Email follow-up falling behind','No CRM in place'], toolsQ: '"What tools is Advanced Laser currently using for marketing and client management?"', tools: [['Make',''],['Mailchimp',''],['Constant Contact',''],['Wix',''],['Google Ads',''],['Instagram / Meta',''],['Nothing yet','']], phaseQ: '"Is Advanced Laser a priority alongside the cannabis events or more of a Phase 2 build?"', builds: ['Lead generation system','Automated follow-up sequences','Appointment booking automation','Review management','Social content automation','Email campaigns','Client CRM'] },
-  em: { name: 'Estate-Minder', otherType: 'estate_minder', painQ: '"Estate-Minder -- where is your client at, and what is the biggest gap in the member experience?"', pains: ['Circle.so not fully configured','No customer-facing web app','No private community space yet','Member onboarding is manual','Client has no visibility into engagement','No automated drip content for members','No lead generation for new subscribers','No follow-up system','Social media inconsistent','Circle not integrated with CRM or email'], toolsQ: '"Walk me through what Estate-Minder is currently running on."', tools: [['Circle.so','sel'],['Kajabi',''],['Make',''],['Mailchimp',''],['Constant Contact',''],['Custom website','']], phaseQ: '"Should Estate-Minder be a Phase 1 priority alongside GoPlay or sequenced after?"', builds: ['Keep Circle.so -- integrate around it','Private community space for members','Automated onboarding sequences','Automated follow-up','Client dashboard for visibility','AI content and drip sequences','Lead gen for new members','Make automation connecting Circle to CRM','Reporting and engagement analytics'] },
-  atc: { name: 'Around the Clock Bail Bonds', otherType: 'bail_bonds', painQ: '"Around the Clock -- what happens right now when someone calls after hours or the line is busy?"', pains: ['Missed calls after hours = missed revenue','No AI phone agent','No lead qualification system','No follow-up system','No social media presence','Social media inconsistent',"Can't track what's working"], toolsQ: '"What is currently in place for Around the Clock besides Microsoft Ads?"', tools: [['Microsoft Ads','sel'],['Phone only','sel'],['Google Sheets',''],['Instagram',''],['Nothing else','']], phaseQ: '"This has the fastest ROI -- every missed call is a missed bond. Should this be Phase 1?"', builds: ['AI phone agent 24/7','Lead qualification automation','CRM for bond leads','SMS follow-up sequences','Microsoft Ads optimization','Reddit presence and content','TikTok content automation','YouTube Shorts strategy','Local SEO build-out'] }
-};
-
-function go(id) {
-  var screens = document.querySelectorAll('.screen');
-  for (var i = 0; i < screens.length; i++) { screens[i].classList.remove('active'); }
-  document.getElementById(id).classList.add('active');
-  if (id === 's-brands') { refreshBrandCompletionState(); }
-  window.scrollTo(0, 0);
-}
-
-function refreshBrandCompletionState() {
-  var cards = document.querySelectorAll('.brand-card');
-  for (var i = 0; i < cards.length; i++) { cards[i].classList.remove('sel'); }
-  var doneKeys = Object.keys(sessionData);
-  for (var j = 0; j < doneKeys.length; j++) {
-    var card = document.getElementById('bc-' + doneKeys[j]);
-    if (card) { card.classList.add('sel'); }
-  }
-  if (curKey) {
-    var activeCard = document.getElementById('bc-' + curKey);
-    if (activeCard) { activeCard.classList.add('sel'); }
-  }
-}
-
-function tog(el) {
-  if (el.classList.contains('selected')) { el.classList.remove('selected'); }
-  else { el.classList.add('selected'); }
-}
-
-function esc(str) {
-  return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
-}
-
-function pickAndStart(name, key) {
-  refreshBrandCompletionState();
-  document.getElementById('bc-' + key).classList.add('sel');
-  curBrand = name;
-  curKey = key;
-  popupHours = {};
-  startBrand();
-}
-
-function startBrand() {
-  var d = brandData[curKey];
-  document.getElementById('pain-topbar-text').innerText = curBrand;
-  document.getElementById('phase-topbar-text').innerText = curBrand;
-  var toolsTopbar = document.getElementById('tools-topbar-text'); if (toolsTopbar) { toolsTopbar.innerText = curBrand; }
-  document.getElementById('pain-question').innerText = d.painQ;
-  var toolsQuestionMobile = document.getElementById('tools-question-mobile'); if (toolsQuestionMobile) { toolsQuestionMobile.innerText = d.toolsQ; }
-
-  var painsForBrand = uniqueArray(d.pains.concat(commonPainOptions));
-  var toolsForBrand = mergeToolPairs(d.tools, commonToolOptions);
-  var buildsForBrand = uniqueArray(d.builds.concat(commonBuildOptions));
-
-  var pb = document.getElementById('pain-bubbles');
-  pb.innerHTML = '';
-  for (var i = 0; i < painsForBrand.length; i++) {
-    var pain = painsForBrand[i];
-    var div = document.createElement('div');
-    div.className = 'bubble';
-    div.setAttribute('onclick', "tapPain(this,'" + esc(pain) + "')");
-    div.innerText = pain;
-    pb.appendChild(div);
+  function renderCrmFields() {
+    defaultFields.forEach(f => addCrmField(f.name, f.type));
   }
 
-  var otherBtn = document.createElement('div');
-  otherBtn.className = 'bubble other-btn';
-  otherBtn.setAttribute('onclick', 'openOther()');
-  otherBtn.innerText = '+ Other';
-  pb.appendChild(otherBtn);
-
-  var painInputRow = document.createElement('div');
-  painInputRow.className = 'custom-input-row';
-  var painInput = document.createElement('input');
-  painInput.type = 'text';
-  painInput.id = 'custom-pain-input';
-  painInput.placeholder = 'Type and tap +';
-  painInput.className = 'custom-text-input';
-  painInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') { addCustomPain(); } });
-  var painAddBtn = document.createElement('div');
-  painAddBtn.className = 'custom-add-btn';
-  painAddBtn.innerText = '+';
-  painAddBtn.addEventListener('click', addCustomPain);
-  painInputRow.appendChild(painInput);
-  painInputRow.appendChild(painAddBtn);
-  pb.appendChild(painInputRow);
-
-  var tb = document.getElementById('tool-bubbles-mobile');
-  tb.innerHTML = '';
-  for (var i = 0; i < toolsForBrand.length; i++) {
-    var cls = toolsForBrand[i][1] === 'sel' ? 'bubble selected' : 'bubble';
-    var tdiv = document.createElement('div');
-    tdiv.className = cls;
-    tdiv.setAttribute('onclick', 'tog(this)');
-    tdiv.innerText = toolsForBrand[i][0];
-    tb.appendChild(tdiv);
+  function addCrmField(name='', type='text') {
+    const container = document.getElementById('crmFields');
+    const row = document.createElement('div');
+    row.className = 'field-row';
+    row.innerHTML = `
+      <input type="text" placeholder="Field name..." value="${name}">
+      <select>${fieldTypes.map(t=>`<option value="${t}"${t===type?' selected':''}>${t.charAt(0).toUpperCase()+t.slice(1)}</option>`).join('')}</select>
+      <button class="remove-btn" onclick="this.parentElement.remove()">×</button>
+    `;
+    container.appendChild(row);
   }
 
-  var toolInputRow = document.createElement('div');
-  toolInputRow.className = 'custom-input-row';
-  var toolInput = document.createElement('input');
-  toolInput.type = 'text';
-  toolInput.id = 'custom-tool-input';
-  toolInput.placeholder = 'Add a tool...';
-  toolInput.className = 'custom-text-input';
-  toolInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') { addCustomTool(); } });
-  var toolAddBtn = document.createElement('div');
-  toolAddBtn.className = 'custom-add-btn';
-  toolAddBtn.innerText = '+';
-  toolAddBtn.addEventListener('click', addCustomTool);
-  toolInputRow.appendChild(toolInput);
-  toolInputRow.appendChild(toolAddBtn);
-  tb.appendChild(toolInputRow);
-
-  document.getElementById('hours-total').innerText = '0';
-  document.getElementById('phase-question').innerText = d.phaseQ;
-  curPhase = 0;
-  document.getElementById('ph1').classList.remove('sel');
-  document.getElementById('ph2').classList.remove('sel');
-  document.getElementById('ph3').classList.remove('sel');
-  document.getElementById('ph1').style.opacity = '1';
-  document.getElementById('ph2').style.opacity = '1';
-  document.getElementById('ph3').style.opacity = '1';
-
-  var bb = document.getElementById('build-bubbles');
-  bb.innerHTML = '';
-  for (var i = 0; i < buildsForBrand.length; i++) {
-    var bdiv = document.createElement('div');
-    bdiv.className = 'bubble';
-    bdiv.setAttribute('onclick', 'togBuild(this)');
-    bdiv.innerText = buildsForBrand[i];
-    bb.appendChild(bdiv);
-  }
-
-  var buildInputRow = document.createElement('div');
-  buildInputRow.className = 'custom-input-row';
-  var buildInput = document.createElement('input');
-  buildInput.type = 'text';
-  buildInput.id = 'custom-build-input';
-  buildInput.placeholder = 'Add a feature...';
-  buildInput.className = 'custom-text-input';
-  buildInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') { addCustomBuild(); } });
-  var buildAddBtn = document.createElement('div');
-  buildAddBtn.className = 'custom-add-btn';
-  buildAddBtn.innerText = '+';
-  buildAddBtn.addEventListener('click', addCustomBuild);
-  buildInputRow.appendChild(buildInput);
-  buildInputRow.appendChild(buildAddBtn);
-  bb.appendChild(buildInputRow);
-
-  go('s-pain');
-}
-
-function addCustomPain() {
-  var input = document.getElementById('custom-pain-input');
-  if (!input) { return; }
-  var val = input.value.trim();
-  if (!val) { return; }
-  var pb = document.getElementById('pain-bubbles');
-  var otherBtn = pb.querySelector('.other-btn');
-  var newBubble = document.createElement('div');
-  newBubble.className = 'bubble selected';
-  newBubble.setAttribute('onclick', "tapPain(this,'" + esc(val) + "')");
-  newBubble.innerText = val;
-  pb.insertBefore(newBubble, otherBtn);
-  input.value = '';
-  openPopup(val);
-}
-
-function addCustomTool() {
-  var input = document.getElementById('custom-tool-input');
-  if (!input) { return; }
-  var val = input.value.trim();
-  if (!val) { return; }
-  var tb = document.getElementById('tool-bubbles-mobile');
-  var inputRows = tb.querySelectorAll('.custom-input-row');
-  var inputRow = inputRows.length ? inputRows[inputRows.length - 1] : null;
-  var newBubble = document.createElement('div');
-  newBubble.className = 'bubble selected';
-  newBubble.setAttribute('onclick', 'tog(this)');
-  newBubble.innerText = val;
-  if (inputRow) {
-    tb.insertBefore(newBubble, inputRow);
-  } else {
-    tb.appendChild(newBubble);
-  }
-  input.value = '';
-}
-
-function addCustomBuild() {
-  var input = document.getElementById('custom-build-input');
-  if (!input) { return; }
-  var val = input.value.trim();
-  if (!val) { return; }
-  var bb = document.getElementById('build-bubbles');
-  var inputRows = bb.querySelectorAll('.custom-input-row');
-  var inputRow = inputRows.length ? inputRows[inputRows.length - 1] : null;
-  var newBubble = document.createElement('div');
-  newBubble.className = 'bubble';
-  newBubble.setAttribute('onclick', 'togBuild(this)');
-  newBubble.innerText = val;
-  if (curPhase === 1) { newBubble.classList.add('sel-green'); }
-  else if (curPhase === 2) { newBubble.classList.add('sel-blue'); }
-  else if (curPhase === 3) { newBubble.classList.add('sel-orange'); }
-  else { newBubble.classList.add('sel-green'); }
-  if (inputRow) {
-    bb.insertBefore(newBubble, inputRow);
-  } else {
-    bb.appendChild(newBubble);
-  }
-  input.value = '';
-}
-
-function tapPain(el, pain) {
-  var wasSelected = el.classList.contains('selected');
-  el.classList.toggle('selected');
-  if (!wasSelected) {
-    openPopup(pain);
-  } else {
-    delete popupHours[pain];
-    updateHoursTotal();
-  }
-}
-
-function makePopupBubble(label, onClick) {
-  var bubble = document.createElement('div');
-  bubble.className = 'bubble';
-  bubble.innerText = label;
-  bubble.addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    onClick(bubble);
-  });
-  return bubble;
-}
-
-function openPopup(pain) {
-  document.getElementById('popup-title').innerText = pain;
-  var qData = qualifyData[pain];
-  var body = document.getElementById('popup-body');
-  body.innerHTML = '';
-
-  if (qData) {
-    for (var i = 0; i < qData.questions.length; i++) {
-      var q = qData.questions[i];
-      var qLabel = document.createElement('div');
-      qLabel.className = 'popup-question';
-      qLabel.innerText = q.q;
-      body.appendChild(qLabel);
-
-      var qGroup = document.createElement('div');
-      qGroup.className = 'bubble-group';
-      for (var j = 0; j < q.opts.length; j++) {
-        (function(optLabel) {
-          var bubble = makePopupBubble(optLabel, function(el) { tog(el); });
-          qGroup.appendChild(bubble);
-        })(q.opts[j]);
-      }
-      body.appendChild(qGroup);
-    }
-  }
-
-  var hrsLabel = document.createElement('div');
-  hrsLabel.className = 'popup-question';
-  hrsLabel.innerText = 'Hours per week on this?';
-  body.appendChild(hrsLabel);
-
-  var hrsGroup = document.createElement('div');
-  hrsGroup.className = 'bubble-group';
-  var hOpts = ['1','2','3','4','5','6','8','10','12','15'];
-  for (var k = 0; k < hOpts.length; k++) {
-    (function(hrs) {
-      var bubble = makePopupBubble(hrs + ' hrs', function(el) { selHrs(el, pain, parseInt(hrs, 10)); });
-      hrsGroup.appendChild(bubble);
-    })(hOpts[k]);
-  }
-  body.appendChild(hrsGroup);
-
-  document.getElementById('popup-overlay').classList.add('active');
-}
-
-function openOther() {
-  var d = brandData[curKey];
-  var extras = otherPains[d.otherType] || [];
-  document.getElementById('popup-title').innerText = 'More Pain Points';
-  var html = '<div class="bubble-group">';
-  for (var i = 0; i < extras.length; i++) {
-    var pain = extras[i];
-    html += '<div class="bubble" onclick="addOtherPain(this,\'' + esc(pain) + '\')">' + pain + '</div>';
-  }
-  html += '</div>';
-  document.getElementById('popup-body').innerHTML = html;
-  document.getElementById('popup-overlay').classList.add('active');
-}
-
-function addOtherPain(el, pain) {
-  el.classList.toggle('selected');
-  if (el.classList.contains('selected')) {
-    var pb = document.getElementById('pain-bubbles');
-    var otherBtn = pb.querySelector('.other-btn');
-    var newBubble = document.createElement('div');
-    newBubble.className = 'bubble selected';
-    newBubble.setAttribute('onclick', "tapPain(this,'" + esc(pain) + "')");
-    newBubble.innerText = pain;
-    pb.insertBefore(newBubble, otherBtn);
-    closePopup();
-    setTimeout(function() { openPopup(pain); }, 200);
-  }
-}
-
-function selHrs(el, pain, hrs) {
-  var parent = el.parentNode;
-  var siblings = parent.querySelectorAll('.bubble');
-  for (var i = 0; i < siblings.length; i++) { siblings[i].classList.remove('selected'); }
-  el.classList.add('selected');
-  popupHours[pain] = hrs;
-  updateHoursTotal();
-}
-
-function updateHoursTotal() {
-  var total = 0;
-  for (var key in popupHours) { total += popupHours[key]; }
-  document.getElementById('hours-total').innerText = total;
-}
-
-function closePopup() { document.getElementById('popup-overlay').classList.remove('active'); }
-function closePopupOnBg(e) { if (e.target === document.getElementById('popup-overlay')) { closePopup(); } }
-
-function selPhase(n) {
-  curPhase = n;
-  document.getElementById('ph' + n).classList.add('sel');
-  document.getElementById('ph1').style.opacity = n === 1 ? '1' : '0.65';
-  document.getElementById('ph2').style.opacity = n === 2 ? '1' : '0.65';
-  document.getElementById('ph3').style.opacity = n === 3 ? '1' : '0.65';
-}
-
-function togBuild(el) {
-  if (el.classList.contains('sel-green') || el.classList.contains('sel-blue') || el.classList.contains('sel-orange')) {
-    el.classList.remove('sel-green','sel-blue','sel-orange');
-    return;
-  }
-  if (curPhase === 1) { el.classList.add('sel-green'); }
-  else if (curPhase === 2) { el.classList.add('sel-blue'); }
-  else if (curPhase === 3) { el.classList.add('sel-orange'); }
-  else { el.classList.add('sel-green'); }
-}
-
-function getSel(groupId) {
-  var group = document.getElementById(groupId);
-  if (!group) { return []; }
-  var all = group.querySelectorAll('.bubble.selected, .bubble.sel-green, .bubble.sel-blue, .bubble.sel-orange');
-  var res = [];
-  for (var i = 0; i < all.length; i++) {
-    var txt = all[i].innerText;
-    if (txt !== '+ Other' && txt !== '+') { res.push(txt); }
-  }
-  return res;
-}
-
-function getBuildWithPhase() {
-  var group = document.getElementById('build-bubbles');
-  if (!group) { return []; }
-  var all = group.querySelectorAll('.bubble');
-  var res = [];
-  for (var i = 0; i < all.length; i++) {
-    var el = all[i];
-    var ph = 0;
-    if (el.classList.contains('sel-green')) { ph = 1; }
-    else if (el.classList.contains('sel-blue')) { ph = 2; }
-    else if (el.classList.contains('sel-orange')) { ph = 3; }
-    if (ph > 0) { res.push({ text: el.innerText, phase: ph }); }
-  }
-  return res;
-}
-
-function getCurrentSolutions(builds) {
-  var seen = {};
-  var out = [];
-  for (var i = 0; i < builds.length; i++) {
-    var buildText = builds[i].text || builds[i];
-    var entry = productCatalog[buildText];
-    var solutionName = entry ? entry.name : buildText;
-    if (!seen[solutionName]) {
-      seen[solutionName] = true;
-      out.push(solutionName);
-    }
-  }
-  return out;
-}
-
-function updateSummaryActions() {
-  var allBrands = ['sc','tgf','rr','al','em','atc'];
-  var done = Object.keys(sessionData);
-  var remaining = allBrands.length - done.length;
-  var secondaryBtns = document.querySelectorAll('.summary-secondary-btn');
-  var mainBtns = document.querySelectorAll('.summary-main-btn');
-  if (!secondaryBtns.length || !mainBtns.length) { return; }
-
-  for (var i = 0; i < secondaryBtns.length; i++) {
-    var secondaryBtn = secondaryBtns[i];
-    if (remaining > 0) {
-      secondaryBtn.style.display = 'none';
-    } else {
-      secondaryBtn.style.display = '';
-      secondaryBtn.innerHTML = 'Choose Next Brand';
-      secondaryBtn.onclick = function() { go('s-brands'); };
-    }
-  }
-
-  for (var j = 0; j < mainBtns.length; j++) {
-    var mainBtn = mainBtns[j];
-    if (remaining > 0) {
-      mainBtn.innerHTML = 'Choose Next Brand &#8594;';
-      mainBtn.onclick = function() { go('s-brands'); };
-    } else {
-      mainBtn.innerHTML = 'Continue &#8594;';
-      mainBtn.onclick = function() { tryWrapUp(); };
-    }
-  }
-}
-
-function saveBrandData() {
-  var totalHrs = 0;
-  for (var key in popupHours) { totalHrs += popupHours[key]; }
-  var builds = getBuildWithPhase();
-  var pains = getSel('pain-bubbles');
-  var tools = getSel('tool-bubbles-mobile');
-  var currentSolutions = getCurrentSolutions(builds);
-
-  var phaseCounts = {1:0, 2:0, 3:0};
-  for (var i = 0; i < builds.length; i++) { phaseCounts[builds[i].phase]++; }
-  var domPhase = curPhase || 1;
-  if (phaseCounts[1] >= phaseCounts[2] && phaseCounts[1] >= phaseCounts[3]) { domPhase = 1; }
-  else if (phaseCounts[2] >= phaseCounts[3]) { domPhase = 2; }
-  else { domPhase = 3; }
-
-  var phaseLabel = domPhase === 1 ? 'Phase 1' : domPhase === 2 ? 'Phase 2' : 'Phase 3';
-  var phaseCls = domPhase === 1 ? 'tg' : domPhase === 2 ? 'tb' : 'to';
-
-  sessionData[curKey] = {
-    name: curBrand,
-    hrs: totalHrs,
-    phase: phaseLabel,
-    phaseNum: domPhase,
-    phaseCls: phaseCls,
-    pains: pains,
-    tools: tools,
-    currentSolutions: currentSolutions,
-    builds: builds
-  };
-
-  document.getElementById('summary-topbar-text').innerText = curBrand;
-
-  var nameParts = curBrand.split(' ');
-  var lastWord = nameParts.pop();
-  var firstWords = nameParts.join(' ');
-
-  var h = '<div class="summary-card-shell">';
-  h += '<div class="sum-header">';
-  h += '<div class="sum-brand-name">' + (firstWords ? firstWords + '<br><span>' + lastWord + '</span>' : '<span>' + lastWord + '</span>') + '</div>';
-  h += '<div class="sum-hrs-badge"><div class="sum-hrs-num">' + totalHrs + '</div><div class="sum-hrs-label">hrs / week</div></div>';
-  h += '</div>';
-
-  h += '<div class="summary-flow">';
-
-  h += '<div class="summary-section-block fill-top">';
-  h += '<div class="sum-col-title t-pain">Pain Points / Needs</div>';
-  h += '<div class="sum-items">';
-  if (pains.length) {
-    for (var i = 0; i < pains.length; i++) {
-      h += '<div class="sum-item sum-item-pain">' + pains[i] + '</div>';
-    }
-  } else {
-    h += '<div class="sum-empty">None selected</div>';
-  }
-  h += '</div></div>';
-
-  h += '<div class="summary-section-block fill-mid">';
-  h += '<div class="sum-col-title t-tools">Current Tools</div>';
-  h += '<div class="sum-items">';
-  if (tools.length) {
-    for (var i = 0; i < tools.length; i++) {
-      h += '<div class="sum-item sum-item-tool">' + tools[i] + '</div>';
-    }
-  } else {
-    h += '<div class="sum-empty">None confirmed</div>';
-  }
-  h += '</div></div>';
-
-  h += '<div class="summary-section-block fill-sol">';
-  h += '<div class="sum-col-title t-tools">Current Solutions</div>';
-  if (currentSolutions.length) {
-    h += '<div class="summary-chip-wrap">';
-    for (var i = 0; i < currentSolutions.length; i++) {
-      h += '<span class="current-solution-chip">' + currentSolutions[i] + '</span>';
-    }
-    h += '</div>';
-  } else {
-    h += '<div class="sum-empty">No solutions selected yet</div>';
-  }
-  h += '</div>';
-
-  h += '<div class="summary-section-block fill-build">';
-  h += '<div class="sum-col-title t-build">Build Scope</div>';
-  if (builds.length) {
-    var p1b = [], p2b = [], p3b = [];
-    for (var i = 0; i < builds.length; i++) {
-      if (builds[i].phase === 1) { p1b.push(builds[i].text); }
-      else if (builds[i].phase === 2) { p2b.push(builds[i].text); }
-      else { p3b.push(builds[i].text); }
-    }
-    if (p1b.length) {
-      h += '<div class="summary-build-group"><span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#00E096;font-family:Helvetica Neue,sans-serif;display:block;margin-bottom:5px;">Phase 1</span><div style="display:flex;flex-wrap:wrap;gap:6px;">';
-      for (var i = 0; i < p1b.length; i++) { h += '<span class="tag tg" style="font-size:12px;padding:5px 10px;">' + p1b[i] + '</span>'; }
-      h += '</div></div>';
-    }
-    if (p2b.length) {
-      h += '<div class="summary-build-group"><span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#00C2FF;font-family:Helvetica Neue,sans-serif;display:block;margin-bottom:5px;">Phase 2</span><div style="display:flex;flex-wrap:wrap;gap:6px;">';
-      for (var i = 0; i < p2b.length; i++) { h += '<span class="tag tb" style="font-size:12px;padding:5px 10px;">' + p2b[i] + '</span>'; }
-      h += '</div></div>';
-    }
-    if (p3b.length) {
-      h += '<div class="summary-build-group"><span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#FF8C00;font-family:Helvetica Neue,sans-serif;display:block;margin-bottom:5px;">Phase 3</span><div style="display:flex;flex-wrap:wrap;gap:6px;">';
-      for (var i = 0; i < p3b.length; i++) { h += '<span class="tag to" style="font-size:12px;padding:5px 10px;">' + p3b[i] + '</span>'; }
-      h += '</div></div>';
-    }
-  } else {
-    h += '<div class="sum-empty">None selected</div>';
-  }
-  h += '</div>';
-
-  h += '</div>';
-  h += '</div>';
-
-  document.getElementById('summary-card-content').innerHTML = h;
-  refreshBrandCompletionState();
-  updateSummaryActions();
-}
-
-function tryWrapUp() {
-  var allBrands = ['sc','tgf','rr','al','em','atc'];
-  var done = Object.keys(sessionData);
-  var missing = [];
-  var brandNames = {sc:'Sports Cannabis',tgf:'Touch Grass Fest',rr:'R&R Symposium',al:'Advanced Laser',em:'Estate-Minder',atc:'Around the Clock'};
-  for (var i = 0; i < allBrands.length; i++) {
-    if (done.indexOf(allBrands[i]) === -1) { missing.push(brandNames[allBrands[i]]); }
-  }
-  if (missing.length > 0) {
-    var listHtml = '';
-    for (var i = 0; i < missing.length; i++) { listHtml += '<div class="modal-brand-item">' + missing[i] + '</div>'; }
-    document.getElementById('modal-brand-list').innerHTML = listHtml;
-    document.getElementById('wrap-modal').classList.add('active');
-  } else {
-    buildInvestmentMap(); go('s-expand');
-  }
-}
-
-function closeModal() { document.getElementById('wrap-modal').classList.remove('active'); }
-function confirmWrapUp() { closeModal(); buildInvestmentMap(); go('s-expand'); }
-
-var brandGroupMap = {sc:'goplay',tgf:'goplay',rr:'goplay',al:'goplay',em:'estate',atc:'atc'};
-var brandDisplayNames = {sc:'Sports Cannabis',tgf:'Touch Grass Fest',rr:'R&R Symposium',al:'Advanced Laser',em:'Estate-Minder',atc:'Around the Clock'};
-
-function buildInvestmentMap() {
-  var keys = Object.keys(sessionData);
-  var brandCardsEl = document.getElementById('inv-brand-cards');
-  var sharedEl = document.getElementById('inv-shared-systems');
-
-  if (!keys.length) {
-    brandCardsEl.innerHTML = '<div style="font-size:13px;color:rgba(255,255,255,0.3);font-family:Helvetica Neue,sans-serif;font-style:italic;">Complete discovery first.</div>';
-    sharedEl.innerHTML = '';
-    return;
-  }
-
-  // Build item to brands map for shared systems
-  var buildToBrands = {};
-
-  var leftHtml = '';
-  for (var i = 0; i < keys.length; i++) {
-    var key = keys[i];
-    var d = sessionData[key];
-    var brandName = brandDisplayNames[key] || d.name;
-    var group = brandGroupMap[key] || 'goplay';
-
-    leftHtml += '<div class="inv-brand-card">';
-    leftHtml += '<div class="inv-brand-header">';
-    leftHtml += '<div class="inv-brand-name">' + brandName + '</div>';
-    leftHtml += '<div class="inv-brand-hrs">' + d.hrs + ' hrs/wk</div>';
-    leftHtml += '</div>';
-
-    if (!d.builds || !d.builds.length) {
-      leftHtml += '<div class="inv-empty">No build scope selected</div>';
-    } else {
-      var p1 = [], p2 = [], p3 = [];
-      for (var j = 0; j < d.builds.length; j++) {
-        var bItem = d.builds[j].text || d.builds[j];
-        var bPhase = d.builds[j].phase || 1;
-        if (bPhase === 1) { p1.push(bItem); }
-        else if (bPhase === 2) { p2.push(bItem); }
-        else { p3.push(bItem); }
-
-        if (!buildToBrands[bItem]) { buildToBrands[bItem] = []; }
-        var alreadyIn = false;
-        for (var k = 0; k < buildToBrands[bItem].length; k++) {
-          if (buildToBrands[bItem][k].name === brandName) { alreadyIn = true; break; }
-        }
-        if (!alreadyIn) { buildToBrands[bItem].push({ name: brandName, group: group }); }
-      }
-
-      if (p1.length) {
-        leftHtml += '<div class="inv-phase-label ipl-green">Phase 1 -- Start Now</div>';
-        for (var j = 0; j < p1.length; j++) { leftHtml += '<div class="inv-build-item">' + p1[j] + '</div>'; }
-      }
-      if (p2.length) {
-        leftHtml += '<div class="inv-phase-label ipl-blue">Phase 2 -- Soon</div>';
-        for (var j = 0; j < p2.length; j++) { leftHtml += '<div class="inv-build-item">' + p2[j] + '</div>'; }
-      }
-      if (p3.length) {
-        leftHtml += '<div class="inv-phase-label ipl-orange">Phase 3 -- Later</div>';
-        for (var j = 0; j < p3.length; j++) { leftHtml += '<div class="inv-build-item">' + p3[j] + '</div>'; }
-      }
-    }
-    leftHtml += '</div>';
-  }
-  brandCardsEl.innerHTML = leftHtml;
-
-  // Build shared systems -- only items appearing in 2+ brands
-  var sharedHtml = '';
-  var sharedCount = 0;
-  for (var item in buildToBrands) {
-    if (buildToBrands[item].length >= 2) {
-      sharedCount++;
-      sharedHtml += '<div class="shared-card">';
-      sharedHtml += '<div class="shared-title">' + item + '</div>';
-      sharedHtml += '<div class="shared-brands">';
-      for (var b = 0; b < buildToBrands[item].length; b++) {
-        var pillClass = buildToBrands[item][b].group === 'estate' ? 'pill-estate' : buildToBrands[item][b].group === 'atc' ? 'pill-atc' : '';
-        sharedHtml += '<span class="shared-brand-pill ' + pillClass + '">' + buildToBrands[item][b].name + '</span>';
-      }
-      sharedHtml += '</div></div>';
-    }
-  }
-
-  if (!sharedCount) {
-    sharedHtml = '<div style="font-size:13px;color:rgba(255,255,255,0.3);font-family:Helvetica Neue,sans-serif;font-style:italic;">No shared systems yet. Complete more brands to see overlap.</div>';
-  }
-  sharedEl.innerHTML = sharedHtml;
-}
-
-var productCatalog = {
-  'Smart CRM pipeline': {name:'Smart CRM',phase:1},
-  'Automated follow-up': {name:'Automated Follow-Up',phase:1},
-  'Contracts workflow': {name:'Contracts Workflow',phase:2},
-  'Proposal generation': {name:'Proposal Generator',phase:2},
-  'Billing integration': {name:'Billing Integration',phase:2},
-  'Payments integration': {name:'Payments Integration',phase:2},
-  'E-sign document flow': {name:'E-sign Documents',phase:2},
-  'Lead sourcing automation': {name:'Lead Generation System',phase:2},
-  'Sponsorship outreach sequences': {name:'Sponsorship Outreach System',phase:1},
-  'Automated follow-up': {name:'Automated Follow-Up',phase:1},
-  'Automated follow-up sequences': {name:'Automated Follow-Up',phase:1},
-  'Social content automation': {name:'Social Content Machine',phase:2},
-  'Email campaigns': {name:'Email Campaign System',phase:2},
-  'Email outreach campaigns': {name:'Email Campaign System',phase:2},
-  'Proposal generation': {name:'Proposal Generator',phase:2},
-  'Analytics dashboard': {name:'Analytics Dashboard',phase:3},
-  'Lead scoring': {name:'Lead Scoring',phase:3},
-  'Event registration system': {name:'Event Registration System',phase:2},
-  'Lead capture from Wix': {name:'Lead Capture',phase:1},
-  'CRM pipeline for sponsors and attendees': {name:'Smart CRM',phase:1},
-  'Venue and partner tracking': {name:'Event Management',phase:2},
-  'Outreach sequences': {name:'Sponsorship Outreach System',phase:1},
-  'Lead gen automation': {name:'Lead Generation System',phase:2},
-  'Audience building campaigns': {name:'Audience Building',phase:2},
-  'Event management system': {name:'Event Management',phase:2},
-  'Co-sponsor tracking': {name:'Sponsorship Outreach System',phase:1},
-  'Lead generation system': {name:'Lead Generation System',phase:2},
-  'Appointment booking automation': {name:'Booking Automation',phase:1},
-  'Review management': {name:'Review Management',phase:2},
-  'Client CRM': {name:'Smart CRM',phase:1},
-  'Keep Circle.so -- integrate around it': {name:'Circle.so Integration',phase:1},
-  'Private community space for members': {name:'Private Community Build',phase:1},
-  'Automated onboarding sequences': {name:'Member Onboarding Automation',phase:1},
-  'Client dashboard for visibility': {name:'Client Reporting Dashboard',phase:2},
-  'AI content and drip sequences': {name:'AI Content & Drip System',phase:2},
-  'Lead gen for new members': {name:'Lead Generation System',phase:2},
-  'Make automation connecting Circle to CRM': {name:'Circle.so Integration',phase:1},
-  'Reporting and engagement analytics': {name:'Analytics Dashboard',phase:3},
-  'AI phone agent 24/7': {name:'AI Phone Agent (24/7)',phase:1},
-  'Lead qualification automation': {name:'Lead Qualification System',phase:1},
-  'CRM for bond leads': {name:'Smart CRM',phase:1},
-  'SMS follow-up sequences': {name:'Automated Follow-Up',phase:1},
-  'Microsoft Ads optimization': {name:'Paid Ads Optimization',phase:2},
-  'Reddit presence and content': {name:'Social Content Machine',phase:2},
-  'TikTok content automation': {name:'Social Content Machine',phase:2},
-  'YouTube Shorts strategy': {name:'Social Content Machine',phase:2},
-  'Local SEO build-out': {name:'Local SEO Build',phase:3},
-  'Sponsorship CRM pipeline': {name:'Smart CRM',phase:1}
-};
-
-function buildSessionSummary() {
-  var keys = Object.keys(sessionData);
-  var productMap = {};
-
-  for (var i = 0; i < keys.length; i++) {
-    var key = keys[i];
-    var d = sessionData[key];
-    var brandName = brandDisplayNames[key] || d.name;
-    var brandGroup = brandGroupMap[key] || 'goplay';
-
-    for (var j = 0; j < d.builds.length; j++) {
-      var buildText = d.builds[j].text || d.builds[j];
-      var entry = productCatalog[buildText];
-      var productName = entry ? entry.name : buildText;
-      var productPhase = entry ? entry.phase : (d.builds[j].phase || 1);
-
-      if (!productMap[productName]) { productMap[productName] = {phase:productPhase, brands:[]}; }
-      var alreadyIn = false;
-      for (var k = 0; k < productMap[productName].brands.length; k++) {
-        if (productMap[productName].brands[k].name === brandName) { alreadyIn = true; break; }
-      }
-      if (!alreadyIn) { productMap[productName].brands.push({name:brandName, group:brandGroup}); }
-    }
-  }
-
-  var products = Object.keys(productMap);
-  products.sort(function(a,b) { return productMap[a].phase - productMap[b].phase; });
-
-  var h = '';
-  var curPhaseDisplay = 0;
-  for (var i = 0; i < products.length; i++) {
-    var pName = products[i];
-    var p = productMap[pName];
-    if (p.phase !== curPhaseDisplay) {
-      curPhaseDisplay = p.phase;
-      var pc = p.phase === 1 ? '#00E096' : p.phase === 2 ? '#00C2FF' : '#FF8C00';
-      var pl = p.phase === 1 ? 'Phase 1 -- Start Now' : p.phase === 2 ? 'Phase 2 -- Soon' : 'Phase 3 -- Later';
-      h += '<div style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;font-family:Helvetica Neue,sans-serif;font-weight:700;color:' + pc + ';margin-bottom:10px;margin-top:' + (i === 0 ? '0' : '16px') + ';">' + pl + '</div>';
-    }
-    var phaseTag = p.phase === 1 ? '<span class="tag tg">Phase 1</span>' : p.phase === 2 ? '<span class="tag tb">Phase 2</span>' : '<span class="tag to">Phase 3</span>';
-    h += '<div class="product-card">';
-    h += '<div class="product-card-header"><div class="product-card-name">' + pName + '</div>' + phaseTag + '</div>';
-    h += '<div class="product-brands">';
-    for (var j = 0; j < p.brands.length; j++) {
-      h += '<span class="product-brand-pill pill-' + p.brands[j].group + '">' + p.brands[j].name + '</span>';
-    }
-    h += '</div></div>';
-  }
-
-  var pgEl = document.getElementById('product-grid');
-  if (pgEl) { pgEl.innerHTML = h || '<div style="font-size:13px;color:rgba(255,255,255,0.3);font-style:italic;">No build scope selected yet.</div>'; }
-
-  var totalHrs = 0;
-  for (var i = 0; i < keys.length; i++) { totalHrs += sessionData[keys[i]].hrs; }
-  var hEl = document.getElementById('sess-hrs');
-  var bEl = document.getElementById('sess-brands');
-  var sEl = document.getElementById('sess-solutions');
-  if (hEl) { hEl.innerText = totalHrs; }
-  if (bEl) { bEl.innerText = keys.length; }
-  if (sEl) { sEl.innerText = products.length; }
-}
-
-function togNS(el) {
-  if (el.classList.contains('sel-ns')) { el.classList.remove('sel-ns'); }
-  else { el.classList.add('sel-ns'); }
-}
-
-var d = new Date();
-var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-document.getElementById('coverDate').innerText = months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
-
-document.addEventListener('DOMContentLoaded', function() {
-  var trigger = document.getElementById('cover-test-trigger');
-  var testSendBtn = document.getElementById('test-email-send-btn');
-
-  function handleOpen(event) {
-    if (event) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    openTestEmailModal();
-  }
-
-  if (trigger) {
-    trigger.style.touchAction = 'manipulation';
-    trigger.addEventListener('click', handleOpen);
-    trigger.addEventListener('keydown', function(event) {
-      if (event.key === 'Enter' || event.key === ' ') {
-        handleOpen(event);
-      }
+  // ---- SOCIAL PANELS ----
+  const socialBrands = ["Root & Rise", "Sports Cannabis Olympics", "Touch Grass Fest", "Estate-Minder", "Advanced Laser"];
+  const platforms = [
+    { name: "Instagram", icon: "📸" },
+    { name: "Facebook", icon: "👥" },
+    { name: "LinkedIn", icon: "💼" },
+    { name: "X / Twitter", icon: "🐦" },
+    { name: "TikTok", icon: "🎵" },
+    { name: "YouTube", icon: "▶️" },
+  ];
+  const contentTypes = [
+    "Event announcements", "Speaker / brand spotlights", "Behind the scenes",
+    "Sponsor callouts", "Industry news & commentary", "Ticket promotions",
+    "Countdown posts", "Recap / highlights", "Educational content", "User-generated content reposts"
+  ];
+  const toneOptions = ["Professional", "Energetic", "Educational", "Bold / Provocative", "Community-focused", "Playful", "Luxury / Elevated", "Grassroots"];
+
+  function renderSocialPanels() {
+    const tabBar = document.getElementById('socialBrandTabs');
+    const panelArea = document.getElementById('socialBrandPanels');
+    socialBrands.forEach((brand, i) => {
+      const tab = document.createElement('div');
+      tab.className = 'brand-tab' + (i===0?' active':'');
+      tab.textContent = brand;
+      tab.onclick = () => activateBrandTab(i);
+      tabBar.appendChild(tab);
+
+      const panel = document.createElement('div');
+      panel.className = 'brand-panel' + (i===0?' active':'');
+      panel.innerHTML = `
+        <div style="margin-bottom:20px;">
+          <label class="field-label">Active platforms for ${brand}</label>
+          <div class="platform-grid">
+            ${platforms.map((p,pi)=>`
+              <div class="platform-card${pi<2?' selected':''}" onclick="this.classList.toggle('selected')">
+                <div class="platform-icon">${p.icon}</div>
+                <div class="platform-name">${p.name}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        <div class="card-grid" style="margin-bottom:16px;">
+          <div>
+            <label class="field-label">Posting frequency per week</label>
+            <input type="text" placeholder="e.g. 3–5 posts/week">
+            <label class="field-label">Best days / times to post</label>
+            <input type="text" placeholder="e.g. Tue, Thu — morning preferred">
+            <label class="field-label">Account handle(s) to always tag</label>
+            <input type="text" placeholder="e.g. @rootandrrise">
+            <label class="field-label">Always-include hashtags</label>
+            <input type="text" placeholder="e.g. #RootAndRise #CannabisIndustry">
+          </div>
+          <div>
+            <label class="field-label">Brand voice / tone for ${brand}</label>
+            <div class="tag-group">
+              ${toneOptions.map((t,ti)=>`<div class="tag${ti<2?' selected':''}" onclick="toggleTag(this)">${t}</div>`).join('')}
+            </div>
+            <label class="field-label" style="margin-top:16px;">Accounts or competitors to NOT engage with</label>
+            <input type="text" placeholder="List any accounts to avoid...">
+          </div>
+        </div>
+        <div>
+          <label class="field-label">Content types to include in the auto-schedule</label>
+          <div class="tag-group">
+            ${contentTypes.map((c,ci)=>`<div class="tag${ci<3?' selected':''}" onclick="toggleTag(this)">${c}</div>`).join('')}
+          </div>
+        </div>
+        <div style="margin-top:16px;">
+          <label class="field-label">Key dates or campaigns to pre-schedule content around</label>
+          <textarea rows="2" placeholder="e.g. Symposium July 23–25, sponsor announcements, ticket launch dates..."></textarea>
+        </div>
+      `;
+      panelArea.appendChild(panel);
     });
   }
 
-  if (testSendBtn) {
-    testSendBtn.addEventListener('click', function(event) {
-      event.preventDefault();
-      sendTestEmail();
-    });
-  }
-});
-
-
-
-function openTestEmailModal() {
-  var modal = document.getElementById('test-email-modal');
-  var status = document.getElementById('test-email-status');
-  var btn = document.getElementById('test-email-send-btn');
-  if (status) { status.innerText = 'Ready to send a test submission.'; }
-  if (btn) {
-    btn.disabled = false;
-    btn.classList.remove('is-loading');
-    btn.innerText = 'Initiate';
-  }
-  if (modal) { modal.classList.add('active'); }
-}
-
-function closeTestEmailModal() {
-  var modal = document.getElementById('test-email-modal');
-  if (modal) { modal.classList.remove('active'); }
-}
-
-function closeTestEmailModalOnBg(event) {
-  if (event.target === document.getElementById('test-email-modal')) {
-    closeTestEmailModal();
-  }
-}
-
-function buildTestSubmissionPayload() {
-  return {
-    submittedAt: new Date().toISOString(),
-    sessionData: {
-      test: {
-        name: 'TEST SUBMISSION',
-        hrs: 0,
-        phase: 'Phase 1',
-        phaseNum: 1,
-        pains: ['Test environment verification'],
-        tools: ['Hidden homepage test trigger'],
-        builds: [{ text: 'Email delivery test', phase: 1 }]
-      }
-    },
-    sharedSystems: [],
-    summaryStats: {
-      totalHours: 0,
-      brandsCovered: 1,
-      solutionsIdentified: 1
-    },
-    nextSteps: ['Confirm intake email delivery is working'],
-    isTestSubmission: true
-  };
-}
-
-async function sendTestEmail() {
-  var btn = document.getElementById('test-email-send-btn');
-  var status = document.getElementById('test-email-status');
-  if (!btn) return;
-
-  btn.classList.add('is-loading');
-  btn.disabled = true;
-  btn.innerText = 'Sending...';
-  if (status) { status.innerText = 'Sending test submission...'; }
-
-  try {
-    var response = await fetch(SUBMIT_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(buildTestSubmissionPayload())
-    });
-
-    var data = {};
-    try { data = await response.json(); } catch (e) {}
-
-    if (!response.ok || !data.success) {
-      throw new Error((data && data.message) ? data.message : 'Failed to send test email');
-    }
-
-    btn.classList.remove('is-loading');
-    btn.innerText = 'Sent';
-    if (status) { status.innerText = 'Test email sent successfully.'; }
-  } catch (err) {
-    btn.classList.remove('is-loading');
-    btn.disabled = false;
-    btn.innerText = 'Initiate';
-    if (status) { status.innerText = 'There was a problem sending the test email. Please try again.'; }
-  }
-}
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
-  var safeButtons = document.querySelectorAll(".compact-nav .btn, .summary-main-btn, .summary-secondary-btn, #submit-responses-btn, #cover-test-trigger, #test-email-send-btn");
-  for (var i = 0; i < safeButtons.length; i++) {
-    safeButtons[i].style.touchAction = 'manipulation';
-  }
-});
-
-
-function buildFinalSubmissionPayload() {
-  var keys = Object.keys(sessionData);
-  var totalHrs = 0;
-  var productMap = {};
-  var sharedSystems = [];
-  var nextSteps = [];
-  nextSteps = ['Dave will get back to you with tailored solutions for each brand','Book some time Friday','Intro to Estate Minder','Lock in a potential start date for Phase 1'];
-
-  for (var j = 0; j < keys.length; j++) {
-    totalHrs += sessionData[keys[j]].hrs || 0;
-    var builds = sessionData[keys[j]].builds || [];
-    for (var k = 0; k < builds.length; k++) {
-      var buildText = builds[k].text || builds[k];
-      var entry = productCatalog[buildText];
-      var productName = entry ? entry.name : buildText;
-      productMap[productName] = true;
-    }
+  function activateBrandTab(idx) {
+    document.querySelectorAll('.brand-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
+    document.querySelectorAll('.brand-panel').forEach((p,i) => p.classList.toggle('active', i===idx));
   }
 
-  var sharedCards = document.querySelectorAll('#inv-shared-systems .shared-card .shared-title');
-  for (var m = 0; m < sharedCards.length; m++) {
-    sharedSystems.push(sharedCards[m].innerText.trim());
+  function toggleTag(el) { el.classList.toggle('selected'); }
+  function exclusiveTag(el, groupId) {
+    document.querySelectorAll(`#${groupId} .tag`).forEach(t => t.classList.remove('selected'));
+    el.classList.add('selected');
   }
 
-  return {
-    submittedAt: new Date().toISOString(),
-    sessionData: sessionData,
-    sharedSystems: sharedSystems,
-    summaryStats: {
-      totalHours: totalHrs,
-      brandsCovered: keys.length,
-      solutionsIdentified: Object.keys(productMap).length
-    },
-    nextSteps: nextSteps,
-    isTestSubmission: false
-  };
-}
+  // ---- SUBMIT ----
+  function submitBrief() {
+    const get = id => document.getElementById(id)?.value || '';
+    const selectedTags = id => [...document.querySelectorAll(`#${id} .tag.selected`)].map(t=>t.textContent).join(', ');
+    const crmFieldsList = [...document.querySelectorAll('#crmFields .field-row')]
+      .map(r=>`${r.querySelector('input').value} (${r.querySelector('select').value})`)
+      .filter(f=>f.trim()!=' ()').join('\n      ');
+    const toneVal = get('toneRange');
+    const toneLabel = toneVal<=2?'Formal & Polished':toneVal>=4?'Warm & Conversational':'Balanced';
 
-async function submitResponses() {
-  var submitBtn = document.getElementById('submit-responses-btn');
-  if (!submitBtn || submitBtn.classList.contains('is-loading')) { return; }
+    const output = `
+══════════════════════════════════════════════
+GOPLAY AGENCY × BREAKOUT AI — BUILD BRIEF
+Submitted: ${new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}
+Client: ${get('userName')} — ${get('userEmail')}
+══════════════════════════════════════════════
 
-  submitBtn.classList.add('is-loading');
-  submitBtn.classList.add('is-pressed');
-  submitBtn.innerText = 'Submitting...';
+[01] BRANDS IN CRM
+  ${selectedTags('brandTags')}
+  ${get('extraBrands') ? 'Additional: '+get('extraBrands') : ''}
 
-  try {
-    var response = await fetch(SUBMIT_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(buildFinalSubmissionPayload())
-    });
+[02] CONTACT TYPES & PIPELINE
+  Contact types: ${selectedTags('contactTypeTags')}
+  Pipeline stages: ${selectedTags('stageTags')}
+  ${get('customStages') ? 'Custom stages: '+get('customStages') : ''}
 
-    var data = {};
-    try { data = await response.json(); } catch (e) {}
+[03] CRM CUSTOM FIELDS
+      ${crmFieldsList}
 
-    if (!response.ok || !data.success) {
-      throw new Error((data && data.message) ? data.message : 'Failed to submit responses');
-    }
+[04] AUTOMATION & FOLLOW-UP
+  First follow-up: ${get('followup1')||'Not specified'}
+  Second follow-up: ${get('followup2')||'Not specified'}
+  Max attempts: ${get('followupMax')||'Not specified'}
+  Email tone: ${toneLabel}
+  Never say: ${get('neverSay')||'None specified'}
 
-    submitBtn.innerText = 'Submitted';
-    go('s-thankyou');
-  } catch (err) {
-    submitBtn.classList.remove('is-loading');
-    submitBtn.classList.remove('is-pressed');
-    submitBtn.innerText = 'Submit My Responses';
-    alert('There was a problem submitting your responses. Please try again.');
+[05] TOOLS & INTEGRATIONS
+  Current tools: ${selectedTags('toolTags')}
+  ${get('extraTools') ? 'Additional: '+get('extraTools') : ''}
+  Credentials: ${selectedTags('credsTags')}
+
+[06] SOCIAL MEDIA AUTOMATION
+  Approval flow: ${selectedTags('approvalTags')}
+  Approval method: ${selectedTags('approvalMethodTags')}
+  (Per-brand platform and tone selections captured above)
+
+[07] FINAL NOTES
+  CRM #1 priority: ${get('crmPriority')||'Not specified'}
+  Social #1 priority: ${get('socialPriority')||'Not specified'}
+  Open notes: ${get('misc')||'None'}
+
+══════════════════════════════════════════════
+END OF BUILD BRIEF
+══════════════════════════════════════════════`.trim();
+
+    document.getElementById('outputText').textContent = output;
+    document.getElementById('outputPanel').classList.add('show');
+    document.getElementById('outputPanel').scrollIntoView({behavior:'smooth',block:'center'});
+    setTimeout(()=>document.getElementById('successScreen').classList.add('show'), 1400);
   }
-}
 
-document.addEventListener('DOMContentLoaded', function() {
-  var submitBtn = document.getElementById('submit-responses-btn');
-  if (!submitBtn) return;
+  function copyOutput() {
+    navigator.clipboard.writeText(document.getElementById('outputText').textContent);
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied ✓';
+    setTimeout(()=>btn.textContent='Copy to Clipboard', 2000);
+  }
 
-  var pressOn = function() {
-    submitBtn.classList.add('is-pressed');
-  };
-
-  var pressOff = function() {
-    submitBtn.classList.remove('is-pressed');
-  };
-
-  submitBtn.style.touchAction = 'manipulation';
-  submitBtn.addEventListener('click', function(event) {
-    event.preventDefault();
-    submitResponses();
-  });
-  submitBtn.addEventListener('touchstart', pressOn, { passive: true });
-  submitBtn.addEventListener('pointerdown', pressOn, { passive: true });
-  submitBtn.addEventListener('mousedown', pressOn, { passive: true });
-  submitBtn.addEventListener('touchcancel', pressOff, { passive: true });
-  submitBtn.addEventListener('touchend', pressOff, { passive: true });
-  submitBtn.addEventListener('pointerup', pressOff, { passive: true });
-  submitBtn.addEventListener('mouseup', pressOff, { passive: true });
-  submitBtn.addEventListener('mouseleave', pressOff, { passive: true });
-});
-
+  renderCrmFields();
+  renderSocialPanels();
 </script>
-
 </body>
 </html>
