@@ -572,18 +572,36 @@
   }
 
   function copyOutput() {
-    navigator.clipboard.writeText(document.getElementById('outputText').textContent).then(function(){
-      var btn = document.getElementById('copyBtn');
-      btn.textContent = 'Copied ✓';
-      btn.classList.add('copied');
-      setTimeout(function(){ btn.textContent='Copy to Clipboard'; btn.classList.remove('copied'); }, 2500);
-    });
+    var text = document.getElementById('outputText').textContent;
+    try {
+      navigator.clipboard.writeText(text).then(function(){
+        flashCopied();
+      }).catch(function(){ fallbackCopy(text); });
+    } catch(e) { fallbackCopy(text); }
+  }
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    try { document.execCommand('copy'); flashCopied(); } catch(e) {}
+    document.body.removeChild(ta);
+  }
+  function flashCopied() {
+    var btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function(){ btn.textContent='Copy to Clipboard'; btn.classList.remove('copied'); }, 2500);
   }
 
   // ---- INIT ----
-  renderPlatforms();
-  renderEmailRows();
-  renderCrmFields();
+  document.addEventListener('DOMContentLoaded', function(){
+    renderPlatforms();
+    renderEmailRows();
+    renderCrmFields();
+  });
 </script>
 </body>
 </html>
